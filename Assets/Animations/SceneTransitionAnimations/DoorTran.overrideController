@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: DoorTran
+  m_Controller: {fileID: 9100000, guid: b27d10478315a994d98183e87c94326e, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 4efa85e0d2196dc429da0600ff791843, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 4a6ba62980e1e2e4b8177b451f5457c9, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 11365b6a3bab17148a04b8959d25aac7, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 0b0144ff2d9ff1548afcb3328528193c, type: 2}
