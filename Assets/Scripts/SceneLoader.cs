@@ -11,7 +11,6 @@ public class SceneLoader : MonoBehaviour
     public float tranWaitTime = 1f; //time for animator to play the animation
     
     public bool withTran; //choice to have transition or instant change.
-    public int sceneToTransferIndex; //makes it so they can transfer to whatever scene needed.
 
     // Update is called once per frame
     void Update()
@@ -25,16 +24,16 @@ public class SceneLoader : MonoBehaviour
             sceneTranAnimator.enabled = false;
         }
     }
-    public void LoadChosenLevel() //loads the chosen level if needed
+    public void LoadChosenLevel(int levelIndexToLoad) //loads the chosen level if needed with int condition so can choose scene to load
     {
-        if (withTran) //immediate change//with transition
+        if (withTran) //with transition
         {
-            StartCoroutine(LoadLevel(sceneToTransferIndex)); 
+            StartCoroutine(LoadLevel(levelIndexToLoad)); 
         }
 
         else //immediate change
         {
-            SceneManager.LoadScene(sceneToTransferIndex);
+            SceneManager.LoadScene(levelIndexToLoad);
         }
     }
     public void LoadNextLevel() //loads next level in build settings
