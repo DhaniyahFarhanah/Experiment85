@@ -15,6 +15,7 @@ public class SwitchSlime : MonoBehaviour
     [SerializeField] GameObject damageStatusBar;
     [SerializeField] GameObject speedStatusBar;
 
+    PlayerController playerController;
     SlimeStatFill healthStat;
     SlimeStatFill damageStat;
     SlimeStatFill speedStat;
@@ -31,12 +32,14 @@ public class SwitchSlime : MonoBehaviour
 
     private void Awake()
     {
+        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         healthStat = healthStatusBar.GetComponentInChildren<SlimeStatFill>();
         damageStat = damageStatusBar.GetComponentInChildren<SlimeStatFill>();
         speedStat = speedStatusBar.GetComponentInChildren<SlimeStatFill>();
     }
     void Start()
     {
+        CharId = 2;
         UpdateData(CharId);
         SetData();
     }
@@ -49,19 +52,22 @@ public class SwitchSlime : MonoBehaviour
 
     void InputHandler()
     {
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.RightArrow)) //change to next
         {
             moveRight();
             RightArrow.SetTrigger("Next");  
         }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        else if (Input.GetKeyDown(KeyCode.LeftArrow)) //change to previous
         {
             moveLeft();
             LeftArrow.SetTrigger("Prev");
         }
-        if (Input.GetKeyDown(KeyCode.KeypadEnter))
+
+        if (Input.GetButton("Choose")) //confirms
         {
             Debug.Log("Chosen");
+            playerController.charId = CharId;
+            GameObject.Find("SlimeSelector").SetActive(false);
         }
 
     }

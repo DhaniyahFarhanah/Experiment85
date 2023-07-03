@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Slime_Up
+  m_Name: GreenSlime_Left
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,13 +20,13 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 1613416401, guid: 7a59c73870c60e142a8159e3d8025577, type: 3}
+      value: {fileID: 865838328, guid: 7a59c73870c60e142a8159e3d8025577, type: 3}
     - time: 0.125
-      value: {fileID: -1047931733, guid: 7a59c73870c60e142a8159e3d8025577, type: 3}
+      value: {fileID: -653343933, guid: 7a59c73870c60e142a8159e3d8025577, type: 3}
     - time: 0.25
-      value: {fileID: 1595994608, guid: 7a59c73870c60e142a8159e3d8025577, type: 3}
+      value: {fileID: 740090354, guid: 7a59c73870c60e142a8159e3d8025577, type: 3}
     - time: 0.375
-      value: {fileID: 332164025, guid: 7a59c73870c60e142a8159e3d8025577, type: 3}
+      value: {fileID: -135113766, guid: 7a59c73870c60e142a8159e3d8025577, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -46,10 +46,10 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 1613416401, guid: 7a59c73870c60e142a8159e3d8025577, type: 3}
-    - {fileID: -1047931733, guid: 7a59c73870c60e142a8159e3d8025577, type: 3}
-    - {fileID: 1595994608, guid: 7a59c73870c60e142a8159e3d8025577, type: 3}
-    - {fileID: 332164025, guid: 7a59c73870c60e142a8159e3d8025577, type: 3}
+    - {fileID: 865838328, guid: 7a59c73870c60e142a8159e3d8025577, type: 3}
+    - {fileID: -653343933, guid: 7a59c73870c60e142a8159e3d8025577, type: 3}
+    - {fileID: 740090354, guid: 7a59c73870c60e142a8159e3d8025577, type: 3}
+    - {fileID: -135113766, guid: 7a59c73870c60e142a8159e3d8025577, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

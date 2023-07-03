@@ -2,26 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    public float charSpeed = 5f; //to test speed (default speed is 5) TO BE REF FROM JSON
+    public int charId;
+
+    public int maxHealth;
+    public int basedamage;
+    public float basecharSpeed; //to test speed (default speed is 5) TO BE REF FROM JSON
+    public int baseshotSpeed;
+    public int baserange;
+    public int baseprojectileRate;
+
     public Rigidbody2D rb;
 
     public Animator slimeAnim;
+    [SerializeField] AnimatorOverrideController redSlime;
+    [SerializeField] AnimatorOverrideController greenSlime;
+    [SerializeField] AnimatorOverrideController blueSlime;
 
     private Vector2 moveDir;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        charId = 2;
+        SetCharacterStats();
     }
 
     // Update is called once per frame
     void Update()
     {
+        SetCharacterStats();
         ProcessInputs();
-        
     }
 
     private void FixedUpdate()
@@ -58,7 +70,7 @@ public class BasicMovement : MonoBehaviour
     }
     void Movement()
     {
-        rb.velocity = new Vector3(moveDir.x * charSpeed, moveDir.y * charSpeed);
+        rb.velocity = new Vector3(moveDir.x * basecharSpeed, moveDir.y * basecharSpeed);
 
         //OLD CODE - It was more flowy than static
         //Vector3 movement = new Vector3(Input.GetAxis("MoveHorizontal"), Input.GetAxis("MoveVertical"), 0.0f);
@@ -70,5 +82,33 @@ public class BasicMovement : MonoBehaviour
 
         //Register Movement
         //transform.position = transform.position + movement * Time.deltaTime * charSpeed;
+    }
+
+    void SetCharacterStats() //better way to do this but this is used for testing. It probably wont be used since we have JSON.
+    {
+        switch (charId)
+        {
+            case 1:
+                maxHealth = 3;
+                basedamage = 7;
+                basecharSpeed = 4;
+                slimeAnim.runtimeAnimatorController = redSlime;
+
+                break;
+            case 2:
+                maxHealth = 5;
+                basedamage = 5;
+                basecharSpeed = 5;
+                slimeAnim.runtimeAnimatorController = blueSlime;
+
+                break;
+            case 3:
+                maxHealth = 9;
+                basedamage = 5;
+                basecharSpeed = 3;
+                slimeAnim.runtimeAnimatorController = greenSlime;
+
+                break;
+        }
     }
 }
