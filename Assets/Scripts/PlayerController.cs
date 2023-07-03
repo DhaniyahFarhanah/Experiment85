@@ -95,6 +95,7 @@ public class PlayerController : MonoBehaviour
                 slimeAnim.runtimeAnimatorController = redSlime;
 
                 break;
+
             case 2:
                 maxHealth = 5;
                 basedamage = 5;
@@ -102,6 +103,7 @@ public class PlayerController : MonoBehaviour
                 slimeAnim.runtimeAnimatorController = blueSlime;
 
                 break;
+
             case 3:
                 maxHealth = 9;
                 basedamage = 5;
