@@ -5,13 +5,14 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public int charId;
+    public string currentAvatar;
 
-    public int maxHealth;
-    public int basedamage;
-    public float basecharSpeed; //to test speed (default speed is 5) TO BE REF FROM JSON
-    public int baseshotSpeed;
-    public int baserange;
-    public int baseprojectileRate;
+    public int baseStatHealth;
+    public int baseStatDmg;
+    public float baseStatSpeed; //to test speed (default speed is 5) TO BE REF FROM JSON
+    public int baseStatShotSpeed;
+    public int baseStatRange;
+    public int baseStateSlimeRate;
 
     public Rigidbody2D rb;
 
@@ -72,7 +73,7 @@ public class PlayerController : MonoBehaviour
     }
     void Movement()
     {
-        rb.velocity = new Vector3(moveDir.x * basecharSpeed, moveDir.y * basecharSpeed);
+        rb.velocity = new Vector3(moveDir.x * baseStatSpeed, moveDir.y * baseStatSpeed);
 
         //OLD CODE - It was more flowy than static
         //Vector3 movement = new Vector3(Input.GetAxis("MoveHorizontal"), Input.GetAxis("MoveVertical"), 0.0f);
@@ -91,33 +92,33 @@ public class PlayerController : MonoBehaviour
         switch (charId)
         {
             case 1:
-                maxHealth = 4;
-                basedamage = 4;
-                basecharSpeed = 4;
+                baseStatHealth = 4;
+                baseStatDmg = 4;
+                baseStatSpeed = 4;
                 slimeAnim.runtimeAnimatorController = greySlime;
 
                 break;
 
             case 2:
-                maxHealth = 3;
-                basedamage = 7;
-                basecharSpeed = 4;
+                baseStatHealth = 3;
+                baseStatDmg = 7;
+                baseStatSpeed = 4;
                 slimeAnim.runtimeAnimatorController = redSlime;
 
                 break;
 
             case 3:
-                maxHealth = 3;
-                basedamage = 2;
-                basecharSpeed = 6;
+                baseStatHealth = 3;
+                baseStatDmg = 2;
+                baseStatSpeed = 6;
                 slimeAnim.runtimeAnimatorController = blueSlime;
 
                 break;
 
             case 4:
-                maxHealth = 9;
-                basedamage = 5;
-                basecharSpeed = 3;
+                baseStatHealth = 9;
+                baseStatDmg = 5;
+                baseStatSpeed = 3;
                 slimeAnim.runtimeAnimatorController = greenSlime;
                 break;
 
