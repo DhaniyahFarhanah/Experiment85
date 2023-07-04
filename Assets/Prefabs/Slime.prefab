@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44e9a240c34877a44a1f965e37824ba8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charId: 2
+  charId: 1
   maxHealth: 0
   basedamage: 0
   basecharSpeed: 0
@@ -231,6 +231,7 @@ MonoBehaviour:
   baseprojectileRate: 0
   rb: {fileID: 2624216785622779819}
   slimeAnim: {fileID: 2624216785622779818}
+  greySlime: {fileID: 22100000, guid: a76ee969e4f3ed6408520c7f01a45459, type: 2}
   redSlime: {fileID: 22100000, guid: c00412ba87941044baf34c3daa3e4a9f, type: 2}
   greenSlime: {fileID: 22100000, guid: 8b08c3ed737421c4cb9637beb0c98a6d, type: 2}
   blueSlime: {fileID: 22100000, guid: 953fe6d6fd2f45c479ab38bbbb7392ec, type: 2}

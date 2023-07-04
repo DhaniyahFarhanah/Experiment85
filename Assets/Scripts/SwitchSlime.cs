@@ -21,7 +21,7 @@ public class SwitchSlime : MonoBehaviour
     SlimeStatFill speedStat;
 
 
-     int CharId = 1;
+     int CharId;
      string charName;
      int health;
      int damage;
@@ -36,17 +36,19 @@ public class SwitchSlime : MonoBehaviour
         healthStat = healthStatusBar.GetComponentInChildren<SlimeStatFill>();
         damageStat = damageStatusBar.GetComponentInChildren<SlimeStatFill>();
         speedStat = speedStatusBar.GetComponentInChildren<SlimeStatFill>();
+        CharId = 1;
     }
     void Start()
     {
-        CharId = 2;
         UpdateData(CharId);
         SetData();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        slimeShowcaseAnim.SetInteger("id", CharId);
         InputHandler();
     }
 
@@ -67,6 +69,7 @@ public class SwitchSlime : MonoBehaviour
         {
             Debug.Log("Chosen");
             playerController.charId = CharId;
+            
             GameObject.Find("SlimeSelector").SetActive(false);
         }
 
@@ -74,7 +77,7 @@ public class SwitchSlime : MonoBehaviour
 
     void moveRight()
     {
-        if(CharId == 3)
+        if(CharId == 4)
         {
             CharId = 1;
         }
@@ -90,7 +93,7 @@ public class SwitchSlime : MonoBehaviour
     {
         if (CharId == 1)
         {
-            CharId = 3;
+            CharId = 4;
         }
         else
         {
@@ -107,17 +110,23 @@ public class SwitchSlime : MonoBehaviour
 
         switch(id) //this will probably be where the json will come in but i'm doing this manually for testing 
         {
-            case 1: charName = "Fire Slime";
+            case 1: charName = "85";
+                health = 4;
+                damage = 4;
+                speed = 4;
+                break;
+
+            case 2: charName = "Fire Slime";
                 health = 3;
                 damage = 7;
                 speed = 4;
                 break;
-            case 2:charName = "Water Slime";
-                health = 5;
-                damage = 5;
-                speed = 5;
+            case 3:charName = "Water Slime";
+                health = 3;
+                damage = 2;
+                speed = 6;
                 break;
-            case 3: charName = "Forest Slime";
+            case 4: charName = "Forest Slime";
                 health = 9;
                 damage = 5;
                 speed = 3;

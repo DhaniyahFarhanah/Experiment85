@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D rb;
 
     public Animator slimeAnim;
+    [SerializeField] AnimatorOverrideController greySlime;
     [SerializeField] AnimatorOverrideController redSlime;
     [SerializeField] AnimatorOverrideController greenSlime;
     [SerializeField] AnimatorOverrideController blueSlime;
@@ -25,7 +26,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        charId = 2;
+        charId = 1;
         SetCharacterStats();
     }
 
@@ -65,6 +66,7 @@ public class PlayerController : MonoBehaviour
         else if (Input.GetButton("FireRight"))
         {
             Debug.Log("Shooting Right");
+            
         }
 
     }
@@ -89,6 +91,14 @@ public class PlayerController : MonoBehaviour
         switch (charId)
         {
             case 1:
+                maxHealth = 4;
+                basedamage = 4;
+                basecharSpeed = 4;
+                slimeAnim.runtimeAnimatorController = greySlime;
+
+                break;
+
+            case 2:
                 maxHealth = 3;
                 basedamage = 7;
                 basecharSpeed = 4;
@@ -96,21 +106,21 @@ public class PlayerController : MonoBehaviour
 
                 break;
 
-            case 2:
-                maxHealth = 5;
-                basedamage = 5;
-                basecharSpeed = 5;
+            case 3:
+                maxHealth = 3;
+                basedamage = 2;
+                basecharSpeed = 6;
                 slimeAnim.runtimeAnimatorController = blueSlime;
 
                 break;
 
-            case 3:
+            case 4:
                 maxHealth = 9;
                 basedamage = 5;
                 basecharSpeed = 3;
                 slimeAnim.runtimeAnimatorController = greenSlime;
-
                 break;
+
         }
     }
 }
