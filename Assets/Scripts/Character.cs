@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable] //REMEMBER THIS
 public class Character
 {
     public int charId { get; }
