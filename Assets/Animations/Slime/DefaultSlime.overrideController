@@ -8,4 +8,14 @@ AnimatorOverrideController:
   m_PrefabAsset: {fileID: 0}
   m_Name: DefaultSlime
   m_Controller: {fileID: 9100000, guid: f28f7d72374c3114c8c1e8ae6e71549e, type: 2}
-  m_Clips: []
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: a374eb695d973bb47a27ca3d05539c79, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 45477b225f8f5c24ca317be0961e355e, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 68e9ff5de722fb94eb613668f59e9df7, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 3faaa70043238a44c8b63fd137d6426c, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 3f22dc1c1523a81429fe823a57bcbdbd, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 8aaf6f4350bf5aa46b382dbac1084732, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 72ddaf56d4fccc4428cccb8195009ab3, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6dd9a579b6e22474c919c9b126ecf7fd, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 6d8c2ee62648a56449ef72f0a4a42391, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: e613cecf96ea1d940874aa426f178409, type: 2}
