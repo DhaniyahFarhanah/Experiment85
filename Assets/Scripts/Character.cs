@@ -5,16 +5,16 @@ using UnityEngine;
 [System.Serializable] //REMEMBER THIS
 public class Character
 {
-    public int charId { get; }
-    public string charName { get; }
-    public int baseStatHealth { get; }
-    public int baseStatDmg { get; }
-    public int baseStatSpeed { get; }
-    public int baseStatShotSpeed { get; }
-    public int baseStatRange { get; }
-    public int baseStateSlimeRate { get; }
+    public string charId { get; set; }
+    public string charName { get; set; }
+    public int baseStatHealth { get; set; }
+    public float baseStatDmg { get; set; }
+    public float baseStatSpeed { get; set; }
+    public float baseStatShotSpeed { get; set; }
+    public float baseStatRange { get; set; }
+    public float baseStateSlimeRate { get; set; }
 
-    public Character(int charId, string charName, int baseStatHealth, int baseStatDmg, int baseStatSpeed, int baseStatShotSpeed, int baseStatRange, int baseStateSlimeRate)
+    public Character(string charId, string charName, int baseStatHealth, float baseStatDmg, float baseStatSpeed, float baseStatShotSpeed, float baseStatRange, float baseStateSlimeRate)
     {
         this.charId = charId;
         this.charName = charName;

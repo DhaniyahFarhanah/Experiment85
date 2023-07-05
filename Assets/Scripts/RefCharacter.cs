@@ -6,12 +6,12 @@ using UnityEngine;
 
 public class RefCharacter
 {
-    public int charId;
+    public string charId;
     public string charName;
     public int baseStatHealth;
-    public int baseStatDmg;
-    public int baseStatSpeed;
-    public int baseStatShotSpeed;
-    public int baseStatRange;
-    public int baseStateSlimeRate;
+    public float baseStatDmg;
+    public float baseStatSpeed;
+    public float baseStatShotSpeed;
+    public float baseStatRange;
+    public float baseStateSlimeRate;
 }

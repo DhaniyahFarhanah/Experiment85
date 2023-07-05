@@ -5,12 +5,6 @@ using System.IO;
 
 public class DataManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        LoadRefData();
-    }
-
     public void LoadRefData()
     {
         string filePath = Path.Combine(Application.dataPath, "Scripts/Data/Character.json");

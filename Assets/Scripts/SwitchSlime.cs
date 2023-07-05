@@ -21,7 +21,8 @@ public class SwitchSlime : MonoBehaviour
     SlimeStatFill speedStat;
 
 
-     int CharId;
+     string CharId;
+    int tempId;
      string charName;
      int health;
      int damage;
@@ -36,11 +37,11 @@ public class SwitchSlime : MonoBehaviour
         healthStat = healthStatusBar.GetComponentInChildren<SlimeStatFill>();
         damageStat = damageStatusBar.GetComponentInChildren<SlimeStatFill>();
         speedStat = speedStatusBar.GetComponentInChildren<SlimeStatFill>();
-        CharId = 1;
+        tempId = 1;
     }
     void Start()
     {
-        UpdateData(CharId);
+        UpdateData(tempId);
         SetData();
         
     }
@@ -48,7 +49,7 @@ public class SwitchSlime : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        slimeShowcaseAnim.SetInteger("id", CharId);
+        slimeShowcaseAnim.SetInteger("id", tempId);
         InputHandler();
     }
 
@@ -68,7 +69,7 @@ public class SwitchSlime : MonoBehaviour
         if (Input.GetButton("Choose")) //confirms
         {
             Debug.Log("Chosen");
-            playerController.charId = CharId;
+            playerController.tempId = tempId;
             
             GameObject.Find("SlimeSelector").SetActive(false);
         }
@@ -77,30 +78,30 @@ public class SwitchSlime : MonoBehaviour
 
     void moveRight()
     {
-        if(CharId == 4)
+        if(tempId == 4)
         {
-            CharId = 1;
+            tempId = 1;
         }
         else
         {
-            CharId++;
+            tempId++;
         }
 
-        UpdateData(CharId);
+        UpdateData(tempId);
         SetData();
     }
     void moveLeft()
     {
-        if (CharId == 1)
+        if (tempId == 1)
         {
-            CharId = 4;
+            tempId = 4;
         }
         else
         {
-            CharId--;
+            tempId--;
         }
 
-        UpdateData(CharId);
+        UpdateData(tempId);
         SetData();
     }
 
@@ -137,7 +138,7 @@ public class SwitchSlime : MonoBehaviour
     void SetData() //fills in all the changed data.
     {
         nameTextBox.text = charName;
-        slimeShowcaseAnim.SetInteger("id", CharId);
+        slimeShowcaseAnim.SetInteger("id", tempId);
 
         healthStat.toBeFilled = health;
         damageStat.toBeFilled = damage;

@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public int charId;
+    public string charId;
     public string currentAvatar;
+    public int tempId;
 
     public int baseStatHealth;
-    public int baseStatDmg;
+    public float baseStatDmg;
     public float baseStatSpeed; //to test speed (default speed is 5) TO BE REF FROM JSON
-    public int baseStatShotSpeed;
-    public int baseStatRange;
-    public int baseStateSlimeRate;
+    public float baseStatShotSpeed;
+    public float baseStatRange;
+    public float baseStateSlimeRate;
 
     public Rigidbody2D rb;
 
@@ -27,7 +28,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        charId = 1;
+        tempId = 1;
         SetCharacterStats();
     }
 
@@ -89,7 +90,7 @@ public class PlayerController : MonoBehaviour
 
     void SetCharacterStats() //better way to do this but this is used for testing. It probably wont be used since we have JSON.
     {
-        switch (charId)
+        switch (tempId)
         {
             case 1:
                 baseStatHealth = 4;
