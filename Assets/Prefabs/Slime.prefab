@@ -138,7 +138,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
@@ -223,12 +223,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   charId: 1
-  maxHealth: 0
-  basedamage: 0
-  basecharSpeed: 0
-  baseshotSpeed: 0
-  baserange: 0
-  baseprojectileRate: 0
+  currentAvatar: 
+  tempId: 0
+  baseStatHealth: 0
+  baseStatDmg: 0
+  baseStatSpeed: 0
+  baseStatShotSpeed: 0
+  baseStatRange: 0
+  baseStateSlimeRate: 0
   rb: {fileID: 2624216785622779819}
   slimeAnim: {fileID: 2624216785622779818}
   greySlime: {fileID: 22100000, guid: a76ee969e4f3ed6408520c7f01a45459, type: 2}
