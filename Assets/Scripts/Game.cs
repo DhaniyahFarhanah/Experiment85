@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
 
 public static class Game
 {
@@ -31,12 +30,16 @@ public static class Game
 
     public static Character GetCharacterByCharId(string AcharId)
     {
+        Debug.Log("charID:" + AcharId);
+        Debug.Log("Character List Count:" + Game.GetCharacterList().Count);
         foreach (Character C in characterList)
         {
+            Debug.Log("charId " + C.charId);
             if (C.charId == AcharId) return C;
         }
+        Debug.Log("Character Not Found!");
         return null;
-        //Debug.Log(charId);
+        
         //return characterList.Find(x => x.charId == charId);
     }
 }

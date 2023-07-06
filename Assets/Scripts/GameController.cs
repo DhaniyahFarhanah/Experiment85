@@ -11,7 +11,6 @@ public class GameController : MonoBehaviour
     {
         DataManager dataManager = GetComponent<DataManager>();
         dataManager.LoadRefData();
-
         Game.SetPlayer(new Player("1", init));
         Debug.Log(Game.GetPlayer().GetCharacterId());
     }

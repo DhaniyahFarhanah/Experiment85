@@ -81,8 +81,8 @@ public class Player
         if (!isDirty) return false;
 
         Character playerCharacter = Game.GetCharacterByCharId(charId);
-        // Debug.Log("health:", playerCharacter.baseStatHealth);
-        Debug.Log(playerCharacter);
+        Debug.Log("health:" + playerCharacter.baseStatHealth);
+        Debug.Log(charId);
         currentStatHealth = playerCharacter.baseStatHealth; 
         currentStatDmg = playerCharacter.baseStatDmg;
         currentStatSpeed = playerCharacter.baseStatSpeed;
