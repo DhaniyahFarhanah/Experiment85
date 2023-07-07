@@ -14,11 +14,15 @@ public class EnemyController : MonoBehaviour
     private string enemyName;
     private float health;
     private int damage;
-    private float speed;
+    private float speed; //speed has been balanced to some extent
     private string enemyDesc;
 
     //item drop stuff
-
+    private void Awake()
+    {
+        enemyRB = GetComponent<Rigidbody2D>();
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +37,7 @@ public class EnemyController : MonoBehaviour
       
     }
 
+    //Fixed update calculates updates at a fixed 50fps (i think)
     void FixedUpdate()
     {
         Movement();  
@@ -40,10 +45,14 @@ public class EnemyController : MonoBehaviour
 
     void Movement()
     {
-        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, (speed/2) * Time.deltaTime);
+        Vector3 direction = (player.transform.position - transform.position).normalized;
+        enemyRB.velocity = direction * speed;
+
+        //this code sucks so I'mma just-
+        //transform.position = Vector2.MoveTowards(transform.position, player.transform.position, (speed/2) * Time.deltaTime); 
 
         //to flip character
-        if(transform.position.x < player.transform.position.x)
+        if (transform.position.x < player.transform.position.x)
         {
             sprite.transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
@@ -57,7 +66,7 @@ public class EnemyController : MonoBehaviour
     {
 
     }
-
+    // IMPORTANT: SPEED NEEDS BALANCING. Speed values are different from data because it needs to be balanced. This is balanced data. 
     void TempSwitchCaseStuff() //ignore this, this is more for manual shit
 
     {
@@ -68,7 +77,7 @@ public class EnemyController : MonoBehaviour
                 enemyName = "Hazmat";
                 health = 8f;
                 damage = 1;
-                speed = 5f;
+                speed = 1.7f;
                 enemyDesc = "Basic Enemy with Low Health, Damage and Speed";
 
                 break;
@@ -78,7 +87,7 @@ public class EnemyController : MonoBehaviour
                 enemyName = "Chaser";
                 health = 4f;
                 damage = 2;
-                speed = 7f;
+                speed = 2.5f; 
                 enemyDesc = "Speedy Enemy with Low Health, Moderate Damage and High Speed";
 
                 break;
@@ -88,7 +97,7 @@ public class EnemyController : MonoBehaviour
                 enemyName = "Juggernaut";
                 health = 200f;
                 damage = 4;
-                speed = 2f;
+                speed = 1f;
                 enemyDesc = "Juggernaut Enemy with High Health, High Damage and Low Speed";
 
                 break;
@@ -98,7 +107,7 @@ public class EnemyController : MonoBehaviour
                 enemyName = "Reaper";
                 health = 40f;
                 damage = 5;
-                speed = 5f;
+                speed = 1.7f;
                 enemyDesc = "Dangerous Enemy with Moderate Health, High Damage and Moderate Speed";
 
                 break;

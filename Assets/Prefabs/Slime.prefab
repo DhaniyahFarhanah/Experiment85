@@ -71,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2136096971
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 7321581802209623787}
   - component: {fileID: 2624216785622779816}
   - component: {fileID: 2624216785622779823}
+  - component: {fileID: 6486326859359001859}
   - component: {fileID: 2624216785622779818}
   m_Layer: 0
   m_Name: Slime
@@ -197,7 +198,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2136096971
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -1225048156, guid: 7a59c73870c60e142a8159e3d8025577, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -237,6 +238,24 @@ MonoBehaviour:
   redSlime: {fileID: 22100000, guid: c00412ba87941044baf34c3daa3e4a9f, type: 2}
   greenSlime: {fileID: 22100000, guid: 8b08c3ed737421c4cb9637beb0c98a6d, type: 2}
   blueSlime: {fileID: 22100000, guid: 953fe6d6fd2f45c479ab38bbbb7392ec, type: 2}
+--- !u!114 &6486326859359001859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2624216785622779822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d77dc3ab5ddedd84cb4a79c5321a130b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentStatHealth: 0
+  currentStatDmg: 0
+  currentStatSpeed: 0
+  currentStatShotSpeed: 0
+  currentStatRange: 0
+  currentStatSlimeRate: 0
 --- !u!95 &2624216785622779818
 Animator:
   serializedVersion: 4
