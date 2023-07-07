@@ -6,7 +6,9 @@ public class EnemyController : MonoBehaviour
 {
     private GameObject player;
     private Rigidbody2D enemyRB;
-    [SerializeField] GameObject sprite;
+    [SerializeField] GameObject sprite; //ignore this
+
+    PlayerLab playerStats; 
 
     public string enemyId;
 
@@ -22,6 +24,7 @@ public class EnemyController : MonoBehaviour
     {
         enemyRB = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
+        playerStats = player.GetComponent<PlayerLab>();
     }
 
     // Start is called before the first frame update
@@ -43,7 +46,18 @@ public class EnemyController : MonoBehaviour
         Movement();  
     }
 
-    void Movement()
+
+    //check if collided to hit player
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if(collision.gameObject == player)
+        {
+            DoDamage();
+        }
+    }
+
+    //this code is for them to move towards player
+    void Movement() 
     {
         Vector3 direction = (player.transform.position - transform.position).normalized;
         enemyRB.velocity = direction * speed;
@@ -51,7 +65,7 @@ public class EnemyController : MonoBehaviour
         //this code sucks so I'mma just-
         //transform.position = Vector2.MoveTowards(transform.position, player.transform.position, (speed/2) * Time.deltaTime); 
 
-        //to flip character
+        //to flip character sprite depending on where player is.
         if (transform.position.x < player.transform.position.x)
         {
             sprite.transform.localRotation = Quaternion.Euler(0, 0, 0);
@@ -62,10 +76,21 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    void FlipImage()
+    //attack player and remove health from player.
+    void DoDamage() 
     {
+        if(playerStats.isHit) //if the player is hit then do damage
+        {
+            playerStats.currentStatHealth -= damage;
+            playerStats.SetToDislay();
+            playerStats.isHit = false;
+            Debug.Log("Attack! Damage dealt: " + damage);
 
+        }
+       
     }
+
+
     // IMPORTANT: SPEED NEEDS BALANCING. Speed values are different from data because it needs to be balanced. This is balanced data. 
     void TempSwitchCaseStuff() //ignore this, this is more for manual shit
 
