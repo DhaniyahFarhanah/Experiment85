@@ -108,9 +108,9 @@ public class PlayerLab : MonoBehaviour
         for(float n = 0; n < invisibileTime; n+=(delay*2))
         {
             yield return new WaitForSeconds(delay);
-            playerSprite.color = new Color(playerSprite.color.r, playerSprite.color.g, playerSprite.color.b, 0);
+            playerSprite.color = new Color(255, 0, 0, 0.5f);
             yield return new WaitForSeconds(delay);
-            playerSprite.color = new Color(playerSprite.color.r, playerSprite.color.g, playerSprite.color.b, 1);
+            playerSprite.color = new Color(255, 255, 255, 1);
 
         }
 

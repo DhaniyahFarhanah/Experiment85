@@ -156,8 +156,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.003702402, y: -0.004986286}
-  m_Size: {x: 1.0799146, y: 1.0799146}
+  m_Offset: {x: -0.014192287, y: -0.08079136}
+  m_Size: {x: 0.7451249, y: 0.7451249}
   m_Direction: 0
 --- !u!212 &2624216785622779816
 SpriteRenderer:
@@ -250,12 +250,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d77dc3ab5ddedd84cb4a79c5321a130b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DisplayCanvas: {fileID: 0}
   currentStatHealth: 0
   currentStatDmg: 0
   currentStatSpeed: 0
   currentStatShotSpeed: 0
   currentStatRange: 0
   currentStatSlimeRate: 0
+  isHit: 0
+  isInvisable: 0
+  start: 0
 --- !u!95 &2624216785622779818
 Animator:
   serializedVersion: 4

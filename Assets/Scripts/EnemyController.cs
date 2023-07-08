@@ -6,7 +6,7 @@ public class EnemyController : MonoBehaviour
 {
     private GameObject player;
     private Rigidbody2D enemyRB;
-    [SerializeField] GameObject sprite; //ignore this
+    private SpriteRenderer sprite;
 
     PlayerLab playerStats; 
 
@@ -25,6 +25,8 @@ public class EnemyController : MonoBehaviour
         enemyRB = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
         playerStats = player.GetComponent<PlayerLab>();
+        sprite = GetComponent<SpriteRenderer>();
+        
     }
 
     // Start is called before the first frame update
@@ -68,11 +70,11 @@ public class EnemyController : MonoBehaviour
         //to flip character sprite depending on where player is.
         if (transform.position.x < player.transform.position.x)
         {
-            sprite.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            sprite.flipX = true;
         }
         else if (transform.position.x > player.transform.position.x)
         {
-            sprite.transform.localRotation = Quaternion.Euler(0, -180, 0);
+            sprite.flipX = false;
         }
     }
 
