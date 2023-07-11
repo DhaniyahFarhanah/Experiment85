@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour
             case 1:
                 baseStatHealth = 4;
                 baseStatDmg = 4;
-                baseStatSpeed = 4;
+                baseStatSpeed = 20;
                 slimeAnim.runtimeAnimatorController = greySlime;
 
                 break;
