@@ -20,9 +20,10 @@ public class SwitchSlime : MonoBehaviour
     SlimeStatFill damageStat;
     SlimeStatFill speedStat;
 
+    List<CharacterClass> characterList;
+    int index = 0;
 
-     string CharId;
-    int tempId;
+
      string charName;
      int health;
      int damage;
@@ -37,11 +38,11 @@ public class SwitchSlime : MonoBehaviour
         healthStat = healthStatusBar.GetComponentInChildren<SlimeStatFill>();
         damageStat = damageStatusBar.GetComponentInChildren<SlimeStatFill>();
         speedStat = speedStatusBar.GetComponentInChildren<SlimeStatFill>();
-        tempId = 1;
+
     }
     void Start()
     {
-        UpdateData(tempId);
+        UpdateData();
         SetData();
         
     }
@@ -49,7 +50,7 @@ public class SwitchSlime : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        slimeShowcaseAnim.SetInteger("id", tempId);
+        slimeShowcaseAnim.SetInteger("id", index);
         InputHandler();
     }
 
@@ -69,7 +70,7 @@ public class SwitchSlime : MonoBehaviour
         if (Input.GetButton("Choose")) //confirms
         {
             Debug.Log("Chosen");
-            playerController.tempId = tempId;
+            playerController.charId = characterList[index].charId;
             
             GameObject.Find("SlimeSelector").SetActive(false);
         }
@@ -78,67 +79,45 @@ public class SwitchSlime : MonoBehaviour
 
     void moveRight()
     {
-        if(tempId == 4)
+        index++;
+        if(index >= characterList.Count)
         {
-            tempId = 1;
-        }
-        else
-        {
-            tempId++;
+            index = 0;
         }
 
-        UpdateData(tempId);
         SetData();
     }
     void moveLeft()
     {
-        if (tempId == 1)
+        index--;
+        if(index < 0)
         {
-            tempId = 4;
-        }
-        else
-        {
-            tempId--;
+            index = characterList.Count - 1;
         }
 
-        UpdateData(tempId);
         SetData();
     }
 
-    void UpdateData(int id)
+    void UpdateData()
     {
-        Debug.Log(id);
+        //TODO revise this (it only has to happen once i think
+        characterList = GameData.GetCharacterList();
 
-        switch(id) //this will probably be where the json will come in but i'm doing this manually for testing 
-        {
-            case 1: charName = "85";
-                health = 4;
-                damage = 4;
-                speed = 4;
-                break;
-
-            case 2: charName = "Fire Slime";
-                health = 3;
-                damage = 7;
-                speed = 4;
-                break;
-            case 3:charName = "Water Slime";
-                health = 3;
-                damage = 2;
-                speed = 6;
-                break;
-            case 4: charName = "Forest Slime";
-                health = 9;
-                damage = 5;
-                speed = 3;
-                break;
-        }
     }
 
+   
     void SetData() //fills in all the changed data.
     {
+        //populate into private variable
+        charName = characterList[index].charName;
+        health = characterList[index].baseStatHealth;
+        damage = (int)characterList[index].baseStatDmg;
+        speed = (int)characterList[index].baseStatSpeed;
+
+
+        //populate into the canvas
         nameTextBox.text = charName;
-        slimeShowcaseAnim.SetInteger("id", tempId);
+        slimeShowcaseAnim.SetInteger("id", index);
 
         healthStat.toBeFilled = health;
         damageStat.toBeFilled = damage;

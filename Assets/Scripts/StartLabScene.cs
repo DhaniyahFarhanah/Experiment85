@@ -29,7 +29,6 @@ public class StartLabScene : MonoBehaviour
         {
             if (Input.GetButtonDown("Interact"))
             {
-                Debug.Log("is enter");
                 loadScene.LoadNextLevel();
             }
         }

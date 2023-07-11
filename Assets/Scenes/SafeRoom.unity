@@ -624,6 +624,7 @@ GameObject:
   m_Component:
   - component: {fileID: 180109208}
   - component: {fileID: 180109209}
+  - component: {fileID: 180109210}
   m_Layer: 0
   m_Name: InteractSensor
   m_TagString: Untagged
@@ -672,6 +673,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2637033, y: 1.7560151}
   m_EdgeRadius: 0
+--- !u!114 &180109210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180109207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f08f89cc033019d40b55f6e67985ac44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Interact: {fileID: 524436015}
+  UI: {fileID: 598776641}
 --- !u!1 &181320138
 GameObject:
   m_ObjectHideFlags: 0
@@ -6607,8 +6622,8 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2051492753}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.057533845}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6620,7 +6635,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -6.1560802, y: 3.0181355}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!1 &2076298564
