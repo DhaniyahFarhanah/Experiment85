@@ -7,7 +7,7 @@ public class DataManager : MonoBehaviour
 {
     public void LoadRefData()
     {
-        string filePath = Path.Combine(Application.dataPath, "Scripts/Data/Character.json");
+        string filePath = Path.Combine(Application.dataPath, "Scripts/Data/export.json");
 
         string dataString = File.ReadAllText(filePath);
         Debug.Log(dataString);

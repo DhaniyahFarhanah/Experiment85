@@ -1,0 +1,365 @@
+{
+  "Character": [
+    {
+      "charId": "S01",
+      "charName": "85",
+      "baseStatHealth": "4",
+      "baseStatDmg": "4",
+      "baseStatSpeed": "4",
+      "type": "Regular",
+      "baseStatShotSpeed": "4",
+      "baseStatRange": "5",
+      "baseStateSlimeRate": "0.5"
+    },
+    {
+      "charId": "S02",
+      "charName": "Fire Slime",
+      "baseStatHealth": "3",
+      "baseStatDmg": "8",
+      "baseStatSpeed": "4",
+      "type": "Powerful",
+      "baseStatShotSpeed": "7",
+      "baseStatRange": "10",
+      "baseStateSlimeRate": "1.75"
+    },
+    {
+      "charId": "S03",
+      "charName": "Water Slime",
+      "baseStatHealth": "3",
+      "baseStatDmg": "2",
+      "baseStatSpeed": "5",
+      "type": "Rapid",
+      "baseStatShotSpeed": "5",
+      "baseStatRange": "5",
+      "baseStateSlimeRate": "0.26"
+    },
+    {
+      "charId": "S04",
+      "charName": "Forest Slime",
+      "baseStatHealth": "9",
+      "baseStatDmg": "5",
+      "baseStatSpeed": "3",
+      "type": "Strong",
+      "baseStatShotSpeed": "4",
+      "baseStatRange": "7",
+      "baseStateSlimeRate": "0.75"
+    }
+  ],
+  "Dialogue": [
+    {
+      "dialogueId": "101001",
+      "nextCutsceneRefId": "101002",
+      "currentSpeaker": "Left",
+      "npcId": "1",
+      "dialogue": "Hey!"
+    },
+    {
+      "dialogueId": "101002",
+      "nextCutsceneRefId": "101003",
+      "currentSpeaker": "Left",
+      "npcId": "1",
+      "dialogue": "How\u2019d you get out?!"
+    },
+    {
+      "dialogueId": "101003",
+      "nextCutsceneRefId": "-1",
+      "currentSpeaker": "Right",
+      "npcId": "1",
+      "dialogue": "I don't know#102001@(slime noises)#102002"
+    },
+    {
+      "dialogueId": "102001",
+      "nextCutsceneRefId": "102003",
+      "currentSpeaker": "Left",
+      "npcId": "1",
+      "dialogue": "Seriously?"
+    },
+    {
+      "dialogueId": "102002",
+      "nextCutsceneRefId": "102003",
+      "currentSpeaker": "Left",
+      "npcId": "1",
+      "dialogue": "....."
+    },
+    {
+      "dialogueId": "102003",
+      "nextCutsceneRefId": "102004",
+      "currentSpeaker": "Left",
+      "npcId": "1",
+      "dialogue": "Well, that doesn't matter! You gotta get outta here!"
+    },
+    {
+      "dialogueId": "102004",
+      "nextCutsceneRefId": "-2",
+      "currentSpeaker": "Left",
+      "npcId": "1",
+      "dialogue": "Use the WASD keys to move around."
+    },
+    {
+      "dialogueId": "103001",
+      "nextCutsceneRefId": "103002",
+      "currentSpeaker": "Left",
+      "npcId": "2",
+      "dialogue": "You can't get out that way!"
+    },
+    {
+      "dialogueId": "103002",
+      "nextCutsceneRefId": "-1",
+      "currentSpeaker": "Right",
+      "npcId": "2",
+      "dialogue": "Why not?#104001@(slime noises)#104002"
+    },
+    {
+      "dialogueId": "104001",
+      "nextCutsceneRefId": "104003",
+      "currentSpeaker": "Left",
+      "npcId": "2",
+      "dialogue": "It's locked!"
+    },
+    {
+      "dialogueId": "104002",
+      "nextCutsceneRefId": "104003",
+      "currentSpeaker": "Left",
+      "npcId": "2",
+      "dialogue": "uh....."
+    },
+    {
+      "dialogueId": "104003",
+      "nextCutsceneRefId": "104004",
+      "currentSpeaker": "Left",
+      "npcId": "2",
+      "dialogue": "They locked the door with 3 key cards"
+    },
+    {
+      "dialogueId": "104004",
+      "nextCutsceneRefId": "104005",
+      "currentSpeaker": "Left",
+      "npcId": "2",
+      "dialogue": "I don't know which one of them has it, but Balee knows."
+    },
+    {
+      "dialogueId": "104005",
+      "nextCutsceneRefId": "-2",
+      "currentSpeaker": "Left",
+      "npcId": "2",
+      "dialogue": "Use E to interact with Balee"
+    },
+    {
+      "dialogueId": "105001",
+      "nextCutsceneRefId": "105002",
+      "currentSpeaker": "Left",
+      "npcId": "3",
+      "dialogue": "Hey there friend!"
+    },
+    {
+      "dialogueId": "105002",
+      "nextCutsceneRefId": "-1",
+      "currentSpeaker": "Right",
+      "npcId": "3",
+      "dialogue": "Hi there.#106001@(slime noises)#106002"
+    },
+    {
+      "dialogueId": "106001",
+      "nextCutsceneRefId": "106003",
+      "currentSpeaker": "Left",
+      "npcId": "3",
+      "dialogue": "Hey!"
+    },
+    {
+      "dialogueId": "106002",
+      "nextCutsceneRefId": "106003",
+      "currentSpeaker": "Left",
+      "npcId": "3",
+      "dialogue": "You're a strange one, aren't you?"
+    },
+    {
+      "dialogueId": "106003",
+      "nextCutsceneRefId": "106004",
+      "currentSpeaker": "Left",
+      "npcId": "3",
+      "dialogue": "Looks like you're a free slime!"
+    },
+    {
+      "dialogueId": "106004",
+      "nextCutsceneRefId": "106005",
+      "currentSpeaker": "Left",
+      "npcId": "3",
+      "dialogue": "Huh? You wanna get out that door?"
+    },
+    {
+      "dialogueId": "106005",
+      "nextCutsceneRefId": "106006",
+      "currentSpeaker": "Left",
+      "npcId": "3",
+      "dialogue": "Tough luck! Even I don\u2019t know which one of them holds the keycards."
+    },
+    {
+      "dialogueId": "106006",
+      "nextCutsceneRefId": "106007",
+      "currentSpeaker": "Left",
+      "npcId": "3",
+      "dialogue": "Just whack all of them and hope for the best!"
+    },
+    {
+      "dialogueId": "106007",
+      "nextCutsceneRefId": "106008",
+      "currentSpeaker": "Left",
+      "npcId": "3",
+      "dialogue": "Use your Arrow Keys to shoot some slimeballs!"
+    },
+    {
+      "dialogueId": "106008",
+      "nextCutsceneRefId": "-2",
+      "currentSpeaker": "Left",
+      "npcId": "3",
+      "dialogue": "Now head out that door on the right and sling some slime!"
+    },
+    {
+      "dialogueId": "201001",
+      "nextCutsceneRefId": "201002",
+      "currentSpeaker": "Left",
+      "npcId": "1",
+      "dialogue": "Nice job sliming those guys!"
+    },
+    {
+      "dialogueId": "201002",
+      "nextCutsceneRefId": "201003",
+      "currentSpeaker": "Left",
+      "npcId": "1",
+      "dialogue": "Try picking up stuff dropped by them, should help you out in a fight!"
+    },
+    {
+      "dialogueId": "201003",
+      "nextCutsceneRefId": "201004",
+      "currentSpeaker": "Left",
+      "npcId": "2",
+      "dialogue": "It's going to get harder from here on out."
+    },
+    {
+      "dialogueId": "201004",
+      "nextCutsceneRefId": "201005",
+      "currentSpeaker": "Left",
+      "npcId": "2",
+      "dialogue": "You can augment yourself over on the left."
+    },
+    {
+      "dialogueId": "201005",
+      "nextCutsceneRefId": "201006",
+      "currentSpeaker": "Left",
+      "npcId": "3",
+      "dialogue": "Talk to each of us!"
+    },
+    {
+      "dialogueId": "201006",
+      "nextCutsceneRefId": "-2",
+      "currentSpeaker": "Left",
+      "npcId": "3",
+      "dialogue": "We got upgrades that'll help you out!"
+    },
+    {
+      "dialogueId": "301001",
+      "nextCutsceneRefId": "301002",
+      "currentSpeaker": "Left",
+      "npcId": "1",
+      "dialogue": "What's up?"
+    },
+    {
+      "dialogueId": "301002",
+      "nextCutsceneRefId": "-1",
+      "currentSpeaker": "Right",
+      "npcId": "1",
+      "dialogue": "What upgrade do you have?#301003@How'd you get stuck here?#301004@Nevemind#301005"
+    },
+    {
+      "dialogueId": "301003",
+      "nextCutsceneRefId": "-2",
+      "currentSpeaker": "Left",
+      "npcId": "1",
+      "dialogue": "Here you go."
+    },
+    {
+      "dialogueId": "301004",
+      "nextCutsceneRefId": "-2",
+      "currentSpeaker": "Left",
+      "npcId": "1",
+      "dialogue": "Got caught while I was busy sunbathing on a rock."
+    },
+    {
+      "dialogueId": "301005",
+      "nextCutsceneRefId": "-2",
+      "currentSpeaker": "Right",
+      "npcId": "1",
+      "dialogue": "See you later."
+    },
+    {
+      "dialogueId": "401001",
+      "nextCutsceneRefId": "401002",
+      "currentSpeaker": "Left",
+      "npcId": "2",
+      "dialogue": "Hello."
+    },
+    {
+      "dialogueId": "401002",
+      "nextCutsceneRefId": "-1",
+      "currentSpeaker": "Right",
+      "npcId": "2",
+      "dialogue": "What upgrade do you have?#301003@How'd you get stuck here?#301004@Nevemind#301005"
+    },
+    {
+      "dialogueId": "401003",
+      "nextCutsceneRefId": "-2",
+      "currentSpeaker": "Left",
+      "npcId": "2",
+      "dialogue": "Here you go."
+    },
+    {
+      "dialogueId": "401004",
+      "nextCutsceneRefId": "-2",
+      "currentSpeaker": "Left",
+      "npcId": "2",
+      "dialogue": "I was sleeping in a tree before being discovered."
+    },
+    {
+      "dialogueId": "401005",
+      "nextCutsceneRefId": "-2",
+      "currentSpeaker": "Right",
+      "npcId": "2",
+      "dialogue": "See you later."
+    },
+    {
+      "dialogueId": "501001",
+      "nextCutsceneRefId": "501002",
+      "currentSpeaker": "Left",
+      "npcId": "3",
+      "dialogue": "Hey There!"
+    },
+    {
+      "dialogueId": "501002",
+      "nextCutsceneRefId": "-1",
+      "currentSpeaker": "Right",
+      "npcId": "3",
+      "dialogue": "What upgrade do you have?#301003@How'd you get stuck here?#301004@Nevemind#301005"
+    },
+    {
+      "dialogueId": "501003",
+      "nextCutsceneRefId": "-2",
+      "currentSpeaker": "Left",
+      "npcId": "3",
+      "dialogue": "Here you go."
+    },
+    {
+      "dialogueId": "501004",
+      "nextCutsceneRefId": "-2",
+      "currentSpeaker": "Left",
+      "npcId": "3",
+      "dialogue": "I was bitten by a radioactive cowboy."
+    },
+    {
+      "dialogueId": "501005",
+      "nextCutsceneRefId": "-2",
+      "currentSpeaker": "Right",
+      "npcId": "3",
+      "dialogue": "See you later."
+    }
+  ]
+}
