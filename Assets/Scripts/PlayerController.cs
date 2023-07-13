@@ -52,28 +52,53 @@ public class PlayerController : MonoBehaviour
         float moveY = Input.GetAxisRaw("MoveVertical");
 
         moveDir = new Vector2(moveX, moveY).normalized; //No added speed when diagonal movement
-        
-        //Testing arrow key direction shooting
-        if (Input.GetButton("FireUp"))
-        {
-            Debug.Log("Shooting Upwards");
-        }
-        else if (Input.GetButton("FireDown"))
-        {
-            Debug.Log("Shooting Downwards");
-        }
-        else if (Input.GetButton("FireLeft"))
-        {
 
-            Debug.Log("Shooting Left");
-        }
-        else if (Input.GetButton("FireRight"))
-        {
-            Debug.Log("Shooting Right");
-            
-        }
+        //Testing arrow key direction shooting
+        float shootX = Input.GetAxisRaw("ShootHorizontal");
+        float shootY = Input.GetAxisRaw("ShootVertical");
+
+        Debug.Log("Horizontal shoot: " + shootX + ". Vertical shoot: " + shootY);
+
+        
 
     }
+
+    void chooseDirection(float updown, float leftright)
+    {
+        if (updown == 1 && leftright == 0) //shoot up (N)
+        {
+            Debug.Log("Shoot North");
+        }
+        else if (updown == 1 && leftright == 1) //shoot up right (NE)
+        {
+            Debug.Log("Shoot North East");
+        }
+        else if (updown == 0 && leftright == 1) //shoot right (E)
+        {
+            Debug.Log("Shoot East");
+        }
+        else if (updown == -1 && leftright == 1) //shoot right down (SE)
+        {
+            Debug.Log("Shoot South East");
+        }
+        else if (updown == -1 && leftright == 0) //shoot down (S)
+        {
+            Debug.Log("Shoot South");
+        }
+        else if (updown == -1 && leftright == -1) //shoot left down (SW)
+        {
+            Debug.Log("Shoot South West");
+        }
+        else if (updown == 0 && leftright == -1) //shoot left (W)
+        {
+            Debug.Log("Shoot West");
+        }
+        else if ( updown == 1 && leftright == -1) //shoot left up (NW)
+        {
+            Debug.Log("Shoot North West");
+        }
+    }
+
     void Movement()
     {
         rb.velocity = new Vector3(moveDir.x * baseStatSpeed, moveDir.y * baseStatSpeed);
