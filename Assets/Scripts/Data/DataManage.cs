@@ -7,13 +7,20 @@ public class DataManage : MonoBehaviour
 {
     //This is to populate the data from json into the respective data holders (RefCharacterData & CharacterClass)
 
-    // Start is called before the first frame update
-    void Start()
+    //first thing the game will do.
+    private void Awake()
     {
         LoadRefCharData();
     }
 
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
     //load char ref data (need specific cause idk if we combining all together
+
     public void LoadRefCharData()
     {
         //datapath -> for stuff that goes inside the data folder
