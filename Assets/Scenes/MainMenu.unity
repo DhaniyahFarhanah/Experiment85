@@ -369,8 +369,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1195863781}
-  - component: {fileID: 1195863784}
+  - component: {fileID: 1195863782}
   - component: {fileID: 1195863783}
+  - component: {fileID: 1195863785}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -393,6 +394,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1195863782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195863780}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f09d000c1639c54a982d8ceb0a6d1c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1195863783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -405,6 +418,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ffbfbfab8548f04e852f65759a8d709, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
+  init: S02
+=======
 --- !u!114 &1195863784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -417,6 +433,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c20c41214766734388d215d5eb09547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1195863785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195863780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af49dc8a3397434489cd4b1e9359436c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+>>>>>>> Stashed changes
 --- !u!1 &1406920326
 GameObject:
   m_ObjectHideFlags: 0
