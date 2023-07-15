@@ -616,6 +616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyId: E02
+  health: 0
 --- !u!4 &393404765
 Transform:
   m_ObjectHideFlags: 0
@@ -826,6 +827,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyId: E01
+  health: 0
 --- !u!95 &394596630
 Animator:
   serializedVersion: 4
@@ -1040,37 +1042,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 352804296330747527, guid: a3509ac68d7bc8440a952673b78c2c48, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2624216785622779816, guid: a3509ac68d7bc8440a952673b78c2c48, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2624216785622779816, guid: a3509ac68d7bc8440a952673b78c2c48, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2624216785622779816, guid: a3509ac68d7bc8440a952673b78c2c48, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2624216785622779817, guid: a3509ac68d7bc8440a952673b78c2c48, type: 3}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2624216785622779817, guid: a3509ac68d7bc8440a952673b78c2c48, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.7882
-      objectReference: {fileID: 0}
-    - target: {fileID: 2624216785622779817, guid: a3509ac68d7bc8440a952673b78c2c48, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.7882
-      objectReference: {fileID: 0}
-    - target: {fileID: 2624216785622779817, guid: a3509ac68d7bc8440a952673b78c2c48, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.7882
       objectReference: {fileID: 0}
     - target: {fileID: 2624216785622779817, guid: a3509ac68d7bc8440a952673b78c2c48, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1116,14 +1090,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slime
       objectReference: {fileID: 0}
-    - target: {fileID: 2624216785622779822, guid: a3509ac68d7bc8440a952673b78c2c48, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 2624216785622779823, guid: a3509ac68d7bc8440a952673b78c2c48, type: 3}
+      propertyPath: firePoint
+      value: 
+      objectReference: {fileID: 1650175989}
+    - target: {fileID: 2624216785622779823, guid: a3509ac68d7bc8440a952673b78c2c48, type: 3}
+      propertyPath: slimeballPrefab
+      value: 
+      objectReference: {fileID: 8809500095983043618, guid: bf7ce63287eeefb43b9ca27292c22857, type: 3}
+    - target: {fileID: 6486326859359001859, guid: a3509ac68d7bc8440a952673b78c2c48, type: 3}
+      propertyPath: firePoint
+      value: 
+      objectReference: {fileID: 1650175989}
     - target: {fileID: 6486326859359001859, guid: a3509ac68d7bc8440a952673b78c2c48, type: 3}
       propertyPath: DisplayCanvas
       value: 
       objectReference: {fileID: 1473925933}
+    - target: {fileID: 6486326859359001859, guid: a3509ac68d7bc8440a952673b78c2c48, type: 3}
+      propertyPath: slimeballPrefab
+      value: 
+      objectReference: {fileID: 8809500095983043618, guid: bf7ce63287eeefb43b9ca27292c22857, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3509ac68d7bc8440a952673b78c2c48, type: 3}
 --- !u!1 &450016550
@@ -3198,6 +3184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyId: E03
+  health: 0
 --- !u!212 &1645433321
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3312,6 +3299,11 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!4 &1650175989 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2707345396741008423, guid: a3509ac68d7bc8440a952673b78c2c48, type: 3}
+  m_PrefabInstance: {fileID: 430409429}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1731079414
 GameObject:
   m_ObjectHideFlags: 0
@@ -3459,6 +3451,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyId: E04
+  health: 0
 --- !u!1 &1874332903
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,8 +10,10 @@ public class PlayerLab : MonoBehaviour
     TestDisplay display;
     SpriteRenderer playerSprite;
 
+    //======For Display Testing======
     [SerializeField] GameObject DisplayCanvas;
 
+    public string Id;
     //This will all be dynamic values that will change accordingly during the LAB scene
     public int currentStatHealth;
     public float currentStatDmg;
@@ -20,15 +22,21 @@ public class PlayerLab : MonoBehaviour
     public float currentStatRange;
     public float currentStatSlimeRate;
 
-   
+    // ====CONDITIONAl STUFF====
     public bool isHit; //check if it's been hit
-    float invisibileTime = 2f; //time for insibility
-    private int attackedTimes; //for debug recording
-    public bool isInvisable; //check if it's currently invisible
-    public bool start; //this uhhh yea idk im just testing shit. This is supposed to be so that data is only set once when starting scene.
+    float invisibileTime = 2f; //time for invisibility
+    private int attackedTimes; //for debug recording (DEBUG)
+    public bool isInvisable; //check if it's currently invisible (DEBUG)
+    private float fireTimer; //check if shoot is on cooldown
+
+    //====Slimeball====
+    [SerializeField] private GameObject slimeballPrefab;
+    [SerializeField] private GameObject firepoint;
+    private FireRotation fr;
 
     private void Awake()
     {
+        fr = firepoint.GetComponent<FireRotation>();
         playerController = GetComponent<PlayerController>();
         display = DisplayCanvas.GetComponent<TestDisplay>();
         playerSprite = GetComponent<SpriteRenderer>();
@@ -38,19 +46,19 @@ public class PlayerLab : MonoBehaviour
     void Start()
     {
         isInvisable = false;
-        start = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (start)
+        if (Id != gameObject.GetComponent<PlayerController>().charId)
         {
             SetDataFromScript(); //just for setting stuff, nothing important i dont think
-            start = false;
         }
 
+        ShootInput();
     }
+
 
     //When enemy first collides with player
     private void OnCollisionEnter2D(Collision2D collision)
@@ -77,6 +85,35 @@ public class PlayerLab : MonoBehaviour
             }
 
         }
+    }
+
+    void ShootInput()
+    {
+        float shootX = Input.GetAxisRaw("ShootHorizontal");
+        float shootY = Input.GetAxisRaw("ShootVertical");
+
+        fr.SetDirection(shootY, shootX);
+
+        if ((shootX != 0 || shootY != 0) && fireTimer <= 0) //is shooting
+        {
+            
+            Shoot();
+            fireTimer = currentStatSlimeRate;
+        }
+        else
+        {
+            fireTimer -= Time.deltaTime;
+        }
+    }
+
+    void Shoot()
+    {
+        GameObject slimeball = Instantiate(slimeballPrefab, firepoint.transform.position, firepoint.transform.rotation);
+        Slimeball setter = slimeball.GetComponent<Slimeball>();
+        setter.speed = currentStatSpeed;
+        setter.lifeTime = currentStatRange;
+        setter.dmg = currentStatDmg;
+        SetColor(setter.sr);
     }
 
     void isHitByEnemy(GameObject collided)
@@ -116,9 +153,31 @@ public class PlayerLab : MonoBehaviour
 
     }
 
-
-    void SetDataFromScript() //to get data from playercontroller so no code manipulation inside playercontroller values will probably change idk
+    void SetColor(SpriteRenderer sr)
     {
+        
+        switch (Id)
+        {
+            case "S01": 
+                sr.color = Color.gray;
+                break;
+            case "S02":
+                sr.color = Color.red;
+                break;
+            case "S03":
+                sr.color = Color.blue;
+                break;
+            case "S04":
+                sr.color = Color.green;
+                break;
+        }
+
+    }
+
+    public void SetDataFromScript() //to get data from playercontroller so no code manipulation inside playercontroller values will probably change idk
+    {
+        playerController.FillDataFromJson();
+        Id = playerController.charId;
         currentStatHealth = playerController.baseStatHealth;
         currentStatDmg = playerController.baseStatDmg;
         currentStatSpeed = playerController.baseStatSpeed;

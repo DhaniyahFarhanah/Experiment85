@@ -25,7 +25,7 @@ public class DataManage : MonoBehaviour
         string filePath = Path.Combine(Application.dataPath, "Scripts/Data/export.json");
 
         string dataString = File.ReadAllText(filePath);
-        Debug.Log(dataString);
+        //Debug.Log(dataString);
 
         Data charData = JsonUtility.FromJson<Data>(dataString);
 

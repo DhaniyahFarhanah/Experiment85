@@ -3063,14 +3063,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 352804296330747527, guid: a3509ac68d7bc8440a952673b78c2c48, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 352804296330747527, guid: a3509ac68d7bc8440a952673b78c2c48, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
     - target: {fileID: 2624216785622779817, guid: a3509ac68d7bc8440a952673b78c2c48, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -3119,22 +3111,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slime
       objectReference: {fileID: 0}
-    - target: {fileID: 2624216785622779823, guid: a3509ac68d7bc8440a952673b78c2c48, type: 3}
-      propertyPath: charId
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2624216785622779823, guid: a3509ac68d7bc8440a952673b78c2c48, type: 3}
-      propertyPath: redSlime
-      value: 
-      objectReference: {fileID: 22100000, guid: c00412ba87941044baf34c3daa3e4a9f, type: 2}
-    - target: {fileID: 2624216785622779823, guid: a3509ac68d7bc8440a952673b78c2c48, type: 3}
-      propertyPath: blueSlime
-      value: 
-      objectReference: {fileID: 22100000, guid: 953fe6d6fd2f45c479ab38bbbb7392ec, type: 2}
-    - target: {fileID: 2624216785622779823, guid: a3509ac68d7bc8440a952673b78c2c48, type: 3}
-      propertyPath: greenSlime
-      value: 
-      objectReference: {fileID: 22100000, guid: 8b08c3ed737421c4cb9637beb0c98a6d, type: 2}
     - target: {fileID: 6486326859359001859, guid: a3509ac68d7bc8440a952673b78c2c48, type: 3}
       propertyPath: DisplayCanvas
       value: 
