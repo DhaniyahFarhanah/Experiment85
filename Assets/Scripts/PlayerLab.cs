@@ -4,6 +4,10 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
+//=========PLAYER LAB=============
+//This information is seperated due to the temporary upgrades during a run.
+
+
 public class PlayerLab : MonoBehaviour
 { 
     PlayerController playerController;
@@ -176,7 +180,7 @@ public class PlayerLab : MonoBehaviour
 
     public void SetDataFromScript() //to get data from playercontroller so no code manipulation inside playercontroller values will probably change idk
     {
-        playerController.FillDataFromJson();
+
         Id = playerController.charId;
         currentStatHealth = playerController.baseStatHealth;
         currentStatDmg = playerController.baseStatDmg;

@@ -28,6 +28,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] AnimatorOverrideController greenSlime;
     [SerializeField] AnimatorOverrideController blueSlime;
 
+    //======Other stuff=====
+    PlayerLab set;
+
+    private void Awake()
+    {
+        set = gameObject.GetComponent<PlayerLab>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -98,7 +105,9 @@ public class PlayerController : MonoBehaviour
           
         }
 
-        switch (charId)
+        SetPlayerLab(); //this is to set the info into PlayerLab script whenever a change is made.
+
+        switch (charId) //animator stuff
         {
             case "S01": slimeAnim.runtimeAnimatorController = greySlime;
                 break;
@@ -110,6 +119,20 @@ public class PlayerController : MonoBehaviour
                 break;
         }
         
+    }
+
+    //seperated due to upgrades adding more stats along with the temporary upgrades that shouldn't manipulate with the base values.
+    void SetPlayerLab()
+    {
+
+        set.Id = charId;
+        set.currentStatHealth = baseStatHealth;
+        set.currentStatDmg = baseStatDmg;
+        set.currentStatSpeed = baseStatSpeed;
+        set.currentStatShotSpeed = baseStatShotSpeed;
+        set.currentStatRange = baseStatRange;
+        set.currentStatSlimeRate = baseStateSlimeRate;
+
     }
 
 }
