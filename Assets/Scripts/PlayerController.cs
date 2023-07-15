@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        charId = "S01";
+        charId = GameClass.GetCurrentSlimeId();
         SetCharacterStats();
         FillDataFromJson();
     }
@@ -89,6 +89,7 @@ public class PlayerController : MonoBehaviour
 
     public void FillDataFromJson()
     {
+
         foreach(CharacterClass c in characterList)
         {
             if(c.charId == charId)
@@ -104,6 +105,8 @@ public class PlayerController : MonoBehaviour
             }
           
         }
+
+        GameClass.SetCurrentSlimeId(charId);
 
         SetPlayerLab(); //this is to set the info into PlayerLab script whenever a change is made.
 

@@ -8,6 +8,7 @@ public class Slimeball : MonoBehaviour
     public float lifeTime;
     public float dmg;
 
+    private bool hitWall = false;
     private Animator anim;
     private Rigidbody2D rb;
     public SpriteRenderer sr;
@@ -15,6 +16,7 @@ public class Slimeball : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        hitWall = false;
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
@@ -29,25 +31,37 @@ public class Slimeball : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = transform.up * speed;
+        if (!hitWall)
+        {
+            SlimeballMovement();
+        }
+        else
+        {
+            rb.velocity = Vector2.zero;
+        }
     }
 
-    public void SlimeballMovement(float speed)
+    public void SlimeballMovement()
     {
-        rb.velocity = transform.up * speed;
+        rb.velocity = transform.up * speed * 2f;
     }
 
     void DestroySlimeball()
     {
         anim.SetBool("destroy", true);
-        rb.velocity = Vector2.zero;
-        Destroy(gameObject, 0.1f);
+        hitWall = true;
+        Destroy(gameObject, 0.2f);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Enemy")
         {
             collision.gameObject.GetComponent<EnemyController>().health -= dmg;
+            DestroySlimeball();
+        }
+
+        if(collision.tag == "Wall")
+        {
             DestroySlimeball();
         }
     }

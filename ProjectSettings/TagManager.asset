@@ -6,6 +6,7 @@ TagManager:
   tags:
   - SlimeSelector
   - Enemy
+  - Wall
   layers:
   - Default
   - TransparentFX

@@ -22,7 +22,6 @@ public class OpenUI : MonoBehaviour
         {
             if (Input.GetButton("Interact"))
             {
-                Debug.Log("Interacting");
                 UI.SetActive(true);
             }
         }
@@ -32,7 +31,6 @@ public class OpenUI : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            Debug.Log("Interact with player");
             Interact.SetActive(true);
             canInteract = true;
 
