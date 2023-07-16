@@ -14,7 +14,7 @@ public class PlayerLab : MonoBehaviour
     TestDisplay display;
     SpriteRenderer playerSprite;
 
-    //======For Display Testing======
+    //======For Display Testing====== TOBE DELETED
     [SerializeField] GameObject DisplayCanvas;
 
     public string Id;
@@ -60,6 +60,8 @@ public class PlayerLab : MonoBehaviour
             SetDataFromScript(); //just for setting stuff, nothing important i dont think
         }
 
+        SetToDislay();
+
         ShootInput();
     }
 
@@ -91,7 +93,7 @@ public class PlayerLab : MonoBehaviour
         }
     }
 
-    void ShootInput()
+    void ShootInput() //shooting input
     {
         float shootX = Input.GetAxisRaw("ShootHorizontal");
         float shootY = Input.GetAxisRaw("ShootVertical");
@@ -110,7 +112,7 @@ public class PlayerLab : MonoBehaviour
         }
     }
 
-    void Shoot()
+    void Shoot() //method to shoot slimeball
     {
         GameObject slimeball = Instantiate(slimeballPrefab, firepoint.transform.position, firepoint.transform.rotation);
         Slimeball setter = slimeball.GetComponent<Slimeball>();
@@ -120,7 +122,7 @@ public class PlayerLab : MonoBehaviour
         SetColor(setter.sr);
     }
 
-    void isHitByEnemy(GameObject collided)
+    void isHitByEnemy(GameObject collided) //if is hit, display
     {
         isHit = true;
         attackedTimes++; //for debug
@@ -157,13 +159,13 @@ public class PlayerLab : MonoBehaviour
 
     }
 
-    void SetColor(SpriteRenderer sr)
+    void SetColor(SpriteRenderer sr) //more for visual stuff
     {
         
         switch (Id)
         {
             case "S01": 
-                sr.color = Color.gray;
+                sr.color = Color.white;
                 break;
             case "S02":
                 sr.color = Color.red;
@@ -189,10 +191,7 @@ public class PlayerLab : MonoBehaviour
         currentStatRange = playerController.baseStatRange;
         currentStatSlimeRate = playerController.baseStateSlimeRate;
 
-        if (display != null)
-        {
-            SetToDislay();
-        }
+        SetToDislay();
 
     }   
 

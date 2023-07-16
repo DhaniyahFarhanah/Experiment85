@@ -88,6 +88,7 @@ public class EnemyController : MonoBehaviour
         {
             playerStats.currentStatHealth -= damage;
             playerStats.isHit = false;
+            playerStats.SetToDislay();
             Debug.Log("Attack! Damage dealt: " + damage);
 
         }
