@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
@@ -32,11 +33,16 @@ public class WaveHandler : MonoBehaviour
     public string currentLevel; //current level to check with json
     private int currentWaveNo;
     private int maxWaveNo = 3; //find from json
+    private bool win = false;
 
 
     //====Display Stuff=====
     [SerializeField] GameObject waveOverlay;
     LabOverlay overlay;
+
+    //=====Enemy Spawning Stuff====
+    [SerializeField] Transform[] spawnPoint;
+
 
     private void Awake()
     {
@@ -47,28 +53,31 @@ public class WaveHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        waveId = 101;
-        currentWaveNo = 1;
-        FakeJson();
-        currentWaveTime = waveTime;
+        waveId = 101; //TO DELETE for testing
+        currentWaveNo = 1; //set first wave whenever entering to 1
+        currentWaveTime = waveTime; //set the first wave time to the time limit for each wave
+
+        FakeJson(); //populate current stuff for testing
+        SpawnWave();
     }
 
     // Update is called once per frame
     void Update()
     {
-        FakeJson();
-        currentWaveTime -= Time.deltaTime;
-    }
+        if (!win)
+        {
+            SetOverlayDisplay();
+            currentWaveTime -= Time.deltaTime;
 
-    private void FixedUpdate()
-    {
-        SetOverlayDisplay();
+            NextWave();
+        }
 
-        if(currentWaveNo > maxWaveNo)
+        if ((GameObject.FindGameObjectsWithTag("Enemy").Length <= 0) && (currentWaveNo >= maxWaveNo)) //win condition
         {
             WinRound();
         }
     }
+
 
     private void SetOverlayDisplay()
     {
@@ -82,64 +91,45 @@ public class WaveHandler : MonoBehaviour
 
     }
 
-    //populate with necessary details. This function is to check the levelId from gameclass. 
-    void CheckNextWave()
+    void NextWave()
     {
-        if(currentWaveTime <= 0)
+        if (currentWaveTime < 0)
         {
-            currentWaveNo += 1;
-            //CheckLevel()
+            //restart wave counter
             currentWaveTime = waveTime;
-            waveId += 1;
+            currentWaveNo++;
             //move to next wave
-            SpawnEnemyWave();
-        }
-
-    }
-    void CheckLevel()
-    {
-        if(levelId == currentLevel) 
-        {
-            //Get details for that level only
-            GetFromJson();
-        }
-    }
-
-    void GetFromJson()
-    {
-        //foreach list
-        //if currentWaveno == waveno(from Json)
-        
-        //get details
-        SplitEnemyId(enemyId);
-    }
-    
-
-    void SpawnEnemyWave()
-    {
-        //get which wave
-        GetFromJson();
-
-        if (currentWaveNo != waveNo)
-        {
-            foreach (EnemyWaveList e in enemyList)
+            //check if the next wave is the same as the current wave. if not, move on to next wave
+            if (currentWaveNo != waveNo)
             {
-                Debug.Log("Spawning Wave " + currentWaveNo + ". Spawn " + e.qnty + " of enemy type " + e.enemyWaveId);
+                waveId++;
+                FakeJson(); //populate with new reading
+                SpawnWave(); //spawn the next wave
+
             }
-
-            CheckNextWave();
         }
+    }
 
+    void SpawnWave()
+    {
+        SplitEnemyId(enemyId);
+
+        foreach (EnemyWaveList e in enemyList)
+        {
+            Debug.Log("Spawning Wave " + currentWaveNo + ". Spawn " + e.qnty + " of enemy type " + e.enemyWaveId);
+        }
     }
 
     //innitiate win sequence
     void WinRound()
     {
+        
         overlay.waveTextBox.text = "YOU WIN!";
-        Time.timeScale = 0;
+        win = true;
     }
 
     //well this works. but need to be called only once. If maybe id != previous Id or something or else it will keep adding exponentionally
+    //this is to split the values. EnemyId & qnty and populate it into a list. This list will be used for Enemy JSON to instantiate the correct prefabs.
     void SplitEnemyId(string enemyId)
     {
         enemyList.Clear();
