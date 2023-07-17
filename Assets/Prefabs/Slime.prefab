@@ -250,6 +250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DisplayCanvas: {fileID: 0}
+  Id: 
   currentStatHealth: 0
   currentStatDmg: 0
   currentStatSpeed: 0
@@ -258,7 +259,6 @@ MonoBehaviour:
   currentStatSlimeRate: 0
   isHit: 0
   isInvisable: 0
-  start: 0
   slimeballPrefab: {fileID: 8809500095983043618, guid: bf7ce63287eeefb43b9ca27292c22857, type: 3}
   firepoint: {fileID: 6210851091323907781}
 --- !u!95 &2624216785622779818

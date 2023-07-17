@@ -11,6 +11,7 @@ public class GameClass
     public static string currentLevelId = "grey";
 
     //Inventory holder
+    public static int amtOfExp;
     public static int amtOfRubber;
     public static int amtOfCircuit;
     public static int amtOfPlasma;
@@ -40,14 +41,19 @@ public class GameClass
     }
 
     //=====Inventory Stuff======
-    public static void SetInventory(int rubber, int circuit, int plasma, int titanium)
+    public static void SetInventory(int exp, int rubber, int circuit, int plasma, int titanium)
     {
+        amtOfExp = exp;
         amtOfRubber = rubber;
         amtOfCircuit = circuit;
         amtOfPlasma = plasma;
         amtOfTitanium = titanium;
     }
 
+    public static int GetExp()
+    {
+        return amtOfExp;
+    }
     public static int GetRubber()
     {
         return amtOfRubber;
