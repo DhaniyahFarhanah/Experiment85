@@ -36,7 +36,7 @@ public class PlayerLab : MonoBehaviour
     //====Slimeball====
     [SerializeField] private GameObject slimeballPrefab;
     [SerializeField] private GameObject firepoint;
-    private FireRotation fr;
+    private FireRotation fr; //the rotation for the bullet
 
     private void Awake()
     {
@@ -58,6 +58,7 @@ public class PlayerLab : MonoBehaviour
         if (Id != gameObject.GetComponent<PlayerController>().charId)
         {
             SetDataFromScript(); //just for setting stuff, nothing important i dont think
+            Id = GameClass.GetCurrentSlimeId();
         }
 
         SetToDislay();
@@ -122,7 +123,7 @@ public class PlayerLab : MonoBehaviour
         SetColor(setter.sr);
     }
 
-    void isHitByEnemy(GameObject collided) //if is hit, display
+    void isHitByEnemy(GameObject collided) //if is hit, register (along with debug on the console)
     {
         isHit = true;
         attackedTimes++; //for debug
@@ -143,7 +144,7 @@ public class PlayerLab : MonoBehaviour
         StopCoroutine(playInvis()); 
     }
 
-    //plays the blinking
+    //plays the blinking and invisible frames
     IEnumerator playInvis()
     {
         float delay = 0.3f;

@@ -108,8 +108,6 @@ public class PlayerController : MonoBehaviour
 
         GameClass.SetCurrentSlimeId(charId);
 
-        SetPlayerLab(); //this is to set the info into PlayerLab script whenever a change is made.
-
         switch (charId) //animator stuff
         {
             case "S01": slimeAnim.runtimeAnimatorController = greySlime;
@@ -125,7 +123,7 @@ public class PlayerController : MonoBehaviour
     }
 
     //seperated due to upgrades adding more stats along with the temporary upgrades that shouldn't manipulate with the base values.
-    void SetPlayerLab()
+    public void SetPlayerLab()
     {
 
         set.Id = charId;

@@ -1,11 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using TMPro;
-using Unity.VisualScripting.FullSerializer;
+using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
+//I finally got hit with the existential crisis...
 public class WaveHandler : MonoBehaviour
 {
     //=====Json Lists=====
@@ -28,7 +29,7 @@ public class WaveHandler : MonoBehaviour
     public List<EnemyWaveList> enemyList = new List<EnemyWaveList>();
 
     //=====Other Variables=====
-    private float waveTime = 5f; //time limit for each wave
+    private float waveTime = 10f; //time limit for each wave
     private float currentWaveTime; //current wave time
     public string currentLevel; //current level to check with json
     private int currentWaveNo;
@@ -42,6 +43,10 @@ public class WaveHandler : MonoBehaviour
 
     //=====Enemy Spawning Stuff====
     [SerializeField] Transform[] spawnPoint;
+    //is there a way to make this more scalable? MAYBE!! I DUNNO!!
+    //okay maybe in...enemy script? can it even like- actually i dont think so...maybe...an array of gameobjects and then check enemyscript's id?
+    //and instantiate the uhhhhhh the prefab with the enemyscript associated with the enemyId? MAN IDK 
+    [SerializeField] GameObject[] enemyPrefabs;
 
 
     private void Awake()
@@ -68,8 +73,11 @@ public class WaveHandler : MonoBehaviour
         {
             SetOverlayDisplay();
             currentWaveTime -= Time.deltaTime;
+            if(currentWaveNo < maxWaveNo)
+            {
+                NextWave();
+            }
 
-            NextWave();
         }
 
         if ((GameObject.FindGameObjectsWithTag("Enemy").Length <= 0) && (currentWaveNo >= maxWaveNo)) //win condition
@@ -79,15 +87,13 @@ public class WaveHandler : MonoBehaviour
     }
 
 
+    //Sets Overlay values
     private void SetOverlayDisplay()
     {
         overlay.waveTextBox.text = "WAVE " + currentWaveNo.ToString() + "/" + maxWaveNo.ToString();
         overlay.timerBar.fillAmount = currentWaveTime/waveTime;
 
-        float time = Time.time;
-        int min = (int)time/60;
-        int sec = (int)time%60;
-        overlay.timeElapsed.text = min.ToString() + " : " + sec.ToString();
+        overlay.timeElapsed.text = GameObject.FindGameObjectsWithTag("Enemy").Length.ToString() + " enemies left";
 
     }
 
@@ -99,10 +105,10 @@ public class WaveHandler : MonoBehaviour
             currentWaveTime = waveTime;
             currentWaveNo++;
             //move to next wave
-            //check if the next wave is the same as the current wave. if not, move on to next wave
+            //check if the next wave is the same as the current wave. if not, move on to next wave 
             if (currentWaveNo != waveNo)
             {
-                waveId++;
+                waveId++; //move to next
                 FakeJson(); //populate with new reading
                 SpawnWave(); //spawn the next wave
 
@@ -110,20 +116,54 @@ public class WaveHandler : MonoBehaviour
         }
     }
 
-    void SpawnWave()
+    void SpawnWave() //spawns the wave 
     {
-        SplitEnemyId(enemyId);
+        SplitEnemyId(enemyId); //splits the long string into arrays and populates through EnemyWaveList class
 
         foreach (EnemyWaveList e in enemyList)
         {
-            Debug.Log("Spawning Wave " + currentWaveNo + ". Spawn " + e.qnty + " of enemy type " + e.enemyWaveId);
+            StartCoroutine(waitSpawn(e));
+            
         }
+    }
+
+    //this makes it so the spawner goes in intervals instead of everything spawning at once.
+    IEnumerator waitSpawn(EnemyWaveList e)
+    {
+        for (int i = 1; i < e.qnty; i++)
+        {
+            yield return new WaitForSeconds(waveTime/(e.qnty*2));
+            //spawn enemy
+            Instantiate(SpawnEnemyFromPrefab(e.enemyWaveId), RandomizeSpawn());
+
+        }
+    }
+    Transform RandomizeSpawn() //randomizes the spawnpoint chosen and returns the x y values to spawn
+    {
+        int random = Random.Range(0, 3);
+        return spawnPoint[random];
+    }
+
+    GameObject SpawnEnemyFromPrefab(string enemyIdToRef) //searches through prefabs and spawns based on enemy Id
+    {
+        GameObject spawnPrefab = null;
+
+        foreach(GameObject e in enemyPrefabs)
+        {
+            if(e.GetComponent<EnemyController>().enemyId == enemyIdToRef)
+            {
+                spawnPrefab = e;
+                break;
+            }
+        }
+        Debug.Log(spawnPrefab.name);
+
+        return spawnPrefab;
     }
 
     //innitiate win sequence
     void WinRound()
     {
-        
         overlay.waveTextBox.text = "YOU WIN!";
         win = true;
     }
@@ -161,7 +201,7 @@ public class WaveHandler : MonoBehaviour
 
     }
 
-
+    //uhhhhhhhh
     void FakeJson()
     {
         switch (waveId)
