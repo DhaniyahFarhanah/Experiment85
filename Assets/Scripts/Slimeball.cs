@@ -60,7 +60,7 @@ public class Slimeball : MonoBehaviour
     {
         if(collision.tag == "Enemy")
         {
-            collision.gameObject.GetComponent<EnemyController>().health -= dmg;
+            collision.gameObject.GetComponent<EnemyController>().enemyHealth -= dmg;
             if(type != "Powerful")
             {
                 DestroySlimeball();

@@ -28,6 +28,7 @@ public class GameData
     public static List<EnemyClass> GetEnemyList()
     {
         return enemyList;
+       
     }
     public static List<BuffClass> GetBuffList()
     {

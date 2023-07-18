@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyId: E01
-  health: 0
+  enemyHealth: 0
 --- !u!95 &8865918912775096993
 Animator:
   serializedVersion: 4

@@ -10,7 +10,7 @@ using Random = UnityEngine.Random;
 public class WaveHandler : MonoBehaviour
 {
     //=====Json Lists=====
-    //Need wave json
+    private List<WaveClass> waveJsonList;
     //Need enemy json
 
 
@@ -20,6 +20,7 @@ public class WaveHandler : MonoBehaviour
     private int waveNo;
     private string enemyId;
 
+    //for split string
     public class EnemyWaveList
     {
         public string enemyWaveId;
@@ -48,9 +49,12 @@ public class WaveHandler : MonoBehaviour
     //and instantiate the uhhhhhh the prefab with the enemyscript associated with the enemyId? MAN IDK 
     [SerializeField] GameObject[] enemyPrefabs;
 
+    private int index = 1;
+
 
     private void Awake()
     {
+        waveJsonList = GameData.GetWaveList();
         overlay = waveOverlay.GetComponent<LabOverlay>();
     }
 
@@ -58,6 +62,7 @@ public class WaveHandler : MonoBehaviour
     void Start()
     {
         waveId = 101; //TO DELETE for testing
+        index = 1;
         currentWaveNo = 1; //set first wave whenever entering to 1
         currentWaveTime = waveTime; //set the first wave time to the time limit for each wave
 

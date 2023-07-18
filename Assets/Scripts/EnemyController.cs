@@ -1,45 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class EnemyController : MonoBehaviour
 {
+    private List<EnemyClass> enemyJsonList;
+
     private GameObject player;
     private Rigidbody2D enemyRB;
     private SpriteRenderer sprite;
 
     PlayerLab playerStats; 
 
-    public string enemyId;
-
     //this all can be used as private if using json but public for now cause uhhh actually I'mma make switch case to keep them private
+    public string enemyId;
     private string enemyName;
-    public float health;
-    private int damage;
-    private float speed; //speed has been balanced to some extent
+    public float enemyHealth;
+    private int enemyDamage;
+    private float enemySpeed; //speed has been balanced to some extent
     private string enemyDesc;
+
+    private int enemyBuffDropRate;
+    private string enemyBuffDrop;
 
     //item drop stuff
     private void Awake()
     {
+        enemyJsonList = GameData.GetEnemyList();
+        GetJsonReading();
         enemyRB = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
         playerStats = player.GetComponent<PlayerLab>();
         sprite = GetComponent<SpriteRenderer>();
-        
     }
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        TempSwitchCaseStuff();
+        //TempSwitchCaseStuff();
     }
 
     // Update is called once per frame
     void Update()
     {
-      if(health <= 0)
+      if(enemyHealth <= 0)
         {
             Die();
         }
@@ -65,7 +72,7 @@ public class EnemyController : MonoBehaviour
     void Movement() 
     {
         Vector3 direction = (player.transform.position - transform.position).normalized;
-        enemyRB.velocity = direction * speed;
+        enemyRB.velocity = direction * enemySpeed;
 
         //this code sucks so I'mma just-
         //transform.position = Vector2.MoveTowards(transform.position, player.transform.position, (speed/2) * Time.deltaTime); 
@@ -86,10 +93,10 @@ public class EnemyController : MonoBehaviour
     {
         if(playerStats.isHit) //if the player is hit then do damage
         {
-            playerStats.currentStatHealth -= damage;
+            playerStats.currentStatHealth -= enemyDamage;
             playerStats.isHit = false;
             playerStats.SetToDislay();
-            Debug.Log("Attack! Damage dealt: " + damage);
+            Debug.Log("Attack! Damage dealt: " + enemyDamage);
 
         }
        
@@ -100,9 +107,25 @@ public class EnemyController : MonoBehaviour
         Destroy(gameObject);
     }
 
+    void GetJsonReading()
+    {
+        foreach(EnemyClass e in enemyJsonList)
+        {
+            if(enemyId == e.enemyId)
+            {
+                enemyName = e.enemyName;
+                enemyHealth = e.health;
+                enemyDamage = e.damage;
+                enemySpeed = e.speed / 1.5f;
+                enemyBuffDrop = e.buffDrop;
+                enemyBuffDropRate = e.buffDropRate;
+            }
+        }
+    }
+
 
     // IMPORTANT: SPEED NEEDS BALANCING. Speed values are different from data because it needs to be balanced. This is balanced data. 
-    void TempSwitchCaseStuff() //ignore this, this is more for manual shit
+    /*void TempSwitchCaseStuff() //ignore this, this is more for manual shit
 
     {
         switch(enemyId)
@@ -148,6 +171,6 @@ public class EnemyController : MonoBehaviour
                 break;
 
         }
-    }
+    }*/
     
 }
