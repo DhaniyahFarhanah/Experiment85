@@ -25,6 +25,13 @@ public class OpenUI : MonoBehaviour
             if (Input.GetButton("Interact"))
             {
                 Debug.Log("Interacting");
+
+                if (this.gameObject.name == "Sensor1")
+                {
+                    dialogue.initDialogueID = 101001;
+                    dialogue.nextID = 101002;
+                    dialogue.StartFirstDialogue();
+                }
                 if (this.gameObject.name == "Sensor2")
                 {
                     dialogue.initDialogueID = 103001;

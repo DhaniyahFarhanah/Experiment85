@@ -136,6 +136,7 @@ public class Dialogue : MonoBehaviour
             if (d.dialogueId == initDialogueID && d.nextCutsceneRefId == -1)
             {
                 //TXT = d.dialogue;
+                
                 container = d.dialogue.Split(delimiter1);
                 option1 = container[0];
                 option2 = container[1];
@@ -151,7 +152,7 @@ public class Dialogue : MonoBehaviour
                 Debug.Log("Dialogue(1): " + TXT);
                 Debug.Log("ID(3): " + initDialogueID);
                 Debug.Log("ID(4): " + nextID);
-                Invoke("Close", 3.0f);
+                Invoke("Close", 2.0f);
 
             }
         }

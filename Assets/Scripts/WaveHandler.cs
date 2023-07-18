@@ -29,7 +29,7 @@ public class WaveHandler : MonoBehaviour
     public List<EnemyWaveList> enemyList = new List<EnemyWaveList>();
 
     //=====Other Variables=====
-    private float waveTime = 10f; //time limit for each wave
+    private float waveTime = 15f; //time limit for each wave
     private float currentWaveTime; //current wave time
     public string currentLevel; //current level to check with json
     private int currentWaveNo;

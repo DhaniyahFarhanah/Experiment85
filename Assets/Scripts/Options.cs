@@ -9,6 +9,7 @@ public class Options : MonoBehaviour
 {
     public Dialogue dialogue;
 
+    [SerializeField] GameObject ChoicePopUp;
     [SerializeField] public Button button1, button2;
     [SerializeField] public TMP_Text text1, text2;
 
@@ -32,6 +33,7 @@ public class Options : MonoBehaviour
 
     public void furtherSplit()
     {
+        ChoicePopUp.SetActive(true);
         container = dialogue.option1.Split(delimiter2);
         dialogue1 = container[0];
         nextId1 = int.Parse(container[1]);
@@ -50,6 +52,7 @@ public class Options : MonoBehaviour
 
     private void Op1Click()
     {
+        ChoicePopUp.SetActive(false);
         dialogue.initDialogueID = nextId1;
         dialogue.nextID = nextId1 += 2;
         Debug.Log("nextId3: " + dialogue.initDialogueID);
@@ -59,6 +62,7 @@ public class Options : MonoBehaviour
 
     private void Op2Click()
     {
+        ChoicePopUp.SetActive(false);
         dialogue.initDialogueID = nextId2;
         dialogue.nextID = nextId2 += 1;
         dialogue.NextLine();
