@@ -5,7 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - SlimeSelector
+<<<<<<< Updated upstream
+=======
   - Enemy
+  - NPC
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
@@ -48,9 +52,6 @@ TagManager:
     locked: 0
   - name: Deco
     uniqueID: 1523132769
-    locked: 0
-  - name: Enemy
-    uniqueID: 2547093465
     locked: 0
   - name: Player
     uniqueID: 2136096971
