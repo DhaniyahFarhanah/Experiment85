@@ -95,7 +95,7 @@ public class DataManage : MonoBehaviour
 
         foreach (RefNPCData refNPC in npcData.NPC)
         {
-            NPCClass npc = new NPCClass(refNPC.npcId, refNPC.npcName, refNPC.firstDialogueId, refNPC.shopDialogueId, refNPC.upgradeId);
+            NPCClass npc = new NPCClass(refNPC.npcId, refNPC.npcName, refNPC.image, refNPC.dialogueId);
             npcList.Add(npc);
         }
         GameData.SetNPCList(npcList);
