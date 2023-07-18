@@ -5,11 +5,6 @@ TagManager:
   serializedVersion: 2
   tags:
   - SlimeSelector
-<<<<<<< Updated upstream
-=======
-  - Enemy
-  - NPC
->>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX

@@ -6,7 +6,6 @@ public class GameData
 {
     private static List<CharacterClass> characterList;
     private static List<DialogueClass> dialogueList;
-    private static List<NPCClass> npcList;
 
     public static List<CharacterClass> GetCharacterList()
     {
@@ -16,11 +15,6 @@ public class GameData
     public static List<DialogueClass> GetDialogueList()
     {
         return dialogueList;
-    }
-
-    public static List<NPCClass> GetNPCList()
-    {
-        return npcList;
     }
 
     public static CharacterClass GetCharacterByRefId(string charRefId)
@@ -47,10 +41,5 @@ public class GameData
     public static void SetDialogueList(List<DialogueClass> dList)
     {
         dialogueList = dList;
-    }
-
-    public static void SetNPCList(List<NPCClass> nList)
-    {
-        npcList = nList;
     }
 }

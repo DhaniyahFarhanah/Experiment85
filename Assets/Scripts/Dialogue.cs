@@ -1,20 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using TMPro;
 public class Dialogue : MonoBehaviour
 {
-    public Options optionsScript;
-
     public TextMeshProUGUI textComponent;
+    public string[] lines;
     public string TXT;
     public float textSpeed;
-    public bool textFinished;
-
-    public string option1, option2;
-    public int initDialogueID, nextID;
-    List<int> firstDialogues = new List<int>();
 
     public int dialogueId;
     public int nextCutsceneRefId;
@@ -22,142 +15,77 @@ public class Dialogue : MonoBehaviour
     public int npcId;
     public string dialogue;
 
-
-    private GameObject NPC;
+    private int index;
 
     List<DialogueClass> dialogueList; //get dialogue list from Json
-    List<NPCClass> npcList; //get npc list from Json
 
 
     // Start is called before the first frame update
     void Start()
     {
-        npcList = GameData.GetNPCList();
         dialogueList = GameData.GetDialogueList();
         textComponent.text = string.Empty;
-        initDialogueID = 101001; // start the first dialogue
-        nextID = 101002;
-        StartFirstDialogue();
-        StoreFirstDialogues();
+        startDialogue();
+        FillDataFromJson();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.RightArrow) && textFinished) //checking for right arrow
+        if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            NextLine();
+            if (textComponent.text == lines[index])
+            {
+                nextLine();
+            }
+            else
+            {
+                StopAllCoroutines();
+                textComponent.text = lines[index];
+            }
         }
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            GameObject.Find("Dialogue").SetActive(false);
-        }
+        
     }
 
-    private void Close()
+        void startDialogue()
     {
-        GameObject.Find("Dialogue").SetActive(false);
-        textComponent.text = string.Empty;
+        index = 0;
+        StartCoroutine(typeLine());
     }
 
-    void StoreFirstDialogues() //Store the first dialogue IDs from NPC list
+    IEnumerator typeLine()
     {
-        foreach (NPCClass n in npcList)
-        {
-            firstDialogues.Add(n.firstDialogueId);
-        }
-        //foreach (int item in firstDialogues)
-        //{
-        //    Debug.Log("DIALOGUEID: " + item);
-        //}
-    }
-
-    IEnumerator typeLine() //type each character 1 by 1
-    {
-        textComponent.text = string.Empty;
-        textFinished = false;
-        foreach (char c in TXT)
+        //type each character 1 by 1
+        foreach (char c in lines[index]) //convert string array to character array
         {
             textComponent.text += c;
             yield return new WaitForSeconds(textSpeed);
         }
-        textFinished = true;
-
-        initDialogueID += 1;
-        nextID += 1;
     }
 
-    public void StartFirstDialogue() // search for the first dialogue based on the initDialogueID then store into TXT
+    void FillDataFromJson()
     {
-        this.gameObject.SetActive(true);
-        foreach (int item in firstDialogues)
-        {
-            if (initDialogueID == item)
-            {
-                initDialogueID = item;
-                //nextID += 1;
+        //foreach (DialogueClass d in dialogueList)
+        //{
+        //    if (d.dialogueId == dialogueId)
+        //    {
+        //        TXT = d.dialogue;
+        //    }
+        //}
+        Debug.Log("D_List: " + dialogueList.Count);
+    }
 
-                firstDialogues.Remove(item);
-                break;
-            }
+        void nextLine()
+    {
+        if (index < lines.Length - 1)
+        {
+            index++;
+            textComponent.text = string.Empty;
+            StartCoroutine(typeLine());
         }
-
-        NextLine();
-    }
-
-    public void NextLine()
-    {
-        //initDialogueID += 1;
-        //int nextID = 1;
-       // nextID += initDialogueID;
-
-        char delimiter1 = '@';
-        string[] container;
-
-        Debug.Log("dialogueID: " + initDialogueID);
-        Debug.Log("nextCutsceneRefId: " + nextID);
-        foreach (DialogueClass d in dialogueList) // search the whole list for ID
+        else
         {
-            if (d.dialogueId == initDialogueID && d.nextCutsceneRefId == nextID)
-            {
-                
-                TXT = d.dialogue;
-                StartCoroutine(typeLine());
-                Debug.Log("NextLine" + d.dialogue);
-
-            }
-            if (nextID - initDialogueID == 2)
-            {
-                initDialogueID += 2;
-                nextID += 1;
-                Debug.Log("Conversation 1");
-                continue;
-            }
-            if (d.dialogueId == initDialogueID && d.nextCutsceneRefId == -1)
-            {
-                //TXT = d.dialogue;
-                container = d.dialogue.Split(delimiter1);
-                option1 = container[0];
-                option2 = container[1];
-                Debug.Log("option 1: " +  option1);
-                Debug.Log("option 2: " + option2);
-                optionsScript.furtherSplit();
-                //textFinished = false
-            }
-            if (d.dialogueId == initDialogueID && d.nextCutsceneRefId == -2) //end dialogue
-            {
-                TXT = d.dialogue;
-                StartCoroutine(typeLine());
-                Debug.Log("Dialogue(1): " + TXT);
-                Debug.Log("ID(3): " + initDialogueID);
-                Debug.Log("ID(4): " + nextID);
-                Invoke("Close",3.0f);
-                
-            }
+            gameObject.SetActive(false);
         }
     }
-
-      
-
 }
