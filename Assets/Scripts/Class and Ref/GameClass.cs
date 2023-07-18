@@ -4,18 +4,9 @@ using UnityEngine;
 
 public class GameClass
 {
-    //Here is holds all the data to be held between scenes.
+    //Here is holds all the data to be held between scenes. Default is S01
     public static string currentSlimeId = "S01";
 
-    //level info holder
-    public static string currentLevelId = "grey";
-
-    //Inventory holder
-    public static int amtOfExp;
-    public static int amtOfRubber;
-    public static int amtOfCircuit;
-    public static int amtOfPlasma;
-    public static int amtOfTitanium;
 
     //====Slime stuff=====
     public static void SetCurrentSlimeId(string Id)
@@ -29,45 +20,4 @@ public class GameClass
         return currentSlimeId;
     }
 
-    //=====Lab stuff======
-    public static void SetCurrentLevelId(string levelId)
-    {
-        currentLevelId = levelId;
-    }
-
-    public static string GetCurrentLevelId()
-    {
-        return currentLevelId;
-    }
-
-    //=====Inventory Stuff======
-    public static void SetInventory(int exp, int rubber, int circuit, int plasma, int titanium)
-    {
-        amtOfExp = exp;
-        amtOfRubber = rubber;
-        amtOfCircuit = circuit;
-        amtOfPlasma = plasma;
-        amtOfTitanium = titanium;
-    }
-
-    public static int GetExp()
-    {
-        return amtOfExp;
-    }
-    public static int GetRubber()
-    {
-        return amtOfRubber;
-    }
-    public static int GetCircuit()
-    {
-        return amtOfCircuit;
-    }
-    public static int GetPlasma()
-    {
-        return amtOfPlasma;
-    }
-    public static int GetTitanium()
-    {
-        return amtOfTitanium;
-    }
 }

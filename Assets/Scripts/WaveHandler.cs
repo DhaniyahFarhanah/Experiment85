@@ -52,7 +52,6 @@ public class WaveHandler : MonoBehaviour
     private void Awake()
     {
         overlay = waveOverlay.GetComponent<LabOverlay>();
-        currentLevel = GameClass.GetCurrentLevelId(); //get current level index
     }
 
     // Start is called before the first frame update
