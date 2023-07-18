@@ -25,6 +25,7 @@ public class PlayerLab : MonoBehaviour
     public float currentStatShotSpeed;
     public float currentStatRange;
     public float currentStatSlimeRate;
+    public string type;
 
     // ====CONDITIONAl STUFF====
     public bool isHit; //check if it's been hit
@@ -120,6 +121,7 @@ public class PlayerLab : MonoBehaviour
         setter.speed = currentStatSpeed;
         setter.lifeTime = currentStatRange;
         setter.dmg = currentStatDmg;
+        setter.type = type;
         SetColor(setter.sr);
     }
 
@@ -191,6 +193,7 @@ public class PlayerLab : MonoBehaviour
         currentStatShotSpeed = playerController.baseStatShotSpeed;
         currentStatRange = playerController.baseStatRange;
         currentStatSlimeRate = playerController.baseStateSlimeRate;
+        type = playerController.type;
 
         SetToDislay();
 

@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public float baseStatShotSpeed;
     public float baseStatRange;
     public float baseStateSlimeRate;
+    public string type;
 
     //====Movement=====
     public Rigidbody2D rb;
@@ -98,6 +99,7 @@ public class PlayerController : MonoBehaviour
                 baseStatHealth = c.baseStatHealth;
                 baseStatDmg = c.baseStatDmg;
                 // >:C
+                type = c.type;
                 baseStatSpeed = c.baseStatSpeed * 1.5f;
                 baseStatShotSpeed = c.baseStatShotSpeed;
                 baseStatRange = c.baseStatRange;

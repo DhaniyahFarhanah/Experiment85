@@ -7,7 +7,9 @@ public class Slimeball : MonoBehaviour
     public float speed;
     public float lifeTime;
     public float dmg;
-
+    public float scale;
+    public string type;
+    
     private bool hitWall = false;
     private Animator anim;
     private Rigidbody2D rb;
@@ -26,7 +28,7 @@ public class Slimeball : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      
+        
     }
 
     private void FixedUpdate()
@@ -44,6 +46,8 @@ public class Slimeball : MonoBehaviour
     public void SlimeballMovement()
     {
         rb.velocity = transform.up * speed * 2f;
+        //gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+        //scales the size
     }
 
     void DestroySlimeball()
@@ -57,7 +61,10 @@ public class Slimeball : MonoBehaviour
         if(collision.tag == "Enemy")
         {
             collision.gameObject.GetComponent<EnemyController>().health -= dmg;
-            DestroySlimeball();
+            if(type != "Powerful")
+            {
+                DestroySlimeball();
+            }
         }
 
         if(collision.tag == "Wall")

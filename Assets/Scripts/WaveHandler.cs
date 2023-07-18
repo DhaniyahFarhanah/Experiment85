@@ -207,18 +207,18 @@ public class WaveHandler : MonoBehaviour
         {
             case 101: levelId = "grey";
                 waveNo = 1;
-                enemyId = "E01#5";
+                enemyId = "E01#10@E02#10";
                 break;
 
             case 102:
                 levelId = "grey";
                 waveNo = 2;
-                enemyId = "E01#10";
+                enemyId = "E01#20@E02#20@E03#5";
                 break;
             case 103:
                 levelId = "grey";
                 waveNo = 3;
-                enemyId = "E01#20@E02#2";
+                enemyId = "E01#10@E02#14@E03#10@E04#16";
                 break;
         }
     }

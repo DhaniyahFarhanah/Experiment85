@@ -130,8 +130,8 @@ public class EnemyController : MonoBehaviour
             case "E03":
 
                 enemyName = "Juggernaut";
-                health = 200f;
-                damage = 4;
+                health = 16f;
+                damage = 2;
                 speed = 1f;
                 enemyDesc = "Juggernaut Enemy with High Health, High Damage and Low Speed";
 
@@ -140,9 +140,9 @@ public class EnemyController : MonoBehaviour
             case "E04":
 
                 enemyName = "Reaper";
-                health = 40f;
-                damage = 5;
-                speed = 1.7f;
+                health = 14f;
+                damage = 3;
+                speed = 2.5f;
                 enemyDesc = "Dangerous Enemy with Moderate Health, High Damage and Moderate Speed";
 
                 break;
