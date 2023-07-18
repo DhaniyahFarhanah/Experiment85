@@ -122,7 +122,7 @@ public class EnemyController : MonoBehaviour
                 enemyName = "Chaser";
                 health = 4f;
                 damage = 2;
-                speed = 2.5f; 
+                speed = 4f; 
                 enemyDesc = "Speedy Enemy with Low Health, Moderate Damage and High Speed";
 
                 break;
