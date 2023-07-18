@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8298218528010483525
 Transform:
   m_ObjectHideFlags: 0
@@ -25,8 +25,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 352804296330747527}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5793, y: 0.6393, z: 0}
-  m_LocalScale: {x: 0.53852946, y: 0.53852946, z: 0.53852946}
+  m_LocalPosition: {x: -0.5753, y: 0.6353, z: 0}
+  m_LocalScale: {x: 0.6104244, y: 0.6104244, z: 0.6104244}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2624216785622779817}
@@ -71,9 +71,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2136096971
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3a77c80c3e6a465489d36768e6e17621, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 7321581802209623787}
   - component: {fileID: 2624216785622779816}
   - component: {fileID: 2624216785622779823}
+  - component: {fileID: 6486326859359001859}
   - component: {fileID: 2624216785622779818}
   m_Layer: 0
   m_Name: Slime
@@ -114,10 +115,11 @@ Transform:
   m_GameObject: {fileID: 2624216785622779822}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.8001266, y: -0.0508022, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7882, y: 0.7882, z: 0.7882}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8298218528010483525}
+  - {fileID: 2707345396741008423}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -138,7 +140,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
@@ -155,8 +157,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.003702402, y: -0.004986286}
-  m_Size: {x: 1.0799146, y: 1.0799146}
+  m_Offset: {x: -0.014192287, y: -0.08079136}
+  m_Size: {x: 0.7451249, y: 0.7451249}
   m_Direction: 0
 --- !u!212 &2624216785622779816
 SpriteRenderer:
@@ -197,7 +199,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2136096971
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -1225048156, guid: 7a59c73870c60e142a8159e3d8025577, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -222,19 +224,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44e9a240c34877a44a1f965e37824ba8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charId: 1
-  maxHealth: 0
-  basedamage: 0
-  basecharSpeed: 0
-  baseshotSpeed: 0
-  baserange: 0
-  baseprojectileRate: 0
+  charId: 0
+  baseStatHealth: 0
+  baseStatDmg: 0
+  baseStatSpeed: 0
+  baseStatShotSpeed: 0
+  baseStatRange: 0
+  baseStateSlimeRate: 0
   rb: {fileID: 2624216785622779819}
   slimeAnim: {fileID: 2624216785622779818}
   greySlime: {fileID: 22100000, guid: a76ee969e4f3ed6408520c7f01a45459, type: 2}
   redSlime: {fileID: 22100000, guid: c00412ba87941044baf34c3daa3e4a9f, type: 2}
   greenSlime: {fileID: 22100000, guid: 8b08c3ed737421c4cb9637beb0c98a6d, type: 2}
   blueSlime: {fileID: 22100000, guid: 953fe6d6fd2f45c479ab38bbbb7392ec, type: 2}
+--- !u!114 &6486326859359001859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2624216785622779822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d77dc3ab5ddedd84cb4a79c5321a130b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DisplayCanvas: {fileID: 0}
+  Id: 
+  currentStatHealth: 0
+  currentStatDmg: 0
+  currentStatSpeed: 0
+  currentStatShotSpeed: 0
+  currentStatRange: 0
+  currentStatSlimeRate: 0
+  isHit: 0
+  isInvisable: 0
+  slimeballPrefab: {fileID: 8809500095983043618, guid: bf7ce63287eeefb43b9ca27292c22857, type: 3}
+  firepoint: {fileID: 6210851091323907781}
 --- !u!95 &2624216785622779818
 Animator:
   serializedVersion: 4
@@ -255,3 +281,47 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &6210851091323907781
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2707345396741008423}
+  - component: {fileID: 3865256828773521953}
+  m_Layer: 0
+  m_Name: FiringPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2707345396741008423
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6210851091323907781}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2624216785622779817}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3865256828773521953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6210851091323907781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a45d39faf73273441b31442713cf6ade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

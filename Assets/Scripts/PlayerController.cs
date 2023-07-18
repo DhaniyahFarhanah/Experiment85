@@ -4,32 +4,44 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public string charId;
-    public string currentAvatar;
-    public int tempId;
+    public string charId = "S01";
 
+    //====Player Stats==== TOBE POPULATED BY JSON
     public int baseStatHealth;
     public float baseStatDmg;
-    public float baseStatSpeed; //to test speed (default speed is 5) TO BE REF FROM JSON
+    public float baseStatSpeed; 
     public float baseStatShotSpeed;
     public float baseStatRange;
     public float baseStateSlimeRate;
 
+    //====Movement=====
     public Rigidbody2D rb;
+    private Vector2 moveDir;
 
+    //====JSON Lists====
+    List<CharacterClass> characterList; //get character list from Json
+
+    //=====Animators=====
     public Animator slimeAnim;
     [SerializeField] AnimatorOverrideController greySlime;
     [SerializeField] AnimatorOverrideController redSlime;
     [SerializeField] AnimatorOverrideController greenSlime;
     [SerializeField] AnimatorOverrideController blueSlime;
 
-    private Vector2 moveDir;
+    //======Other stuff=====
+    PlayerLab set;
+
+    private void Awake()
+    {
+        set = gameObject.GetComponent<PlayerLab>();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        tempId = 1;
+        charId = GameClass.GetCurrentSlimeId();
         SetCharacterStats();
+        FillDataFromJson();
     }
 
     // Update is called once per frame
@@ -37,6 +49,7 @@ public class PlayerController : MonoBehaviour
     {
         SetCharacterStats();
         ProcessInputs();
+        FillDataFromJson();
     }
 
     private void FixedUpdate()
@@ -50,28 +63,8 @@ public class PlayerController : MonoBehaviour
         float moveY = Input.GetAxisRaw("MoveVertical");
 
         moveDir = new Vector2(moveX, moveY).normalized; //No added speed when diagonal movement
-        
-        //Testing arrow key direction shooting
-        if (Input.GetButton("FireUp"))
-        {
-            Debug.Log("Shooting Upwards");
-        }
-        else if (Input.GetButton("FireDown"))
-        {
-            Debug.Log("Shooting Downwards");
-        }
-        else if (Input.GetButton("FireLeft"))
-        {
-
-            Debug.Log("Shooting Left");
-        }
-        else if (Input.GetButton("FireRight"))
-        {
-            Debug.Log("Shooting Right");
-            
-        }
-
     }
+
     void Movement()
     {
         rb.velocity = new Vector3(moveDir.x * baseStatSpeed, moveDir.y * baseStatSpeed);
@@ -88,41 +81,59 @@ public class PlayerController : MonoBehaviour
         //transform.position = transform.position + movement * Time.deltaTime * charSpeed;
     }
 
-    void SetCharacterStats() //better way to do this but this is used for testing. It probably wont be used since we have JSON.
+    void SetCharacterStats() //Gets list of characters by Json
     {
-        switch (tempId)
-        {
-            case 1:
-                baseStatHealth = 4;
-                baseStatDmg = 4;
-                baseStatSpeed = 4;
-                slimeAnim.runtimeAnimatorController = greySlime;
-
-                break;
-
-            case 2:
-                baseStatHealth = 3;
-                baseStatDmg = 7;
-                baseStatSpeed = 4;
-                slimeAnim.runtimeAnimatorController = redSlime;
-
-                break;
-
-            case 3:
-                baseStatHealth = 3;
-                baseStatDmg = 2;
-                baseStatSpeed = 6;
-                slimeAnim.runtimeAnimatorController = blueSlime;
-
-                break;
-
-            case 4:
-                baseStatHealth = 9;
-                baseStatDmg = 5;
-                baseStatSpeed = 3;
-                slimeAnim.runtimeAnimatorController = greenSlime;
-                break;
-
-        }
+        characterList = GameData.GetCharacterList();
     }
+
+
+    public void FillDataFromJson()
+    {
+
+        foreach(CharacterClass c in characterList)
+        {
+            if(c.charId == charId)
+            {
+                //populate if the charId matches
+                baseStatHealth = c.baseStatHealth;
+                baseStatDmg = c.baseStatDmg;
+                // >:C
+                baseStatSpeed = c.baseStatSpeed * 1.5f;
+                baseStatShotSpeed = c.baseStatShotSpeed;
+                baseStatRange = c.baseStatRange;
+                baseStateSlimeRate = c.baseStateSlimeRate;
+            }
+          
+        }
+
+        GameClass.SetCurrentSlimeId(charId);
+
+        switch (charId) //animator stuff
+        {
+            case "S01": slimeAnim.runtimeAnimatorController = greySlime;
+                break;
+            case "S02": slimeAnim.runtimeAnimatorController = redSlime;
+                break;
+            case "S03": slimeAnim.runtimeAnimatorController = blueSlime;
+                break;
+            case "S04": slimeAnim.runtimeAnimatorController = greenSlime;
+                break;
+        }
+        
+    }
+
+    //seperated due to upgrades adding more stats along with the temporary upgrades that shouldn't manipulate with the base values.
+    public void SetPlayerLab()
+    {
+
+        set.Id = charId;
+        set.currentStatHealth = baseStatHealth;
+        set.currentStatDmg = baseStatDmg;
+        set.currentStatSpeed = baseStatSpeed;
+        set.currentStatShotSpeed = baseStatShotSpeed;
+        set.currentStatRange = baseStatRange;
+        set.currentStatSlimeRate = baseStateSlimeRate;
+
+    }
+
 }
