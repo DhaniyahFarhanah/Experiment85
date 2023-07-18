@@ -9,4 +9,7 @@ public class Data
     public List<RefCharacterData> Character;
     public List<RefDialogueData> Dialogue;
     public List<RefNPCData> NPC;
+    public List<RefEnemyData> Enemies;
+    public List<RefBuffData> Buffs;
+    public List<RefWaveData> Waves;
 }

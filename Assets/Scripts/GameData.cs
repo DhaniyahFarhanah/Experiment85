@@ -7,6 +7,9 @@ public class GameData
     private static List<CharacterClass> characterList;
     private static List<DialogueClass> dialogueList;
     private static List<NPCClass> npcList;
+    private static List<EnemyClass> enemyList;
+    private static List<BuffClass> buffList;
+    private static List<WaveClass> waveList;
 
     public static List<CharacterClass> GetCharacterList()
     {
@@ -21,6 +24,18 @@ public class GameData
     public static List<NPCClass> GetNPCList()
     {
         return npcList;
+    }
+    public static List<EnemyClass> GetEnemyList()
+    {
+        return enemyList;
+    }
+    public static List<BuffClass> GetBuffList()
+    {
+        return buffList;
+    }
+    public static List<WaveClass> GetWaveList()
+    {
+        return waveList;
     }
 
     public static CharacterClass GetCharacterByRefId(string charRefId)
@@ -52,5 +67,17 @@ public class GameData
     public static void SetNPCList(List<NPCClass> nList)
     {
         npcList = nList;
+    }
+    public static void SetEnemyList(List<EnemyClass> eList)
+    {
+        enemyList = eList;
+    }
+    public static void SetBuffList(List<BuffClass> bList)
+    {
+        buffList = bList;
+    }
+    public static void SetWaveList(List<WaveClass> wList)
+    {
+        waveList = wList;
     }
 }
