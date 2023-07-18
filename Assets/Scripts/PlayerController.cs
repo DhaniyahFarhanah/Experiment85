@@ -6,29 +6,40 @@ public class PlayerController : MonoBehaviour
 {
     public string charId = "S01";
 
+    //====Player Stats==== TOBE POPULATED BY JSON
     public int baseStatHealth;
     public float baseStatDmg;
-    public float baseStatSpeed; //to test speed (default speed is 5) TO BE REF FROM JSON
+    public float baseStatSpeed; 
     public float baseStatShotSpeed;
     public float baseStatRange;
     public float baseStateSlimeRate;
 
+    //====Movement=====
     public Rigidbody2D rb;
+    private Vector2 moveDir;
 
+    //====JSON Lists====
     List<CharacterClass> characterList; //get character list from Json
 
+    //=====Animators=====
     public Animator slimeAnim;
     [SerializeField] AnimatorOverrideController greySlime;
     [SerializeField] AnimatorOverrideController redSlime;
     [SerializeField] AnimatorOverrideController greenSlime;
     [SerializeField] AnimatorOverrideController blueSlime;
 
-    private Vector2 moveDir;
+    //======Other stuff=====
+    PlayerLab set;
+
+    private void Awake()
+    {
+        set = gameObject.GetComponent<PlayerLab>();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        charId = "S01";
+        charId = GameClass.GetCurrentSlimeId();
         SetCharacterStats();
         FillDataFromJson();
     }
@@ -52,51 +63,6 @@ public class PlayerController : MonoBehaviour
         float moveY = Input.GetAxisRaw("MoveVertical");
 
         moveDir = new Vector2(moveX, moveY).normalized; //No added speed when diagonal movement
-
-        //Testing arrow key direction shooting
-        float shootX = Input.GetAxisRaw("ShootHorizontal");
-        float shootY = Input.GetAxisRaw("ShootVertical");
-
-        Debug.Log("Horizontal shoot: " + shootX + ". Vertical shoot: " + shootY);
-
-        
-
-    }
-
-    void chooseDirection(float updown, float leftright)
-    {
-        if (updown == 1 && leftright == 0) //shoot up (N)
-        {
-            Debug.Log("Shoot North");
-        }
-        else if (updown == 1 && leftright == 1) //shoot up right (NE)
-        {
-            Debug.Log("Shoot North East");
-        }
-        else if (updown == 0 && leftright == 1) //shoot right (E)
-        {
-            Debug.Log("Shoot East");
-        }
-        else if (updown == -1 && leftright == 1) //shoot right down (SE)
-        {
-            Debug.Log("Shoot South East");
-        }
-        else if (updown == -1 && leftright == 0) //shoot down (S)
-        {
-            Debug.Log("Shoot South");
-        }
-        else if (updown == -1 && leftright == -1) //shoot left down (SW)
-        {
-            Debug.Log("Shoot South West");
-        }
-        else if (updown == 0 && leftright == -1) //shoot left (W)
-        {
-            Debug.Log("Shoot West");
-        }
-        else if ( updown == 1 && leftright == -1) //shoot left up (NW)
-        {
-            Debug.Log("Shoot North West");
-        }
     }
 
     void Movement()
@@ -120,7 +86,8 @@ public class PlayerController : MonoBehaviour
         characterList = GameData.GetCharacterList();
     }
 
-    void FillDataFromJson()
+
+    public void FillDataFromJson()
     {
 
         foreach(CharacterClass c in characterList)
@@ -139,7 +106,9 @@ public class PlayerController : MonoBehaviour
           
         }
 
-        switch (charId)
+        GameClass.SetCurrentSlimeId(charId);
+
+        switch (charId) //animator stuff
         {
             case "S01": slimeAnim.runtimeAnimatorController = greySlime;
                 break;
@@ -152,4 +121,19 @@ public class PlayerController : MonoBehaviour
         }
         
     }
+
+    //seperated due to upgrades adding more stats along with the temporary upgrades that shouldn't manipulate with the base values.
+    public void SetPlayerLab()
+    {
+
+        set.Id = charId;
+        set.currentStatHealth = baseStatHealth;
+        set.currentStatDmg = baseStatDmg;
+        set.currentStatSpeed = baseStatSpeed;
+        set.currentStatShotSpeed = baseStatShotSpeed;
+        set.currentStatRange = baseStatRange;
+        set.currentStatSlimeRate = baseStateSlimeRate;
+
+    }
+
 }

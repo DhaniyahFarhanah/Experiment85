@@ -14,7 +14,7 @@ public class EnemyController : MonoBehaviour
 
     //this all can be used as private if using json but public for now cause uhhh actually I'mma make switch case to keep them private
     private string enemyName;
-    private float health;
+    public float health;
     private int damage;
     private float speed; //speed has been balanced to some extent
     private string enemyDesc;
@@ -39,7 +39,10 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      
+      if(health <= 0)
+        {
+            Die();
+        }
     }
 
     //Fixed update calculates updates at a fixed 50fps (i think)
@@ -84,12 +87,17 @@ public class EnemyController : MonoBehaviour
         if(playerStats.isHit) //if the player is hit then do damage
         {
             playerStats.currentStatHealth -= damage;
-            playerStats.SetToDislay();
             playerStats.isHit = false;
+            playerStats.SetToDislay();
             Debug.Log("Attack! Damage dealt: " + damage);
 
         }
        
+    }
+
+    void Die()
+    {
+        Destroy(gameObject);
     }
 
 
@@ -114,7 +122,7 @@ public class EnemyController : MonoBehaviour
                 enemyName = "Chaser";
                 health = 4f;
                 damage = 2;
-                speed = 2.5f; 
+                speed = 4f; 
                 enemyDesc = "Speedy Enemy with Low Health, Moderate Damage and High Speed";
 
                 break;
