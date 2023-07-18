@@ -1,5 +1,77 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &71661985
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 71661986}
+  - component: {fileID: 71661987}
+  - component: {fileID: 71661988}
+  m_Layer: 0
+  m_Name: PhasePreventer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &71661986
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 71661985}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2624216785622779817}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &71661987
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 71661985}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0038166642, y: -0.06491122}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.6258067, y: 0.62580615}
+  m_EdgeRadius: 0
+--- !u!114 &71661988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 71661985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b3180b9be9a28942848d4a25eed4632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  capsuleCollider: {fileID: 7321581802209623787}
 --- !u!1 &352804296330747527
 GameObject:
   m_ObjectHideFlags: 0
@@ -71,7 +143,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2136096971
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3a77c80c3e6a465489d36768e6e17621, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -120,6 +192,7 @@ Transform:
   m_Children:
   - {fileID: 8298218528010483525}
   - {fileID: 2707345396741008423}
+  - {fileID: 71661986}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -199,7 +272,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2136096971
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -1225048156, guid: 7a59c73870c60e142a8159e3d8025577, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -231,6 +304,7 @@ MonoBehaviour:
   baseStatShotSpeed: 0
   baseStatRange: 0
   baseStateSlimeRate: 0
+  type: 
   rb: {fileID: 2624216785622779819}
   slimeAnim: {fileID: 2624216785622779818}
   greySlime: {fileID: 22100000, guid: a76ee969e4f3ed6408520c7f01a45459, type: 2}
@@ -257,6 +331,7 @@ MonoBehaviour:
   currentStatShotSpeed: 0
   currentStatRange: 0
   currentStatSlimeRate: 0
+  type: 
   isHit: 0
   isInvisable: 0
   slimeballPrefab: {fileID: 8809500095983043618, guid: bf7ce63287eeefb43b9ca27292c22857, type: 3}
