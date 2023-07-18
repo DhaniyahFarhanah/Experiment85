@@ -6,20 +6,12 @@ using System.IO;
 public class DataManage : MonoBehaviour
 {
     //This is to populate the data from json into the respective data holders (RefCharacterData & CharacterClass)
-<<<<<<< Updated upstream
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        LoadRefCharData();
-        LoadRefDialogueData();
-=======
     private void Awake()
     {
         LoadRefCharData();
         LoadRefDialogueData();
         LoadRefNPCData();
->>>>>>> Stashed changes
     }
 
     //load char ref data (need specific cause idk if we combining all together
