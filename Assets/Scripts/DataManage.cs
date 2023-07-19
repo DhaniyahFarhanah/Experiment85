@@ -14,6 +14,7 @@ public class DataManage : MonoBehaviour
         LoadRefDialogueData();
         LoadRefNPCData();
         LoadRefBuffData();
+        LoadRefEnemyData();
         LoadRefWaveData();
     }
 
@@ -129,6 +130,7 @@ public class DataManage : MonoBehaviour
             enemyList.Add(enemy);
         }
         GameData.SetEnemyList(enemyList);
+        //Debug.Log("enemyList: " + enemyList.Count);
     }
 
     public void LoadRefBuffData()

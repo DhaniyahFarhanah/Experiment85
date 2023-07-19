@@ -12,10 +12,10 @@ public class EnemyClass
     public string buffDrop;
     public int health;
     public int damage;
-    public int speed;
+    public float speed;
     public string enemyDesc;
 
-    public EnemyClass(string enemyId, string enemyName, int itemDropRate ,string itemDrop, int buffDropRate, string buffDrop, int health, int damage, int speed, string stringenemyDesc)
+    public EnemyClass(string enemyId, string enemyName, int itemDropRate ,string itemDrop, int buffDropRate, string buffDrop, int health, int damage, float speed, string stringenemyDesc)
     {
         this.enemyId = enemyId;
         this.enemyName = enemyName;
@@ -26,6 +26,6 @@ public class EnemyClass
         this.health = health;
         this.damage = damage;
         this.speed = speed;
-        this.enemyDesc = enemyDesc;
+        this.enemyDesc = stringenemyDesc;
     }
 }

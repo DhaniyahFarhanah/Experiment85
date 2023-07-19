@@ -10,18 +10,17 @@ using Random = UnityEngine.Random;
 public class WaveHandler : MonoBehaviour
 {
     //=====Json Lists=====
-    //Need wave json
+    private List<WaveClass> waveJsonList;
     //Need enemy json
 
-    //SCRIPT
-    public GameController Controller;
 
     //=====JSON VAR=====
     private int waveId;
-    private string levelId;
     private int waveNo;
+    private int nextWave;
     private string enemyId;
 
+    //for split string
     public class EnemyWaveList
     {
         public string enemyWaveId;
@@ -33,10 +32,9 @@ public class WaveHandler : MonoBehaviour
     //=====Other Variables=====
     private float waveTime = 15f; //time limit for each wave
     private float currentWaveTime; //current wave time
-    public string currentLevel; //current level to check with json
-    private int currentWaveNo;
-    private int maxWaveNo = 3; //find from json
-    private bool win = false;
+    private int currentLevel; //current level to check with json
+    private int maxWaveNo; //find from json
+    private bool end = false;
 
 
     //====Display Stuff=====
@@ -53,37 +51,43 @@ public class WaveHandler : MonoBehaviour
 
     private void Awake()
     {
+        waveId = 101; //set to first always. Can use dynamic 
+        maxWaveNo = 1;
+        waveJsonList = GameData.GetWaveList();
         overlay = waveOverlay.GetComponent<LabOverlay>();
+        GetFromJson();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        waveId = 101; //TO DELETE for testing
-        currentWaveNo = 1; //set first wave whenever entering to 1
+        
         currentWaveTime = waveTime; //set the first wave time to the time limit for each wave
-
-        FakeJson(); //populate current stuff for testing
+        maxWaveNo = waveJsonList.Count;
+        
         SpawnWave();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!win)
+        if(!(waveNo > maxWaveNo))
+        {
+            currentWaveTime -= Time.deltaTime;
+
+        }
+        if (!end)
         {
             SetOverlayDisplay();
-            currentWaveTime -= Time.deltaTime;
-            if(currentWaveNo < maxWaveNo)
-            {
-                NextWave();
-            }
+
+            NextWave();
 
         }
 
-        if ((GameObject.FindGameObjectsWithTag("Enemy").Length <= 0) && (currentWaveNo >= maxWaveNo)) //win condition
+        if ((GameObject.FindGameObjectsWithTag("Enemy").Length <= 0) && (nextWave == -2)) //win condition
         {
-            WinRound();
+            EndRound();
+            //set analytics
         }
     }
 
@@ -91,7 +95,7 @@ public class WaveHandler : MonoBehaviour
     //Sets Overlay values
     private void SetOverlayDisplay()
     {
-        overlay.waveTextBox.text = "WAVE " + currentWaveNo.ToString() + "/" + maxWaveNo.ToString();
+        overlay.waveTextBox.text = "WAVE " + waveNo.ToString() + "/" + maxWaveNo.ToString();
         overlay.timerBar.fillAmount = currentWaveTime/waveTime;
 
         overlay.timeElapsed.text = GameObject.FindGameObjectsWithTag("Enemy").Length.ToString() + " enemies left";
@@ -102,23 +106,43 @@ public class WaveHandler : MonoBehaviour
     {
         if (currentWaveTime < 0)
         {
-            //restart wave counter
-            currentWaveTime = waveTime;
-            currentWaveNo++;
+            
+            currentWaveTime = waveTime; //restart wave counter
             //move to next wave
             //check if the next wave is the same as the current wave. if not, move on to next wave 
-            if (currentWaveNo != waveNo)
+            if (waveId != nextWave)
             {
-                waveId++; //move to next
-                FakeJson(); //populate with new reading
-                SpawnWave(); //spawn the next wave
+                if(nextWave == -1)
+                {
+                    //WinRound();
+                    //check if its condition to leave
+                    //This code is made like this due to the possible future implementation if we pass lol
+                    //-1 is supposed to stop and allow the character to move back to the safe zone and do some upgardes but with the cutting corners
+                    //But scrapped due to time and the removal of inventory and upgrades :C
+                    waveId = (waveId / 100) * 100 + 101;
+                    GetFromJson();
+                    SpawnWave();
+                    Debug.Log("Stop Wave");
+                }
+
+                else
+                {
+                    waveId = nextWave;
+                   
+                    GetFromJson(); //populate with new reading
+                    SpawnWave(); //spawn the next wave
+                    
+
+                }
 
             }
         }
     }
 
+
     void SpawnWave() //spawns the wave 
     {
+        waveNo++;
         SplitEnemyId(enemyId); //splits the long string into arrays and populates through EnemyWaveList class
 
         foreach (EnemyWaveList e in enemyList)
@@ -163,11 +187,10 @@ public class WaveHandler : MonoBehaviour
     }
 
     //innitiate win sequence
-    void WinRound()
+    void EndRound()
     {
         overlay.waveTextBox.text = "YOU WIN!";
-        win = true;
-        Controller.gameInProgress = false;
+        end = true;
     }
 
     //well this works. but need to be called only once. If maybe id != previous Id or something or else it will keep adding exponentionally
@@ -203,8 +226,23 @@ public class WaveHandler : MonoBehaviour
 
     }
 
+    void GetFromJson()
+    {
+
+        foreach (WaveClass wave in waveJsonList)
+        {
+            if(waveId == wave.waveId)
+            {
+                waveId = wave.waveId;
+                nextWave = wave.nextWave;
+                enemyId = wave.enemyId;
+                currentLevel = wave.keyCardId;
+            }
+        }
+    }
+
     //uhhhhhhhh
-    void FakeJson()
+    /*void FakeJson()
     {
         switch (waveId)
         {
@@ -224,5 +262,5 @@ public class WaveHandler : MonoBehaviour
                 enemyId = "E01#10@E02#14@E03#10@E04#16";
                 break;
         }
-    }
+    }*/
 }

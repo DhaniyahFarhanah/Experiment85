@@ -33,6 +33,8 @@ public class PlayerLab : MonoBehaviour
     private int attackedTimes; //for debug recording (DEBUG)
     public bool isInvisable; //check if it's currently invisible (DEBUG)
     private float fireTimer; //check if shoot is on cooldown
+    private bool phase;
+    Collider2D slimeCollider;
 
     //====Slimeball====
     [SerializeField] private GameObject slimeballPrefab;
@@ -41,6 +43,7 @@ public class PlayerLab : MonoBehaviour
 
     private void Awake()
     {
+        slimeCollider = gameObject.GetComponent<CapsuleCollider2D>();
         fr = firepoint.GetComponent<FireRotation>();
         playerController = GetComponent<PlayerController>();
         display = DisplayCanvas.GetComponent<TestDisplay>();
@@ -80,6 +83,7 @@ public class PlayerLab : MonoBehaviour
             }
 
         }
+
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -138,11 +142,13 @@ public class PlayerLab : MonoBehaviour
     IEnumerator InvisibilityFrames()
     {
         isInvisable = true;
+        slimeCollider.enabled = false;
         StartCoroutine(playInvis());
 
         yield return new WaitForSeconds(invisibileTime);
         
         isInvisable = false;
+        slimeCollider.enabled = true;
         StopCoroutine(playInvis()); 
     }
 
