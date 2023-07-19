@@ -28,13 +28,13 @@ public class PlayerLab : MonoBehaviour
     public string type;
 
     // ====CONDITIONAl STUFF====
-    public bool isHit; //check if it's been hit
     float invisibileTime = 2f; //time for invisibility
     private int attackedTimes; //for debug recording (DEBUG)
     public bool isInvisable; //check if it's currently invisible (DEBUG)
     private float fireTimer; //check if shoot is on cooldown
     private bool phase;
     Collider2D slimeCollider;
+    private bool start = true;
 
     //====Slimeball====
     [SerializeField] private GameObject slimeballPrefab;
@@ -131,7 +131,6 @@ public class PlayerLab : MonoBehaviour
 
     void isHitByEnemy(GameObject collided) //if is hit, register (along with debug on the console)
     {
-        isHit = true;
         attackedTimes++; //for debug
         StartCoroutine(InvisibilityFrames());
         display.debug.text = "Hit " + attackedTimes.ToString() + " time(s)" + "\n" + "Hit by: " + collided.name + "\n"; //for debug
