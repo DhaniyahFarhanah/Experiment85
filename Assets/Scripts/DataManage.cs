@@ -7,6 +7,7 @@ using Newtonsoft.Json.Linq;
 public class DataManage : MonoBehaviour
 {
     //This is to populate the data from json into the respective data holders (RefCharacterData & CharacterClass)
+    public TextAsset exportFile;
 
     private void Awake()
     {
@@ -25,7 +26,8 @@ public class DataManage : MonoBehaviour
         //persistentdatapath -> Once write, cannot be rewritten. Use for save data.
         string filePath = Path.Combine(Application.dataPath, "Scripts/Data/export.json");
 
-        string dataString = File.ReadAllText(filePath);
+        string dataString = exportFile.text;
+       // string dataString = File.ReadAllText(filePath);
         //Debug.Log(dataString);
 
         Data charData = JsonUtility.FromJson<Data>(dataString);
@@ -56,7 +58,8 @@ public class DataManage : MonoBehaviour
         //persistentdatapath -> Once write, cannot be rewritten. Use for save data.
         string filePath = Path.Combine(Application.dataPath, "Scripts/Data/export.json");
 
-        string dataString = File.ReadAllText(filePath);
+        string dataString = exportFile.text;
+        //string dataString = File.ReadAllText(filePath);
 
         Data dialogueData = JsonUtility.FromJson<Data>(dataString);
 
@@ -83,8 +86,8 @@ public class DataManage : MonoBehaviour
         //datapath -> for stuff that goes inside the data folder
         //persistentdatapath -> Once write, cannot be rewritten. Use for save data.
         string filePath = Path.Combine(Application.dataPath, "Scripts/Data/export.json");
-
-        string dataString = File.ReadAllText(filePath);
+        string dataString = exportFile.text;
+       // string dataString = File.ReadAllText(filePath);
 
         Data npcData = JsonUtility.FromJson<Data>(dataString);
 
@@ -110,8 +113,8 @@ public class DataManage : MonoBehaviour
         //datapath -> for stuff that goes inside the data folder
         //persistentdatapath -> Once write, cannot be rewritten. Use for save data.
         string filePath = Path.Combine(Application.dataPath, "Scripts/Data/export.json");
-
-        string dataString = File.ReadAllText(filePath);
+        string dataString = exportFile.text;
+       // string dataString = File.ReadAllText(filePath);
 
         Data enemyData = JsonUtility.FromJson<Data>(dataString);
 
@@ -138,8 +141,8 @@ public class DataManage : MonoBehaviour
         //datapath -> for stuff that goes inside the data folder
         //persistentdatapath -> Once write, cannot be rewritten. Use for save data.
         string filePath = Path.Combine(Application.dataPath, "Scripts/Data/export.json");
-
-        string dataString = File.ReadAllText(filePath);
+        string dataString = exportFile.text;
+        //string dataString = File.ReadAllText(filePath);
 
         Data buffData = JsonUtility.FromJson<Data>(dataString);
 
@@ -165,8 +168,8 @@ public class DataManage : MonoBehaviour
         //datapath -> for stuff that goes inside the data folder
         //persistentdatapath -> Once write, cannot be rewritten. Use for save data.
         string filePath = Path.Combine(Application.dataPath, "Scripts/Data/export.json");
-
-        string dataString = File.ReadAllText(filePath);
+        string dataString = exportFile.text;
+        //string dataString = File.ReadAllText(filePath);
 
         Data waveData = JsonUtility.FromJson<Data>(dataString);
 
