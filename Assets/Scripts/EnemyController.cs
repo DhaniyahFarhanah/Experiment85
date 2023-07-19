@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections.LowLevel.Unsafe;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.VFX;
 
 public class EnemyController : MonoBehaviour
 {
+
+    //=====Json List=====
     private List<EnemyClass> enemyJsonList;
+    private List<BuffClass> enemyBuffList;
 
     private GameObject player;
     private Rigidbody2D enemyRB;
@@ -22,13 +26,27 @@ public class EnemyController : MonoBehaviour
     private float enemySpeed; //speed has been balanced to some extent
     private string enemyDesc;
 
-    private int enemyBuffDropRate;
-    private string enemyBuffDrop;
 
     //item drop stuff
+    [SerializeField] GameObject buffPrefab;
+    private string buffDropId;
+    private int buffDropRate;
+    private string buffDrop;
+    Vector3 spawnBuffLocation;
+    
+
+    class Buff
+    {
+        public string buffId;
+        public int buffDropPercentage;
+    }
+
+    private List<Buff> buffSpawnList = new List<Buff>();
+
     private void Awake()
     {
         enemyJsonList = GameData.GetEnemyList();
+        enemyBuffList = GameData.GetBuffList();
         GetJsonReading();
         enemyRB = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
@@ -48,8 +66,12 @@ public class EnemyController : MonoBehaviour
     {
       if(enemyHealth <= 0)
         {
+            spawnBuffLocation = gameObject.transform.position;
             Die();
         }
+
+        SplitDropStuff(buffDrop);
+
     }
 
     //Fixed update calculates updates at a fixed 50fps (i think)
@@ -104,6 +126,13 @@ public class EnemyController : MonoBehaviour
 
     void Die()
     {
+        int hasDrop = Random.Range(0, 101);
+
+        if(buffDropRate >= hasDrop)
+        {
+            SpawnBuff();
+        }
+
         Destroy(gameObject);
     }
 
@@ -117,10 +146,70 @@ public class EnemyController : MonoBehaviour
                 enemyHealth = e.health;
                 enemyDamage = e.damage;
                 enemySpeed = e.speed / 1.5f;
-                enemyBuffDrop = e.buffDrop;
-                enemyBuffDropRate = e.buffDropRate;
+                buffDrop = e.buffDrop;
+                buffDropRate = e.buffDropRate;
             }
         }
+    }
+
+    void SplitDropStuff(string buffDrop)
+    {
+        buffSpawnList.Clear();
+
+        string[] splitString = buffDrop.Split('@');
+
+        foreach(string s in splitString)
+        {
+            Buff toAdd = new Buff();
+
+            string[] splitAgain = s.Split('#');
+            int index = 0;
+
+            foreach(string s2 in splitAgain)
+            {
+                if(index == 0)
+                {
+                    toAdd.buffId = s2;
+                }
+                else
+                {
+                    toAdd.buffDropPercentage = int.Parse(s2);
+                }
+                index++;
+            }
+
+            buffSpawnList.Add(toAdd);
+        }
+
+    }
+
+    void SpawnBuff()
+    {
+        int drop = Random.Range(0, 101);
+
+        //I can't think... math is hard
+        //TODO MATH (its not working obviously
+        foreach(Buff buff in buffSpawnList)
+        {
+            if (drop < buff.buffDropPercentage)
+            {
+                buffDropId = buff.buffId;
+                break;
+            }
+            else
+            {
+                drop -= buff.buffDropPercentage;
+            }
+        }
+
+
+        //Instantiate Buff
+        Debug.Log("Spawn");
+        GameObject buffSpawned = Instantiate(buffPrefab, spawnBuffLocation, Quaternion.identity);
+        buffSpawned.GetComponent<BuffScript>().buffId = buffDropId;
+
+        //populate the prefab with buff id.
+        //buffscript will do the rest.
     }
 
 

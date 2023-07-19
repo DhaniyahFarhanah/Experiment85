@@ -7,10 +7,10 @@ public class BuffClass
     public string  buffId;
     public string buffName;
     public string stat;
-    public int value;
+    public float value;
     public string buffDescription;
 
-    public BuffClass(string buffId, string buffName, string stat, int value, string buffDescription)
+    public BuffClass(string buffId, string buffName, string stat, float value, string buffDescription)
     {
         this.buffId = buffId;
         this.buffName = buffName;

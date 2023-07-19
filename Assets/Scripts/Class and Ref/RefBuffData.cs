@@ -9,6 +9,6 @@ public class RefBuffData
     public string buffId;
     public string buffName;
     public string stat;
-    public int value;
+    public float value;
     public string buffDescription;
 }

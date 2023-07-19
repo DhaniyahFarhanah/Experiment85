@@ -773,26 +773,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slime
       objectReference: {fileID: 0}
-    - target: {fileID: 2624216785622779823, guid: a3509ac68d7bc8440a952673b78c2c48, type: 3}
-      propertyPath: firePoint
-      value: 
-      objectReference: {fileID: 1650175989}
-    - target: {fileID: 2624216785622779823, guid: a3509ac68d7bc8440a952673b78c2c48, type: 3}
-      propertyPath: slimeballPrefab
-      value: 
-      objectReference: {fileID: 8809500095983043618, guid: bf7ce63287eeefb43b9ca27292c22857, type: 3}
-    - target: {fileID: 6486326859359001859, guid: a3509ac68d7bc8440a952673b78c2c48, type: 3}
-      propertyPath: firePoint
-      value: 
-      objectReference: {fileID: 1650175989}
     - target: {fileID: 6486326859359001859, guid: a3509ac68d7bc8440a952673b78c2c48, type: 3}
       propertyPath: DisplayCanvas
       value: 
       objectReference: {fileID: 1473925933}
-    - target: {fileID: 6486326859359001859, guid: a3509ac68d7bc8440a952673b78c2c48, type: 3}
-      propertyPath: slimeballPrefab
-      value: 
-      objectReference: {fileID: 8809500095983043618, guid: bf7ce63287eeefb43b9ca27292c22857, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3509ac68d7bc8440a952673b78c2c48, type: 3}
 --- !u!1 &450016550
@@ -1839,6 +1823,7 @@ MonoBehaviour:
   minX: -100
   maxY: 100
   minY: -100
+  scale: 0
   followSpeed: 5
 --- !u!1 &935705921
 GameObject:
@@ -2834,11 +2819,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1563056577}
   m_CullTransparentMesh: 1
---- !u!4 &1650175989 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2707345396741008423, guid: a3509ac68d7bc8440a952673b78c2c48, type: 3}
-  m_PrefabInstance: {fileID: 430409429}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1874332903
 GameObject:
   m_ObjectHideFlags: 0

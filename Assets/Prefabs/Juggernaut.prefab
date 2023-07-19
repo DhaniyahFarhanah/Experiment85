@@ -95,7 +95,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1747873831
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 3625043607559282579, guid: 19fb86013d8c24d6cb8410c0aadf30fa, type: 3}
   m_Color: {r: 0.33641866, g: 0.42341927, b: 0.6792453, a: 1}
@@ -121,7 +121,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyId: E03
-  health: 0
+  enemyHealth: 0
+  buffPrefab: {fileID: 3569143461078152730, guid: 19464cbb538fa9e4b874bf8eeca5abde, type: 3}
 --- !u!61 &6344493173745648743
 BoxCollider2D:
   m_ObjectHideFlags: 0

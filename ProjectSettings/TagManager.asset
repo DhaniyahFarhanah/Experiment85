@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - SlimeSelector
+  - Wall
+  - Enemy
+  - Interactor
   layers:
   - Default
   - TransparentFX
