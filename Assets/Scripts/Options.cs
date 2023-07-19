@@ -44,10 +44,10 @@ public class Options : MonoBehaviour
         text2.text = dialogue2;
         dialogue2 = container[0];
         nextId2 = int.Parse(container[1]);
-        Debug.Log("dialogue1: " + dialogue1);
-        Debug.Log("nextId1: " + nextId1);
-        Debug.Log("dialogue2: " + dialogue2);
-        Debug.Log("nextId2: " + nextId2);
+        //Debug.Log("dialogue1: " + dialogue1);
+        //Debug.Log("nextId1: " + nextId1);
+        //Debug.Log("dialogue2: " + dialogue2);
+        //Debug.Log("nextId2: " + nextId2);
     }
 
     private void Op1Click()
@@ -55,8 +55,8 @@ public class Options : MonoBehaviour
         ChoicePopUp.SetActive(false);
         dialogue.initDialogueID = nextId1;
         dialogue.nextID = nextId1 += 2;
-        Debug.Log("nextId3: " + dialogue.initDialogueID);
-        Debug.Log("nextId3: " + dialogue.nextID);
+        //Debug.Log("nextId3: " + dialogue.initDialogueID);
+        //Debug.Log("nextId3: " + dialogue.nextID);
         dialogue.NextLine();
     }
 
@@ -70,6 +70,6 @@ public class Options : MonoBehaviour
 
     private void ParameterOnClick(string test)
     {
-        Debug.Log("testtttett");
+        //Debug.Log("testtttett");
     }
 }

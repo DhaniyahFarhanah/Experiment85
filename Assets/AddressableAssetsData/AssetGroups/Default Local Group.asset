@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 1401e577632ed9e42ad6af2dba9e7e71
+  m_SerializeEntries:
+  - m_GUID: a3eae4060f5928a47b328419f5b3f21e
+    m_Address: Sprites/Balee
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Balee
+    - GRae
+  - m_GUID: 559ce3aac2c9cbd4ca7e3dcf7b2e627f
+    m_Address: Sprites/Riya
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Riya
+  - m_GUID: dc25a1fe222406045898e3ae8a6d1486
+    m_Address: Sprites/Grae
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Grae
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 61cd8341e96ca3e4c8ba3d36cfa77bfb, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: f68acc344424dbf439733928143fd34b, type: 2}
+    - {fileID: 11400000, guid: 65f6b9de3f7b88d4cbff43e5c497eff0, type: 2}

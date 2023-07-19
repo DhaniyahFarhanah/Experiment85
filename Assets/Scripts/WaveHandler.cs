@@ -13,6 +13,8 @@ public class WaveHandler : MonoBehaviour
     //Need wave json
     //Need enemy json
 
+    //SCRIPT
+    public GameController Controller;
 
     //=====JSON VAR=====
     private int waveId;
@@ -165,6 +167,7 @@ public class WaveHandler : MonoBehaviour
     {
         overlay.waveTextBox.text = "YOU WIN!";
         win = true;
+        Controller.gameInProgress = false;
     }
 
     //well this works. but need to be called only once. If maybe id != previous Id or something or else it will keep adding exponentionally
