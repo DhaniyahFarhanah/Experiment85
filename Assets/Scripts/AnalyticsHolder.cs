@@ -1,12 +1,12 @@
-using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEngine;
 
-public class AnalyticClass
+public class AnalyticsHolder : MonoBehaviour
 {
-    //Generic Game Stuff (dynamic?)
+    // Generic Game Stuff (dynamic?)
     public static string SlimeChosen; //which slime is chosen
     public static DateTime dateTimeStamp; //(timestamp for when data set
     public static string timeElapsedWholeGame; //time from start to finish of the whole game in "mm:ss"
@@ -15,7 +15,7 @@ public class AnalyticClass
     {
         SlimeChosen = Id;
 
-    } 
+    }
     public static string GetSlimeChose()
     {
         return SlimeChosen;
@@ -40,7 +40,7 @@ public class AnalyticClass
     }
 
     //====Lab Analysis=====
-    public bool win; //records win statement 
+    public bool win { get; set; } //records win statement 
     public int timeTakenMin; //records time taken to end game (in min)
     public int timeTakenSec; //records time taken to end game (in sec)
     public int enemiesDefeated; //records num of enemies defeated
@@ -62,6 +62,8 @@ public class AnalyticClass
         buffsPicked = BuffsPicked;
         buffsDropped = BuffsDropped;
     }
+
+    public bool GetWin() { return win; }
 
     //====player stat end on=====
     public int health;
@@ -160,6 +162,4 @@ public class AnalyticClass
         hitByEnemy3 = HitByEnemy3;
         hitByEnemy4 = HitByEnemy4;
     }
-
-
 }
