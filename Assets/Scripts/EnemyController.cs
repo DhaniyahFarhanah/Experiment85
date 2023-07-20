@@ -82,7 +82,7 @@ public class EnemyController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject == player)
+        if (collision.gameObject == player && !playerStats.isInvisable)
         {
             DoDamage();
         }
@@ -91,7 +91,7 @@ public class EnemyController : MonoBehaviour
     //check if collided to hit player
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if(collision.gameObject == player)
+        if(collision.gameObject == player && !playerStats.isInvisable)
         {
             DoDamage();
         }

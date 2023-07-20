@@ -43,6 +43,7 @@ public class PlayerLab : MonoBehaviour
     private bool phase;
     Collider2D slimeCollider;
     private bool start = true;
+    public bool disabled;
 
     //====Slimeball====
     [SerializeField] private GameObject slimeballPrefab;
@@ -62,6 +63,7 @@ public class PlayerLab : MonoBehaviour
     void Start()
     {
         isInvisable = false;
+        disabled = false;
     }
 
     // Update is called once per frame
@@ -75,7 +77,12 @@ public class PlayerLab : MonoBehaviour
 
         SetToDislay();
         CheckIfMax();
-        ShootInput();
+
+        if (!disabled)
+        {
+            ShootInput();
+
+        }
     }
 
 

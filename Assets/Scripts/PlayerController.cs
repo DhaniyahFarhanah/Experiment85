@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
 
     //======Other stuff=====
     PlayerLab set;
+    public bool disabled;
 
     private void Awake()
     {
@@ -41,6 +42,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         charId = GameClass.GetCurrentSlimeId();
+        disabled = false;
         SetCharacterStats();
         FillDataFromJson();
     }
@@ -55,7 +57,10 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Movement();
+        if (!disabled)
+        {
+            Movement();
+        }
     }
 
     void ProcessInputs()
