@@ -54,6 +54,9 @@ public class WaveHandler : MonoBehaviour
 
     //=====Game Analytics=====
     public bool win;
+    private float time;
+    private int min;
+    private int sec;
 
 
     private void Awake()
@@ -82,6 +85,7 @@ public class WaveHandler : MonoBehaviour
 
         if (!end)
         {
+            time += Time.deltaTime;
             currentWaveTime -= Time.deltaTime;
             SetOverlayDisplay();
 
@@ -109,18 +113,22 @@ public class WaveHandler : MonoBehaviour
     //Sets Overlay values
     private void SetOverlayDisplay()
     {
+        overlay.waveTextBox.text = "WAVE " + waveNo.ToString();
+        overlay.timerBar.fillAmount = currentWaveTime / waveTime;
+        overlay.enemiesInSceneTextBox.text = GameObject.FindGameObjectsWithTag("Enemy").Length.ToString() + " enemies alive";
+
+        min = (int)time / 100;
+        sec = (int)time % 100;
+
+        overlay.timeElapsedTextBox.text = min.ToString() + ":" + sec.ToString();
+
         if (enemyNeeded <= 0)
         {
             endGameDoor.SetActive(true);
             overlay.enemiesLeftTextBox.text = "Door is opened!! Leave to WIN!";
-            overlay.enemiesInSceneTextBox.text = GameObject.FindGameObjectsWithTag("Enemy").Length.ToString() + " enemies left";
         }
         else
         {
-            overlay.waveTextBox.text = "WAVE " + waveNo.ToString();
-            overlay.timerBar.fillAmount = currentWaveTime/waveTime;
-
-            overlay.enemiesInSceneTextBox.text = GameObject.FindGameObjectsWithTag("Enemy").Length.ToString() + " enemies left";
             overlay.enemiesLeftTextBox.text = enemyNeeded.ToString() + " left to KILL";
         }
 
@@ -151,6 +159,7 @@ public class WaveHandler : MonoBehaviour
                 {
                     waveId = initialWaveID;
                     GetFromJson();
+                    SpawnWave();
                 }
 
                 else //continue wave
@@ -221,6 +230,7 @@ public class WaveHandler : MonoBehaviour
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().disabled = true;
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerLab>().disabled = true;
         GameObject.FindGameObjectWithTag("Player").GetComponent<CapsuleCollider2D>().enabled = false;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().rb.velocity = Vector3.zero;
 
         analytics.SetActive(true);
         //set analytics here

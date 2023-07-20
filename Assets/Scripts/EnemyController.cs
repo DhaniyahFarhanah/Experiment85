@@ -137,7 +137,6 @@ public class EnemyController : MonoBehaviour
 
         if(waveHandler != null)
         {
-            Debug.Log("minus");
             GameObject.FindGameObjectWithTag("WaveHandler").GetComponent<WaveHandler>().enemyNeeded--;
         }
         
@@ -235,53 +234,6 @@ public class EnemyController : MonoBehaviour
     }
 
 
-    // IMPORTANT: SPEED NEEDS BALANCING. Speed values are different from data because it needs to be balanced. This is balanced data. 
-    /*void TempSwitchCaseStuff() //ignore this, this is more for manual shit
-
-    {
-        switch(enemyId)
-        {
-            case "E01":
-
-                enemyName = "Hazmat";
-                health = 8f;
-                damage = 1;
-                speed = 1.7f;
-                enemyDesc = "Basic Enemy with Low Health, Damage and Speed";
-
-                break;
-
-            case "E02":
-
-                enemyName = "Chaser";
-                health = 4f;
-                damage = 2;
-                speed = 4f; 
-                enemyDesc = "Speedy Enemy with Low Health, Moderate Damage and High Speed";
-
-                break;
-
-            case "E03":
-
-                enemyName = "Juggernaut";
-                health = 16f;
-                damage = 2;
-                speed = 1f;
-                enemyDesc = "Juggernaut Enemy with High Health, High Damage and Low Speed";
-
-                break;
-
-            case "E04":
-
-                enemyName = "Reaper";
-                health = 14f;
-                damage = 3;
-                speed = 2.5f;
-                enemyDesc = "Dangerous Enemy with Moderate Health, High Damage and Moderate Speed";
-
-                break;
-
-        }
-    }*/
+    
     
 }

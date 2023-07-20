@@ -154,7 +154,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Interact: {fileID: 2147237011}
-  UI: {fileID: 1919782561}
 --- !u!61 &30934321
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -194,7 +193,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &45574257
 GameObject:
@@ -3540,63 +3539,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!1001 &1691050927
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 9049876266589594801, guid: 735f3c2995b45cb43943c00759d6fcbe, type: 3}
-      propertyPath: m_Name
-      value: GameController
-      objectReference: {fileID: 0}
-    - target: {fileID: 9049876266589594814, guid: 735f3c2995b45cb43943c00759d6fcbe, type: 3}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 9049876266589594814, guid: 735f3c2995b45cb43943c00759d6fcbe, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9049876266589594814, guid: 735f3c2995b45cb43943c00759d6fcbe, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9049876266589594814, guid: 735f3c2995b45cb43943c00759d6fcbe, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9049876266589594814, guid: 735f3c2995b45cb43943c00759d6fcbe, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9049876266589594814, guid: 735f3c2995b45cb43943c00759d6fcbe, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9049876266589594814, guid: 735f3c2995b45cb43943c00759d6fcbe, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9049876266589594814, guid: 735f3c2995b45cb43943c00759d6fcbe, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9049876266589594814, guid: 735f3c2995b45cb43943c00759d6fcbe, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9049876266589594814, guid: 735f3c2995b45cb43943c00759d6fcbe, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9049876266589594814, guid: 735f3c2995b45cb43943c00759d6fcbe, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 735f3c2995b45cb43943c00759d6fcbe, type: 3}
 --- !u!4 &1743843317 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2417661312899008816, guid: d0c8cca512b10944fb003e5eb10db346, type: 3}
@@ -4431,6 +4373,7 @@ MonoBehaviour:
   end: 0
   enemyNeeded: 20
   endGameDoor: {fileID: 30934319}
+  analytics: {fileID: 1919782561}
   waveOverlay: {fileID: 180992017}
   spawnPoint:
   - {fileID: 332651417}
@@ -4441,6 +4384,7 @@ MonoBehaviour:
   - {fileID: 6344493173745648747, guid: 27ce9a5d34dac3e4fbd4be7d24711d58, type: 3}
   - {fileID: 6653345630250086040, guid: fe4bb741f5dfb0c46925e3d1a28747b4, type: 3}
   - {fileID: 5627264883218767607, guid: d595b3371d8273442a128986fd806c2c, type: 3}
+  win: 0
 --- !u!1 &2147237011 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 352804296330747527, guid: a3509ac68d7bc8440a952673b78c2c48, type: 3}

@@ -74,6 +74,9 @@ public class PlayerLab : MonoBehaviour
             SetDataFromScript(); //just for setting stuff, nothing important i dont think
             Id = GameClass.GetCurrentSlimeId();
         }
+        //round to 2dp
+        currentStatDmg = Mathf.Round(currentStatDmg * 100f) * 0.01f;
+        Debug.Log(currentStatDmg);
 
         SetToDislay();
         CheckIfMax();
@@ -191,6 +194,7 @@ public class PlayerLab : MonoBehaviour
     {
         GameObject.FindGameObjectWithTag("WaveHandler").GetComponent<WaveHandler>().end = true;
         GameObject.FindGameObjectWithTag("WaveHandler").GetComponent<WaveHandler>().win = false;
+        gameObject.GetComponent<PlayerController>().rb.velocity = Vector3.zero;
 
     }
 
