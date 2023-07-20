@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     PlayerLab set;
     public bool disabled;
 
+
     private void Awake()
     {
         set = gameObject.GetComponent<PlayerLab>();

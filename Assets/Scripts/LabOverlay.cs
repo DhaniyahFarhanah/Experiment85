@@ -7,7 +7,9 @@ using UnityEngine.UI;
 public class LabOverlay : MonoBehaviour
 {
     public TMP_Text waveTextBox;
-    public TMP_Text timeElapsed;
+    public TMP_Text enemiesInSceneTextBox;
+    public TMP_Text enemiesLeftTextBox;
+    public TMP_Text timeElapsedTextBox;
     public Image timerBar;
 
     // Start is called before the first frame update

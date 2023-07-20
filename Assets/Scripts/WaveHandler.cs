@@ -30,11 +30,15 @@ public class WaveHandler : MonoBehaviour
     public List<EnemyWaveList> enemyList = new List<EnemyWaveList>();
 
     //=====Other Variables=====
+    private int initialWaveID;
     private float waveTime = 15f; //time limit for each wave
     private float currentWaveTime; //current wave time
-    private int currentLevel; //current level to check with json
-    private int maxWaveNo; //find from json
-    private bool end = false;
+    private int currentLevel; //current level to check with json (not used due to reducing scope)
+    //private int maxWaveNo; //find from json (Not needed for new scope)
+    public bool end = false;
+    public int enemyNeeded;
+    [SerializeField] GameObject endGameDoor;
+    [SerializeField] GameObject analytics;
 
 
     //====Display Stuff=====
@@ -48,14 +52,18 @@ public class WaveHandler : MonoBehaviour
     //and instantiate the uhhhhhh the prefab with the enemyscript associated with the enemyId? MAN IDK 
     [SerializeField] GameObject[] enemyPrefabs;
 
+    //=====Game Analytics=====
+    public bool win;
+
 
     private void Awake()
     {
-        waveId = 101; //set to first always. Can use dynamic 
-        maxWaveNo = 1;
         waveJsonList = GameData.GetWaveList();
         overlay = waveOverlay.GetComponent<LabOverlay>();
+        initialWaveID = waveJsonList[0].waveId;
+        waveId = initialWaveID;
         GetFromJson();
+
     }
 
     // Start is called before the first frame update
@@ -63,7 +71,7 @@ public class WaveHandler : MonoBehaviour
     {
         
         currentWaveTime = waveTime; //set the first wave time to the time limit for each wave
-        maxWaveNo = waveJsonList.Count;
+        //maxWaveNo = waveJsonList.Count; (Not needed for new scope)
         
         SpawnWave();
     }
@@ -71,34 +79,50 @@ public class WaveHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!(waveNo > maxWaveNo))
-        {
-            currentWaveTime -= Time.deltaTime;
 
-        }
         if (!end)
         {
+            currentWaveTime -= Time.deltaTime;
             SetOverlayDisplay();
 
             NextWave();
 
         }
 
-        if ((GameObject.FindGameObjectsWithTag("Enemy").Length <= 0) && (nextWave == -2)) //win condition
+        else if (end)
+        {
+            //End game & set analytics
+            EndRound();
+        }
+
+        //Change winning condition to interacting with door.
+        
+
+        /*if ((GameObject.FindGameObjectsWithTag("Enemy").Length <= 0) && (nextWave == -2)) //win condition
         {
             EndRound();
             //set analytics
-        }
+        }*/
     }
 
 
     //Sets Overlay values
     private void SetOverlayDisplay()
     {
-        overlay.waveTextBox.text = "WAVE " + waveNo.ToString() + "/" + maxWaveNo.ToString();
-        overlay.timerBar.fillAmount = currentWaveTime/waveTime;
+        if (enemyNeeded <= 0)
+        {
+            endGameDoor.SetActive(true);
+            overlay.enemiesLeftTextBox.text = "Door is opened!! Leave to WIN!";
+            overlay.enemiesInSceneTextBox.text = GameObject.FindGameObjectsWithTag("Enemy").Length.ToString() + " enemies left";
+        }
+        else
+        {
+            overlay.waveTextBox.text = "WAVE " + waveNo.ToString();
+            overlay.timerBar.fillAmount = currentWaveTime/waveTime;
 
-        overlay.timeElapsed.text = GameObject.FindGameObjectsWithTag("Enemy").Length.ToString() + " enemies left";
+            overlay.enemiesInSceneTextBox.text = GameObject.FindGameObjectsWithTag("Enemy").Length.ToString() + " enemies left";
+            overlay.enemiesLeftTextBox.text = enemyNeeded.ToString() + " left to KILL";
+        }
 
     }
 
@@ -110,22 +134,26 @@ public class WaveHandler : MonoBehaviour
             currentWaveTime = waveTime; //restart wave counter
             //move to next wave
             //check if the next wave is the same as the current wave. if not, move on to next wave 
-            if (waveId != nextWave)
-            {
+            
                 if(nextWave == -1)
                 {
                     //WinRound();
                     //check if its condition to leave
-                    //This code is made like this due to the possible future implementation if we pass lol
-                    //-1 is supposed to stop and allow the character to move back to the safe zone and do some upgardes but with the cutting corners
+                    //This code is made like this due to the possible future implementation if we pass this mod lol
+                    //-1 is supposed to stop and allow the character to move back to the safe zone and do some upgardes but with the cutting corners no need
                     //But scrapped due to time and the removal of inventory and upgrades :C
                     waveId = (waveId / 100) * 100 + 101;
                     GetFromJson();
                     SpawnWave();
                     Debug.Log("Stop Wave");
                 }
+                else if(nextWave == -2)
+                {
+                    waveId = initialWaveID;
+                    GetFromJson();
+                }
 
-                else
+                else //continue wave
                 {
                     waveId = nextWave;
                    
@@ -135,7 +163,7 @@ public class WaveHandler : MonoBehaviour
 
                 }
 
-            }
+            
         }
     }
 
@@ -189,8 +217,14 @@ public class WaveHandler : MonoBehaviour
     //innitiate win sequence
     void EndRound()
     {
-        overlay.waveTextBox.text = "YOU WIN!";
-        end = true;
+
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().disabled = true;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerLab>().disabled = true;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<CapsuleCollider2D>().enabled = false;
+
+        analytics.SetActive(true);
+        //set analytics here
+
     }
 
     //well this works. but need to be called only once. If maybe id != previous Id or something or else it will keep adding exponentionally
@@ -228,6 +262,7 @@ public class WaveHandler : MonoBehaviour
 
     void GetFromJson()
     {
+        //waveId = initialWaveID;
 
         foreach (WaveClass wave in waveJsonList)
         {

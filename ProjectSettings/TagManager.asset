@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Interactor
   - Buff
+  - WaveHandler
   layers:
   - Default
   - TransparentFX

@@ -83,6 +83,11 @@ public class PlayerLab : MonoBehaviour
             ShootInput();
 
         }
+
+        if(currentStatHealth <= 0)
+        {
+            Die();
+        }
     }
 
 
@@ -179,6 +184,13 @@ public class PlayerLab : MonoBehaviour
             playerSprite.color = new Color(255, 255, 255, 1);
 
         }
+
+    }
+
+    void Die()
+    {
+        GameObject.FindGameObjectWithTag("WaveHandler").GetComponent<WaveHandler>().end = true;
+        GameObject.FindGameObjectWithTag("WaveHandler").GetComponent<WaveHandler>().win = false;
 
     }
 

@@ -133,7 +133,14 @@ public class EnemyController : MonoBehaviour
         {
             SpawnBuff();
         }
+        GameObject waveHandler = GameObject.FindGameObjectWithTag("WaveHandler");
 
+        if(waveHandler != null)
+        {
+            Debug.Log("minus");
+            GameObject.FindGameObjectWithTag("WaveHandler").GetComponent<WaveHandler>().enemyNeeded--;
+        }
+        
         Destroy(gameObject);
     }
 
