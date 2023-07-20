@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af49dc8a3397434489cd4b1e9359436c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exportFile: {fileID: 4900000, guid: c3976537b07041b44a83394c8f1cbbd6, type: 3}
 --- !u!114 &9049876266589594800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57,3 +58,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ffbfbfab8548f04e852f65759a8d709, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameInProgress: 0
+  totalTime: 0
