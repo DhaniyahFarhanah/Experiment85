@@ -27,14 +27,22 @@ public class PlayerLab : MonoBehaviour
     public float currentStatSlimeRate;
     public string type;
 
+    // =====MAX Values====
+    public int MaxHealth;
+    public float MaxDmg = 100f;
+    public float MaxSpeed = 10f;
+    public float MaxShotSpeed = 25f;
+    public float MaxRange = 10f;
+    public float MaxSlimeRate = 0.1f;
+
     // ====CONDITIONAl STUFF====
-    public bool isHit; //check if it's been hit
     float invisibileTime = 2f; //time for invisibility
     private int attackedTimes; //for debug recording (DEBUG)
     public bool isInvisable; //check if it's currently invisible (DEBUG)
     private float fireTimer; //check if shoot is on cooldown
     private bool phase;
     Collider2D slimeCollider;
+    private bool start = true;
 
     //====Slimeball====
     [SerializeField] private GameObject slimeballPrefab;
@@ -66,7 +74,7 @@ public class PlayerLab : MonoBehaviour
         }
 
         SetToDislay();
-
+        CheckIfMax();
         ShootInput();
     }
 
@@ -131,7 +139,6 @@ public class PlayerLab : MonoBehaviour
 
     void isHitByEnemy(GameObject collided) //if is hit, register (along with debug on the console)
     {
-        isHit = true;
         attackedTimes++; //for debug
         StartCoroutine(InvisibilityFrames());
         display.debug.text = "Hit " + attackedTimes.ToString() + " time(s)" + "\n" + "Hit by: " + collided.name + "\n"; //for debug
@@ -168,6 +175,30 @@ public class PlayerLab : MonoBehaviour
 
     }
 
+    void CheckIfMax() //to make sure values have a cap
+    {
+        if (currentStatHealth > MaxHealth) //if health more than max
+        {
+            currentStatHealth = MaxHealth;
+        }
+
+        if (currentStatSlimeRate < MaxSlimeRate) //if slimerate less than max (cooldown)
+        {
+            currentStatSlimeRate = MaxSlimeRate;
+        }
+
+        if (currentStatDmg > MaxDmg) //if dmg more than max
+        {
+            currentStatDmg = MaxDmg;
+        }
+
+        if (currentStatShotSpeed > MaxShotSpeed) //if shotspeed more than max
+        {
+            currentStatShotSpeed = MaxShotSpeed;
+        }
+
+    }
+
     void SetColor(SpriteRenderer sr) //more for visual stuff
     {
         
@@ -200,6 +231,8 @@ public class PlayerLab : MonoBehaviour
         currentStatRange = playerController.baseStatRange;
         currentStatSlimeRate = playerController.baseStateSlimeRate;
         type = playerController.type;
+
+        MaxHealth = playerController.baseStatHealth;
 
         SetToDislay();
 

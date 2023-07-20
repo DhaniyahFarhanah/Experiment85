@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 71661988}
   m_Layer: 0
   m_Name: PhasePreventer
-  m_TagString: Untagged
+  m_TagString: Buff
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -332,7 +332,12 @@ MonoBehaviour:
   currentStatRange: 0
   currentStatSlimeRate: 0
   type: 
-  isHit: 0
+  MaxHealth: 0
+  MaxDmg: 100
+  MaxSpeed: 10
+  MaxShotSpeed: 25
+  MaxRange: 10
+  MaxSlimeRate: 0.1
   isInvisable: 0
   slimeballPrefab: {fileID: 8809500095983043618, guid: bf7ce63287eeefb43b9ca27292c22857, type: 3}
   firepoint: {fileID: 6210851091323907781}

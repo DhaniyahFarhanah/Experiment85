@@ -80,6 +80,13 @@ public class EnemyController : MonoBehaviour
         Movement();  
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject == player)
+        {
+            DoDamage();
+        }
+    }
 
     //check if collided to hit player
     private void OnCollisionStay2D(Collision2D collision)
@@ -113,15 +120,9 @@ public class EnemyController : MonoBehaviour
     //attack player and remove health from player.
     void DoDamage() 
     {
-        if(playerStats.isHit) //if the player is hit then do damage
-        {
-            playerStats.currentStatHealth -= enemyDamage;
-            playerStats.isHit = false;
-            playerStats.SetToDislay();
-            Debug.Log("Attack! Damage dealt: " + enemyDamage);
-
-        }
-       
+        playerStats.currentStatHealth -= enemyDamage;
+        playerStats.SetToDislay();
+        Debug.Log("Attack! Damage dealt: " + enemyDamage);
     }
 
     void Die()
@@ -186,25 +187,39 @@ public class EnemyController : MonoBehaviour
     void SpawnBuff()
     {
         int drop = Random.Range(0, 101);
+        int prev = 0;
 
         //I can't think... math is hard
         //TODO MATH (its not working obviously
         foreach(Buff buff in buffSpawnList)
         {
-            if (drop < buff.buffDropPercentage)
+            if(drop <= buff.buffDropPercentage)
             {
-                buffDropId = buff.buffId;
-                break;
+                if (prev <= drop)
+                {
+                    buffDropId = buff.buffId;
+                    Debug.Log(buffDropId);
+                    break;
+                }
+
+                else
+                {
+                    prev = buff.buffDropPercentage;
+                }
+
             }
+
             else
             {
-                drop -= buff.buffDropPercentage;
+                prev = buff.buffDropPercentage;
             }
+
+
+
         }
 
 
         //Instantiate Buff
-        Debug.Log("Spawn");
         GameObject buffSpawned = Instantiate(buffPrefab, spawnBuffLocation, Quaternion.identity);
         buffSpawned.GetComponent<BuffScript>().buffId = buffDropId;
 

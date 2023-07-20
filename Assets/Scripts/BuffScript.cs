@@ -130,13 +130,40 @@ public class BuffScript : MonoBehaviour
 
         switch (stat)
         {
-            case "baseStatHealth": playerStat.currentStatHealth += (int) value;
+            case "baseStatHealth": 
+
+                if(playerStat.currentStatHealth < playerStat.MaxHealth)
+                {
+                    playerStat.currentStatHealth += (int) value;
+                }
+
                 break;
-            case "baseStateSlimeRate": playerStat.currentStatSlimeRate -= value;
+
+            case "baseStateSlimeRate": 
+                
+                if(playerStat.currentStatSlimeRate > playerStat.MaxSlimeRate)
+                {
+                    playerStat.currentStatSlimeRate -= value;
+                }
                 break;
+
             case "baseStatDmg": playerStat.currentStatDmg += value;
+
+                if (playerStat.currentStatDmg < playerStat.MaxDmg)
+                {
+                    playerStat.currentStatDmg += value;
+
+                }
                 break;
-            case "baseStatShotSpeed": playerStat.currentStatShotSpeed += value;
+
+            case "baseStatShotSpeed":
+
+                if (playerStat.currentStatShotSpeed < playerStat.MaxShotSpeed)
+                {
+                    playerStat.currentStatShotSpeed += value;
+
+                }
+                
                 break;
         }
 
@@ -145,7 +172,7 @@ public class BuffScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Buff"))
         {
             canPickUp = true;
             Description.SetActive(true);
@@ -153,7 +180,7 @@ public class BuffScript : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Buff"))
         {
             canPickUp = false;
             Description.SetActive(false);
