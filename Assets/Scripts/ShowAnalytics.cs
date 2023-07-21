@@ -130,7 +130,7 @@ public class ShowAnalytics : MonoBehaviour
 
         timeTaken.text = "Time Spent: " + AnalyticsHolder.Instance.timeTaken.ToString();
         waveEnded.text = "Ended on Wave " + AnalyticsHolder.Instance.waveEnd.ToString();
-        enemiesDefeated.text = AnalyticsHolder.Instance.enemiesDefeated + " Enemies Defeated";
+        enemiesDefeated.text = AnalyticsHolder.Instance.enemiesDefeated + "/" + AnalyticsHolder.Instance.numEnemiesSpawned.ToString() + " Enemies Defeated";
         damageReceived.text = "Total Damage Received: " + AnalyticsHolder.Instance.damageReceived.ToString();
         damageDealt.text = "Total Damage Dealt: " + AnalyticsHolder.Instance.damageDealt.ToString();
 
