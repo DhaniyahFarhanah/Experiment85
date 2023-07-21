@@ -51,6 +51,14 @@ public class BuffScript : MonoBehaviour
             if (Input.GetButtonDown("Interact"))
             {
                 GiveBuff();
+
+                switch (buffId)
+                {
+                    case "buff1": player.GetComponent<PlayerLab>().numOfBuff1Taken++; break;
+                    case "buff2": player.GetComponent<PlayerLab>().numOfBuff2Taken++; break;
+                    case "buff3": player.GetComponent<PlayerLab>().numOfBuff3Taken++; break;
+                    case "buff4": player.GetComponent<PlayerLab>().numOfBuff4Taken++; break;
+                }
             }
         }
 
@@ -127,6 +135,7 @@ public class BuffScript : MonoBehaviour
     void GiveBuff()
     {
         PlayerLab playerStat = player.GetComponent<PlayerLab>();
+        playerStat.numOfBuffsTaken++;
 
         switch (stat)
         {

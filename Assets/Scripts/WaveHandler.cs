@@ -55,9 +55,21 @@ public class WaveHandler : MonoBehaviour
     //=====Game Analytics=====
     public bool win;
     private float time;
+    private int hour;
     private int min;
     private int sec;
 
+    private int numOfEnemiesSpawned;
+    private int numOfEnemy1;
+    private int numOfEnemy2;
+    private int numOfEnemy3;
+    private int numOfEnemy4;
+
+    public int numOfBuffsDropped;
+    public int numOfBuff1;
+    public int numOfBuff2;
+    public int numOfBuff3;
+    public int numOfBuff4;
 
     private void Awake()
     {
@@ -66,13 +78,28 @@ public class WaveHandler : MonoBehaviour
         initialWaveID = waveJsonList[0].waveId;
         waveId = initialWaveID;
         GetFromJson();
-
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        //reading restart just in case
+        numOfEnemiesSpawned = 0;
+        numOfEnemy1 = 0;
+        numOfEnemy2 = 0;
+        numOfEnemy3 = 0;
+        numOfEnemy4 = 0;
+
+        numOfBuffsDropped = 0;
+        numOfBuff1 = 0;
+        numOfBuff2 = 0;
+        numOfBuff3 = 0;
+        numOfBuff4 = 0;
         
+        time = 0;
+        win = false;
+
+        time += Time.deltaTime;
         currentWaveTime = waveTime; //set the first wave time to the time limit for each wave
         //maxWaveNo = waveJsonList.Count; (Not needed for new scope)
         
@@ -117,10 +144,11 @@ public class WaveHandler : MonoBehaviour
         overlay.timerBar.fillAmount = currentWaveTime / waveTime;
         overlay.enemiesInSceneTextBox.text = GameObject.FindGameObjectsWithTag("Enemy").Length.ToString() + " enemies alive";
 
-        min = (int)time / 100;
-        sec = (int)time % 100;
+        hour = (int) time / 3600;
+        min = (int) (time% 3600) / 60;
+        sec = (int) time % 60;
 
-        overlay.timeElapsedTextBox.text = min.ToString() + ":" + sec.ToString();
+        overlay.timeElapsedTextBox.text = min.ToString("00") + ":" + sec.ToString("00");
 
         if (enemyNeeded <= 0)
         {
@@ -192,11 +220,22 @@ public class WaveHandler : MonoBehaviour
     //this makes it so the spawner goes in intervals instead of everything spawning at once.
     IEnumerator waitSpawn(EnemyWaveList e)
     {
+        float timeToSpawn = waveTime / enemyList.Count;
+
         for (int i = 1; i < e.qnty; i++)
         {
-            yield return new WaitForSeconds(waveTime/(e.qnty*2));
+            yield return new WaitForSeconds(timeToSpawn/(e.qnty));
             //spawn enemy
             Instantiate(SpawnEnemyFromPrefab(e.enemyWaveId), RandomizeSpawn());
+            numOfEnemiesSpawned++;
+
+            switch(e.enemyWaveId)
+            {
+                case "E01": numOfEnemy1++; break;
+                case "E02": numOfEnemy2++; break;
+                case "E03": numOfEnemy3++; break;
+                case "E04": numOfEnemy4++; break;
+            }
 
         }
     }
@@ -227,13 +266,16 @@ public class WaveHandler : MonoBehaviour
     void EndRound()
     {
 
+        //disable character
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().disabled = true;
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerLab>().disabled = true;
         GameObject.FindGameObjectWithTag("Player").GetComponent<CapsuleCollider2D>().enabled = false;
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().rb.velocity = Vector3.zero;
 
-        analytics.SetActive(true);
         //set analytics here
+        analytics.SetActive(true);
+        SetWaveAnalytics();
+        DisplayAnalytics();
 
     }
 
@@ -286,26 +328,55 @@ public class WaveHandler : MonoBehaviour
         }
     }
 
-    //uhhhhhhhh
-    /*void FakeJson()
+    void SetWaveAnalytics()
     {
-        switch (waveId)
-        {
-            case 101: levelId = "grey";
-                waveNo = 1;
-                enemyId = "E01#10@E02#10";
-                break;
+        AnalyticsHolder.Instance.win = win;
+        AnalyticsHolder.Instance.timeTaken = hour.ToString("00") + ":" + min.ToString("00") + ":" + sec.ToString("00");
+        AnalyticsHolder.Instance.waveEnd = waveNo;
+        AnalyticsHolder.Instance.waveEndId = waveId;
 
-            case 102:
-                levelId = "grey";
-                waveNo = 2;
-                enemyId = "E01#20@E02#20@E03#5";
-                break;
-            case 103:
-                levelId = "grey";
-                waveNo = 3;
-                enemyId = "E01#10@E02#14@E03#10@E04#16";
-                break;
+        AnalyticsHolder.Instance.numEnemiesSpawned = numOfEnemiesSpawned;
+        AnalyticsHolder.Instance.numOfEnemy1Spawned = numOfEnemy1;
+        AnalyticsHolder.Instance.numOfEnemy2Spawned = numOfEnemy2;
+        AnalyticsHolder.Instance.numOfEnemy3Spawned = numOfEnemy3;
+        AnalyticsHolder.Instance.numOfEnemy4Spawned = numOfEnemy4;
+
+        AnalyticsHolder.Instance.buffsDropped = numOfBuffsDropped;
+        AnalyticsHolder.Instance.numOfBuff1Spawned = numOfBuff1;
+        AnalyticsHolder.Instance.numOfBuff2Spawned = numOfBuff2;
+        AnalyticsHolder.Instance.numOfBuff3Spawned = numOfBuff3;
+        AnalyticsHolder.Instance.numOfBuff4Spawned = numOfBuff4;
+        AnalyticsHolder.Instance.mostTakenBuff = FindMaxBuff();
+    }
+    string FindMaxBuff()
+    {
+        int max = 0;
+        string mostTakenId = "";
+        int[] buffsTaken = { numOfBuff1, numOfBuff2, numOfBuff3, numOfBuff4 };
+
+        for(int i = 0; i < buffsTaken.Length; i++)
+        {
+            if(max < buffsTaken[i])
+            {
+                max = buffsTaken[i];
+
+                switch (i)
+                {
+                    case 0: mostTakenId = "buff1"; break;
+                    case 1: mostTakenId = "buff2"; break;
+                    case 3: mostTakenId = "buff3"; break;
+                    case 4: mostTakenId = "buff4"; break;
+                }
+            }
         }
-    }*/
+
+        return mostTakenId;
+
+    }
+    void DisplayAnalytics()
+    {
+       
+
+    }
+
 }

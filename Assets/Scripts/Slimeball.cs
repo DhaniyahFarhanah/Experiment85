@@ -46,8 +46,21 @@ public class Slimeball : MonoBehaviour
     public void SlimeballMovement()
     {
         rb.velocity = transform.up * speed * 2f;
-        //gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+
         //scales the size
+        if(type == "Powerful")
+        {
+            gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
+        }
+        else if(type == "Piercing")
+        {
+            gameObject.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+        }
+        else
+        {
+            gameObject.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+        }
+        
     }
 
     void DestroySlimeball()
@@ -61,7 +74,9 @@ public class Slimeball : MonoBehaviour
         if(collision.tag == "Enemy")
         {
             collision.gameObject.GetComponent<EnemyController>().enemyHealth -= dmg;
-            if(type != "Powerful")
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerLab>().shotsHit++;
+
+            if(type != "Piercing")
             {
                 DestroySlimeball();
             }

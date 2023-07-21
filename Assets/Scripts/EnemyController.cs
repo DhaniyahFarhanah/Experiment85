@@ -22,7 +22,7 @@ public class EnemyController : MonoBehaviour
     public string enemyId;
     private string enemyName;
     public float enemyHealth;
-    private int enemyDamage;
+    public int enemyDamage;
     private float enemySpeed; //speed has been balanced to some extent
     private string enemyDesc;
 
@@ -120,6 +120,8 @@ public class EnemyController : MonoBehaviour
     //attack player and remove health from player.
     void DoDamage() 
     {
+        playerStats.amtOfDamageReceived += enemyDamage;
+
         playerStats.currentStatHealth -= enemyDamage;
         playerStats.SetToDislay();
         Debug.Log("Attack! Damage dealt: " + enemyDamage);
@@ -132,12 +134,23 @@ public class EnemyController : MonoBehaviour
         if(buffDropRate >= hasDrop)
         {
             SpawnBuff();
+            GameObject.FindGameObjectWithTag("WaveHandler").GetComponent<WaveHandler>().numOfBuffsDropped++;
+
         }
         GameObject waveHandler = GameObject.FindGameObjectWithTag("WaveHandler");
 
         if(waveHandler != null)
         {
             GameObject.FindGameObjectWithTag("WaveHandler").GetComponent<WaveHandler>().enemyNeeded--;
+            playerStats.enemiesDefeated++;
+
+            switch (enemyId)
+            {
+                case "E01": playerStats.numOfEnemy1Killed++; break;
+                case "E02": playerStats.numOfEnemy2Killed++; break;
+                case "E03": playerStats.numOfEnemy3Killed++; break;
+                case "E04": playerStats.numOfEnemy4Killed++; break;
+            }
         }
         
         Destroy(gameObject);
@@ -228,6 +241,14 @@ public class EnemyController : MonoBehaviour
         //Instantiate Buff
         GameObject buffSpawned = Instantiate(buffPrefab, spawnBuffLocation, Quaternion.identity);
         buffSpawned.GetComponent<BuffScript>().buffId = buffDropId;
+
+        switch (buffDropId)
+        {
+            case "buff1": GameObject.FindGameObjectWithTag("WaveHandler").GetComponent<WaveHandler>().numOfBuff1++; break;
+            case "buff2": GameObject.FindGameObjectWithTag("WaveHandler").GetComponent<WaveHandler>().numOfBuff2++; break;
+            case "buff3": GameObject.FindGameObjectWithTag("WaveHandler").GetComponent<WaveHandler>().numOfBuff3++; break;
+            case "buff4": GameObject.FindGameObjectWithTag("WaveHandler").GetComponent<WaveHandler>().numOfBuff1++; break;
+        }
 
         //populate the prefab with buff id.
         //buffscript will do the rest.

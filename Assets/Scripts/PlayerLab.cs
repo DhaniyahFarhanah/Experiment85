@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 //=========PLAYER LAB=============
 //This information is seperated due to the temporary upgrades during a run.
@@ -42,13 +43,41 @@ public class PlayerLab : MonoBehaviour
     private float fireTimer; //check if shoot is on cooldown
     private bool phase;
     Collider2D slimeCollider;
-    private bool start = true;
     public bool disabled;
 
     //====Slimeball====
     [SerializeField] private GameObject slimeballPrefab;
     [SerializeField] private GameObject firepoint;
     private FireRotation fr; //the rotation for the bullet
+
+    //====Analytic readings====
+    public int shotsHit;
+    private int shotsFired;
+
+    public int enemiesDefeated;
+    public int numOfBuffsTaken;
+    public int amtOfDamageReceived;
+    private int amtOfDamageDealt;
+    private int numOfFailedAttempts;
+
+    public int numOfBuff1Taken;
+    public int numOfBuff2Taken;
+    public int numOfBuff3Taken;
+    public int numOfBuff4Taken;
+
+    public int numOfEnemy1Killed;
+    public int numOfEnemy2Killed;
+    public int numOfEnemy3Killed;
+    public int numOfEnemy4Killed;
+
+    private int hitByEnemy1;
+    private int hitByEnemy2;
+    private int hitByEnemy3;
+    private int hitByEnemy4;
+
+
+
+
 
     private void Awake()
     {
@@ -62,6 +91,25 @@ public class PlayerLab : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //restart values
+        enemiesDefeated = 0;
+        numOfBuffsTaken = 0;
+
+        numOfEnemy1Killed = 0;
+        numOfEnemy2Killed = 0;
+        numOfEnemy3Killed = 0;
+        numOfEnemy4Killed = 0;
+
+        hitByEnemy1 = 0;
+        hitByEnemy2 = 0;
+        hitByEnemy3 = 0;
+        hitByEnemy4 = 0;
+
+        amtOfDamageDealt = 0;
+        amtOfDamageReceived = 0;
+
+        
+
         isInvisable = false;
         disabled = false;
     }
@@ -76,7 +124,6 @@ public class PlayerLab : MonoBehaviour
         }
         //round to 2dp
         currentStatDmg = Mathf.Round(currentStatDmg * 100f) * 0.01f;
-        Debug.Log(currentStatDmg);
 
         SetToDislay();
         CheckIfMax();
@@ -91,6 +138,9 @@ public class PlayerLab : MonoBehaviour
         {
             Die();
         }
+
+        //keep analytics through game
+        
     }
 
 
@@ -143,6 +193,12 @@ public class PlayerLab : MonoBehaviour
 
     void Shoot() //method to shoot slimeball
     {
+        //if in lab, start recording
+        if(SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            shotsFired++;
+        }
+
         GameObject slimeball = Instantiate(slimeballPrefab, firepoint.transform.position, firepoint.transform.rotation);
         Slimeball setter = slimeball.GetComponent<Slimeball>();
         setter.speed = currentStatSpeed;
@@ -154,8 +210,21 @@ public class PlayerLab : MonoBehaviour
 
     void isHitByEnemy(GameObject collided) //if is hit, register (along with debug on the console)
     {
-        attackedTimes++; //for debug
         StartCoroutine(InvisibilityFrames());
+        attackedTimes++; //for debug
+
+        string hitById = collided.GetComponent<EnemyController>().enemyId;
+
+        switch (hitById)
+        {
+            case "E01": hitByEnemy1++; break;
+            case "E02": hitByEnemy2++; break;
+            case "E03": hitByEnemy3++; break;
+            case "E04": hitByEnemy4++; break;
+        }
+
+        amtOfDamageReceived += collided.GetComponent<EnemyController>().enemyDamage;
+
         display.debug.text = "Hit " + attackedTimes.ToString() + " time(s)" + "\n" + "Hit by: " + collided.name + "\n"; //for debug
 
     }
@@ -197,6 +266,9 @@ public class PlayerLab : MonoBehaviour
         StopAllCoroutines();
         gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
         gameObject.GetComponent<PlayerController>().rb.velocity = Vector3.zero;
+
+        //sets analytics
+        SetPlayerLabAnalytics();
 
     }
 
@@ -262,6 +334,74 @@ public class PlayerLab : MonoBehaviour
         SetToDislay();
 
     }   
+
+    void SetPlayerLabAnalytics()
+    {
+        AnalyticsHolder.Instance.slimeChosen = Id;
+        AnalyticsHolder.Instance.numOfFailedAttempts = numOfFailedAttempts;
+
+        AnalyticsHolder.Instance.damage = currentStatDmg;
+        AnalyticsHolder.Instance.speed = currentStatSpeed;
+        AnalyticsHolder.Instance.shotSpeed = currentStatShotSpeed;
+        AnalyticsHolder.Instance.range = currentStatRange;
+        AnalyticsHolder.Instance.slimeRate = currentStatSlimeRate;
+        AnalyticsHolder.Instance.damageReceived = amtOfDamageReceived;
+        AnalyticsHolder.Instance.damageDealt = amtOfDamageDealt;
+
+        AnalyticsHolder.Instance.hitsTaken = attackedTimes;
+        AnalyticsHolder.Instance.enemiesDefeated = enemiesDefeated;
+
+        AnalyticsHolder.Instance.buffsPicked = numOfBuffsTaken;
+
+        AnalyticsHolder.Instance.totalShots = shotsFired;
+        AnalyticsHolder.Instance.shotsHit = shotsHit;
+        AnalyticsHolder.Instance.shotsMissed = shotsFired - shotsHit;
+        AnalyticsHolder.Instance.accuracy = ((shotsFired - shotsHit) / shotsFired) * 100f;
+
+        AnalyticsHolder.Instance.takenNumOfBuff1 = numOfBuff1Taken;
+        AnalyticsHolder.Instance.takenNumOfBuff2 = numOfBuff2Taken;
+        AnalyticsHolder.Instance.takenNumOfBuff3 = numOfBuff3Taken;
+        AnalyticsHolder.Instance.takenNumOfBuff4 = numOfBuff4Taken;
+
+        AnalyticsHolder.Instance.killedNumOfEnemy1 = numOfEnemy1Killed;
+        AnalyticsHolder.Instance.killedNumOfEnemy2 = numOfEnemy2Killed;
+        AnalyticsHolder.Instance.killedNumOfEnemy3 = numOfEnemy3Killed;
+        AnalyticsHolder.Instance.killedNumOfEnemy4 = numOfEnemy4Killed;
+
+        AnalyticsHolder.Instance.hitByEnemy1 = hitByEnemy1;
+        AnalyticsHolder.Instance.hitByEnemy2 = hitByEnemy2;
+        AnalyticsHolder.Instance.hitByEnemy3 = hitByEnemy3;
+        AnalyticsHolder.Instance.hitByEnemy4 = hitByEnemy4;
+        AnalyticsHolder.Instance.mostHitId = FindMaxEnemy();
+
+    }
+
+    //yea im sorry im not manually using the lists my brain is fried
+    string FindMaxEnemy()
+    {
+        int max = 0;
+        string mostTakenId = "";
+        int[] enemyHit = { hitByEnemy1, hitByEnemy2, hitByEnemy3, hitByEnemy4 };
+
+        for (int i = 0; i < enemyHit.Length; i++)
+        {
+            if (max < enemyHit[i])
+            {
+                max = enemyHit[i];
+
+                switch (i)
+                {
+                    case 0: mostTakenId = "E01"; break;
+                    case 1: mostTakenId = "E02"; break;
+                    case 3: mostTakenId = "E03"; break;
+                    case 4: mostTakenId = "E04"; break;
+                }
+            }
+        }
+
+        return mostTakenId;
+
+    }
 
     public void SetToDislay() //to show in the canvas for debugging (for now)
     {

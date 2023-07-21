@@ -765,6 +765,7 @@ GameObject:
   - component: {fileID: 181320144}
   - component: {fileID: 181320143}
   - component: {fileID: 181320140}
+  - component: {fileID: 181320145}
   m_Layer: 0
   m_Name: Dialogue
   m_TagString: Untagged
@@ -905,6 +906,18 @@ MonoBehaviour:
   option2: 
   initDialogueID: 0
   nextID: 0
+--- !u!114 &181320145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181320138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7138afe6f50e674e9acfc5fbc0efe1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &185457729
 GameObject:
   m_ObjectHideFlags: 0

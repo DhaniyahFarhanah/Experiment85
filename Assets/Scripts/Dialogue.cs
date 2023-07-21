@@ -66,6 +66,7 @@ public class Dialogue : MonoBehaviour
 
     private void Close()
     {
+        GameClass.SetHasFirstTalk(true);
         GameObject.Find("Dialogue").SetActive(false);
         textComponent.text = string.Empty;
     }

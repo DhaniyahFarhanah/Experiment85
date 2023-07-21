@@ -35,7 +35,6 @@ public class PlayerDisabler : MonoBehaviour
             }
         }
 
-        Debug.Log(toReturn);
         return toReturn;
     }
 }
