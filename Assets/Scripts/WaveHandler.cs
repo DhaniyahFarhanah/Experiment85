@@ -273,9 +273,9 @@ public class WaveHandler : MonoBehaviour
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().rb.velocity = Vector3.zero;
 
         //set analytics here
-        analytics.SetActive(true);
         SetWaveAnalytics();
-        DisplayAnalytics();
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerLab>().SetPlayerLabAnalytics();
+        analytics.SetActive(true);
 
     }
 
@@ -373,10 +373,4 @@ public class WaveHandler : MonoBehaviour
         return mostTakenId;
 
     }
-    void DisplayAnalytics()
-    {
-       
-
-    }
-
 }

@@ -156,7 +156,7 @@ public class BuffScript : MonoBehaviour
                 }
                 break;
 
-            case "baseStatDmg": playerStat.currentStatDmg += value;
+            case "baseStatDmg": 
 
                 if (playerStat.currentStatDmg < playerStat.MaxDmg)
                 {

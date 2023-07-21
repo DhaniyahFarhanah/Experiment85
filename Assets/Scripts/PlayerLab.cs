@@ -53,11 +53,12 @@ public class PlayerLab : MonoBehaviour
     //====Analytic readings====
     public int shotsHit;
     private int shotsFired;
+    private float accuracy;
 
     public int enemiesDefeated;
     public int numOfBuffsTaken;
     public int amtOfDamageReceived;
-    private int amtOfDamageDealt;
+    public float amtOfDamageDealt;
     private int numOfFailedAttempts;
 
     public int numOfBuff1Taken;
@@ -74,8 +75,6 @@ public class PlayerLab : MonoBehaviour
     private int hitByEnemy2;
     private int hitByEnemy3;
     private int hitByEnemy4;
-
-
 
 
 
@@ -197,6 +196,7 @@ public class PlayerLab : MonoBehaviour
         if(SceneManager.GetActiveScene().buildIndex == 2)
         {
             shotsFired++;
+            accuracy = ((float)shotsHit / (float)shotsFired) * 100.00f;
         }
 
         GameObject slimeball = Instantiate(slimeballPrefab, firepoint.transform.position, firepoint.transform.rotation);
@@ -213,6 +213,8 @@ public class PlayerLab : MonoBehaviour
         StartCoroutine(InvisibilityFrames());
         attackedTimes++; //for debug
 
+        amtOfDamageDealt += collided.GetComponent<EnemyController>().enemyDamage;
+
         string hitById = collided.GetComponent<EnemyController>().enemyId;
 
         switch (hitById)
@@ -222,8 +224,6 @@ public class PlayerLab : MonoBehaviour
             case "E03": hitByEnemy3++; break;
             case "E04": hitByEnemy4++; break;
         }
-
-        amtOfDamageReceived += collided.GetComponent<EnemyController>().enemyDamage;
 
         display.debug.text = "Hit " + attackedTimes.ToString() + " time(s)" + "\n" + "Hit by: " + collided.name + "\n"; //for debug
 
@@ -267,8 +267,6 @@ public class PlayerLab : MonoBehaviour
         gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
         gameObject.GetComponent<PlayerController>().rb.velocity = Vector3.zero;
 
-        //sets analytics
-        SetPlayerLabAnalytics();
 
     }
 
@@ -335,11 +333,12 @@ public class PlayerLab : MonoBehaviour
 
     }   
 
-    void SetPlayerLabAnalytics()
+    public void SetPlayerLabAnalytics()
     {
         AnalyticsHolder.Instance.slimeChosen = Id;
         AnalyticsHolder.Instance.numOfFailedAttempts = numOfFailedAttempts;
 
+        AnalyticsHolder.Instance.health = currentStatHealth;
         AnalyticsHolder.Instance.damage = currentStatDmg;
         AnalyticsHolder.Instance.speed = currentStatSpeed;
         AnalyticsHolder.Instance.shotSpeed = currentStatShotSpeed;
@@ -356,7 +355,7 @@ public class PlayerLab : MonoBehaviour
         AnalyticsHolder.Instance.totalShots = shotsFired;
         AnalyticsHolder.Instance.shotsHit = shotsHit;
         AnalyticsHolder.Instance.shotsMissed = shotsFired - shotsHit;
-        AnalyticsHolder.Instance.accuracy = ((shotsFired - shotsHit) / shotsFired) * 100f;
+        AnalyticsHolder.Instance.accuracy = accuracy;
 
         AnalyticsHolder.Instance.takenNumOfBuff1 = numOfBuff1Taken;
         AnalyticsHolder.Instance.takenNumOfBuff2 = numOfBuff2Taken;

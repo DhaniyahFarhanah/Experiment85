@@ -15,10 +15,12 @@ public class Slimeball : MonoBehaviour
     private Rigidbody2D rb;
     public SpriteRenderer sr;
 
+    private bool start = true;
     // Start is called before the first frame update
     void Start()
     {
         hitWall = false;
+        start = true;
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
@@ -74,10 +76,17 @@ public class Slimeball : MonoBehaviour
         if(collision.tag == "Enemy")
         {
             collision.gameObject.GetComponent<EnemyController>().enemyHealth -= dmg;
-            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerLab>().shotsHit++;
 
-            if(type != "Piercing")
+            if (start)
             {
+                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerLab>().shotsHit++;
+                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerLab>().amtOfDamageDealt += GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerLab>().currentStatDmg;
+                start = false;
+            }
+
+            if (type != "Piercing")
+            {
+                
                 DestroySlimeball();
             }
         }

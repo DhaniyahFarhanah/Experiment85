@@ -28,31 +28,31 @@ public class AnalyticsHolder
     }
 
     // Generic Game Stuff (dynamic?)
-    public string slimeChosen { get; set; } //character they ended on .
+    public string slimeChosen { get; set; } //character they ended on 
     public string timeElapsed { get; set; } //hh:mm:ss .
     public int numOfFailedAttempts { get; set; } //gets num of loses in all of game .
 
     //====Lab Analysis=====
-    public bool win { get; set; } //records win statement .
-    public string timeTaken { get; set; } //hh:mm:ss .
-    public int enemiesDefeated { get; set; } //records num of enemies defeated .
+    public bool win { get; set; } //records win statement 
+    public string timeTaken { get; set; } //hh:mm:ss 
+    public int enemiesDefeated { get; set; } //records num of enemies defeated 
     public int numEnemiesSpawned { get; set; } //takes in num of enemies spawned .
-    public int hitsTaken { get; set; } //num of hits taken .
-    public int waveEnd { get; set; } //wave the game ended on .
+    public int hitsTaken { get; set; } //num of hits taken 
+    public int waveEnd { get; set; } //wave the game ended on 
     public int waveEndId { get; set; } //wave the game ended on but id based on data .
     public int buffsPicked { get; set; } //num of buffs picked .
     public int buffsDropped { get; set; } //num of buffs dropped .
 
    
     //====player stat end on=====
-    public int health { get; set; } //health player ends on .
-    public float damage { get; set; } //damage player ends on .
-    public float speed { get; set; } //speed player ends on .
-    public float shotSpeed { get; set; } //shot speed player ends on .
-    public float range { get; set; } //range player ends on .
-    public float slimeRate { get; set; } //slimerate player ends on .
-    public int damageReceived { get; set; } //amt of damage received in total .
-    public float damageDealt { get; set; } //gets the total num of damage dealt .
+    public int health { get; set; } //health player ends on 
+    public float damage { get; set; } //damage player ends on 
+    public float speed { get; set; } //speed player ends on 
+    public float shotSpeed { get; set; } //shot speed player ends on 
+    public float range { get; set; } //range player ends on 
+    public float slimeRate { get; set; } //slimerate player ends on 
+    public int damageReceived { get; set; } //amt of damage received in total 
+    public float damageDealt { get; set; } //gets the total num of damage dealt 
 
 
     //====Deeper Analysis=====
