@@ -267,11 +267,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 397394747}
   m_CullTransparentMesh: 1
---- !u!95 &490303809 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 4533444607930046891, guid: d0c8cca512b10944fb003e5eb10db346, type: 3}
-  m_PrefabInstance: {fileID: 1319675288}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &898331469
 GameObject:
   m_ObjectHideFlags: 0
@@ -622,18 +617,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SceneLoader
       objectReference: {fileID: 0}
-    - target: {fileID: 4533444607930046891, guid: d0c8cca512b10944fb003e5eb10db346, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 22100000, guid: d255c62e7f4ce1f4099d357b15b7f10c, type: 2}
-    - target: {fileID: 6362251599585962998, guid: d0c8cca512b10944fb003e5eb10db346, type: 3}
-      propertyPath: withTran
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6362251599585962998, guid: d0c8cca512b10944fb003e5eb10db346, type: 3}
-      propertyPath: sceneTranAnimator
-      value: 
-      objectReference: {fileID: 490303809}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0c8cca512b10944fb003e5eb10db346, type: 3}
 --- !u!1 &1405595230

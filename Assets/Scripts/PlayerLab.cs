@@ -194,6 +194,8 @@ public class PlayerLab : MonoBehaviour
     {
         GameObject.FindGameObjectWithTag("WaveHandler").GetComponent<WaveHandler>().end = true;
         GameObject.FindGameObjectWithTag("WaveHandler").GetComponent<WaveHandler>().win = false;
+        StopAllCoroutines();
+        gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
         gameObject.GetComponent<PlayerController>().rb.velocity = Vector3.zero;
 
     }

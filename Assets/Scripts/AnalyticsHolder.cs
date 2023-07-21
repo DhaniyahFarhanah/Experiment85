@@ -4,11 +4,33 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class AnalyticsHolder : MonoBehaviour
+public class AnalyticsHolder
 {
+    //testing singleton method to do the data tracking
+
+    private static AnalyticsHolder instance;
+
+    //constructor
+    public AnalyticsHolder()
+    {
+
+    }
+
+    public static AnalyticsHolder Instance
+    {
+        get
+        {
+            if(instance == null)
+            {
+                instance = new AnalyticsHolder();
+            }
+
+            return instance;
+        }
+    }
+
     // Generic Game Stuff (dynamic?)
     public static string SlimeChosen; //which slime is chosen
-    public static DateTime dateTimeStamp; //(timestamp for when data set
     public static string timeElapsedWholeGame; //time from start to finish of the whole game in "mm:ss"
 
     public static void SetSlimeChosen(string Id)
@@ -19,15 +41,6 @@ public class AnalyticsHolder : MonoBehaviour
     public static string GetSlimeChose()
     {
         return SlimeChosen;
-    }
-
-    public static void SetDateTimeStamp(DateTime dateTime)
-    {
-        dateTimeStamp = dateTime;
-    }
-    public static DateTime GetDateTimeStamp()
-    {
-        return dateTimeStamp;
     }
 
     public static void SetTimeElapsedWholeGame(string time)

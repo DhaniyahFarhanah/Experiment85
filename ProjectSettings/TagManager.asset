@@ -10,6 +10,7 @@ TagManager:
   - Interactor
   - Buff
   - WaveHandler
+  - SceneLoader
   layers:
   - Default
   - TransparentFX

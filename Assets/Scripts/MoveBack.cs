@@ -5,11 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class MoveBack : MonoBehaviour
 {
-    [SerializeField] GameObject SceneManage;
-    [SerializeField] int loseIndex;
+    [SerializeField] int safeRoomIndex;
     [SerializeField] int mainMenuIndex;
 
-    AnalyticClass refClass = new();
     // Start is called before the first frame update
     void Start()
     {
@@ -21,13 +19,24 @@ public class MoveBack : MonoBehaviour
     {
         if (gameObject.activeSelf)
         {
+            bool win = GameObject.FindGameObjectWithTag("WaveHandler").GetComponent<WaveHandler>().win;
+
             if (Input.GetButtonDown("Enter"))
             {
-                if(refClass.win == true)
+                //supposed to go back to saferoom when MainMenu
+                if (!win)
                 {
-                    SceneManage.GetComponent<SceneLoader>().LoadChosenLevel(loseIndex);
-                    SceneManage.GetComponent<SceneLoader>().LoadChosenLevel(mainMenuIndex);
+                    GameObject.FindGameObjectWithTag("SceneLoader").GetComponent<SceneLoader>().LoadChosenLevel(safeRoomIndex);
+
                 }
+                //supposed to end game if win so go to main menu
+                else
+                {
+                    GameClass.SetCurrentSlimeId("S01"); //simulate new game
+                    GameObject.FindGameObjectWithTag("SceneLoader").GetComponent<SceneLoader>().LoadChosenLevel(mainMenuIndex);
+
+                }
+
             }
         }
     }
