@@ -13,6 +13,7 @@ public class WaveHandler : MonoBehaviour
     private List<WaveClass> waveJsonList;
     //Need enemy json
 
+    DataManage dataManagerScript; // This one was done by Gerald :-U
 
     //=====JSON VAR=====
     private int waveId;
@@ -73,6 +74,7 @@ public class WaveHandler : MonoBehaviour
 
     private void Awake()
     {
+        dataManagerScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<DataManage>();
         waveJsonList = GameData.GetWaveList();
         overlay = waveOverlay.GetComponent<LabOverlay>();
         initialWaveID = waveJsonList[0].waveId;
@@ -347,6 +349,7 @@ public class WaveHandler : MonoBehaviour
         AnalyticsHolder.Instance.numOfBuff3Spawned = numOfBuff3;
         AnalyticsHolder.Instance.numOfBuff4Spawned = numOfBuff4;
         AnalyticsHolder.Instance.mostTakenBuff = FindMaxBuff();
+        dataManagerScript.SaveAnalytics();
     }
     string FindMaxBuff()
     {

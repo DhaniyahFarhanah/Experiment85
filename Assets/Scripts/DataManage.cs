@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,32 +9,59 @@ public class DataManage : MonoBehaviour
 {
     //This is to populate the data from json into the respective data holders (RefCharacterData & CharacterClass)
     public TextAsset exportFile;
+    
+    public bool callOnce;
 
     private void Awake()
     {
-        LoadRefCharData();
-        LoadRefDialogueData();
-        LoadRefNPCData();
-        LoadRefBuffData();
-        LoadRefEnemyData();
-        LoadRefWaveData();
+        LoadRefData();
+        SaveAnalytics();
     }
 
-    //load char ref data (need specific cause idk if we combining all together
-    public void LoadRefCharData()
+    public void LoadRefData()
     {
-        //datapath -> for stuff that goes inside the data folder
-        //persistentdatapath -> Once write, cannot be rewritten. Use for save data.
-        string filePath = Path.Combine(Application.dataPath, "Scripts/Data/export.json");
+        Data data = ReadData<Data>();
+        ProcessCharData(data);
+        ProcessDialogueData(data);
+        ProcessNPCData(data);
+        ProcessBuffData(data);
+        ProcessEnemyData(data);
+        ProcessWaveData(data);
+    }
 
+    public T ReadData<T>()
+    {
         string dataString = exportFile.text;
-       // string dataString = File.ReadAllText(filePath);
-        //Debug.Log(dataString);
+        T data = JsonUtility.FromJson<T>(dataString);
+        return data;
+    }
 
-        Data charData = JsonUtility.FromJson<Data>(dataString);
-
-        //process data
-        ProcessCharData(charData);
+    public void SaveAnalytics()
+    {
+        if (!callOnce && !string.IsNullOrEmpty(AnalyticsHolder.Instance.slimeChosen))
+        {
+            AnalyticsHolder analytics = new AnalyticsHolder();
+            string filePath = Path.Combine(Application.persistentDataPath + "/test.csv");
+            string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            string header = "timestamp,charId,winLose,waveId,timeTaken,enemiesDefeated,buffPicked,favouriteBuff,hitsTaken,accuracy";
+            string data = timestamp + "," +
+                        AnalyticsHolder.Instance.slimeChosen + "," + AnalyticsHolder.Instance.win + "," + AnalyticsHolder.Instance.waveEnd + "," +
+                        AnalyticsHolder.Instance.timeTaken + "," + AnalyticsHolder.Instance.enemiesDefeated + "," +
+                        AnalyticsHolder.Instance.buffsPicked + "," + AnalyticsHolder.Instance.mostTakenBuff + "," +
+                        "E01#" + AnalyticsHolder.Instance.hitByEnemy1 + "@" + "E02#" + AnalyticsHolder.Instance.hitByEnemy2 + "@" +
+                        "E03#" + AnalyticsHolder.Instance.hitByEnemy3 + "@" + "E04#" + AnalyticsHolder.Instance.hitByEnemy4 + "," +
+                        AnalyticsHolder.Instance.accuracy;
+           
+                if (!File.Exists(filePath))
+                {
+                    File.WriteAllText(filePath, header + Environment.NewLine);
+                    //SW.WriteLine(header);
+                }
+                //SW.WriteLine(data);
+                File.AppendAllText(filePath, data + Environment.NewLine);
+                callOnce = true;
+            
+        }
     }
 
     //Function will process everything and store inside the data
@@ -43,28 +71,12 @@ public class DataManage : MonoBehaviour
 
         foreach (RefCharacterData refChar in charData.Character)
         {
-            CharacterClass character = new CharacterClass(refChar.charId, refChar.charName, refChar.baseStatHealth, 
-                refChar.baseStatDmg, refChar.baseStatSpeed, refChar.type, refChar.baseStatShotSpeed,refChar.baseStatRange,
+            CharacterClass character = new CharacterClass(refChar.charId, refChar.charName, refChar.baseStatHealth,
+                refChar.baseStatDmg, refChar.baseStatSpeed, refChar.type, refChar.baseStatShotSpeed, refChar.baseStatRange,
                 refChar.baseStateSlimeRate);
-                characterList.Add(character);
+            characterList.Add(character);
         }
         GameData.SetCharacterList(characterList);
-    }
-
-    //load char ref data (need specific cause idk if we combining all together
-    public void LoadRefDialogueData()
-    {
-        //datapath -> for stuff that goes inside the data folder
-        //persistentdatapath -> Once write, cannot be rewritten. Use for save data.
-        string filePath = Path.Combine(Application.dataPath, "Scripts/Data/export.json");
-
-        string dataString = exportFile.text;
-        //string dataString = File.ReadAllText(filePath);
-
-        Data dialogueData = JsonUtility.FromJson<Data>(dataString);
-
-        //process data
-        ProcessDialogueData(dialogueData);
     }
 
     //Function will process everything and store inside the data
@@ -80,21 +92,6 @@ public class DataManage : MonoBehaviour
         GameData.SetDialogueList(dialogueList);
     }
 
-    //load char ref data (need specific cause idk if we combining all together
-    public void LoadRefNPCData()
-    {
-        //datapath -> for stuff that goes inside the data folder
-        //persistentdatapath -> Once write, cannot be rewritten. Use for save data.
-        string filePath = Path.Combine(Application.dataPath, "Scripts/Data/export.json");
-        string dataString = exportFile.text;
-       // string dataString = File.ReadAllText(filePath);
-
-        Data npcData = JsonUtility.FromJson<Data>(dataString);
-
-        //process data
-        ProcessNPCData(npcData);
-    }
-
     //Function will process everything and store inside the data
     private void ProcessNPCData(Data npcData)
     {
@@ -106,20 +103,6 @@ public class DataManage : MonoBehaviour
             npcList.Add(npc);
         }
         GameData.SetNPCList(npcList);
-    }
-
-    public void LoadRefEnemyData()
-    {
-        //datapath -> for stuff that goes inside the data folder
-        //persistentdatapath -> Once write, cannot be rewritten. Use for save data.
-        string filePath = Path.Combine(Application.dataPath, "Scripts/Data/export.json");
-        string dataString = exportFile.text;
-       // string dataString = File.ReadAllText(filePath);
-
-        Data enemyData = JsonUtility.FromJson<Data>(dataString);
-
-        //process data
-        ProcessEnemyData(enemyData);
     }
 
     //Function will process everything and store inside the data
@@ -136,20 +119,6 @@ public class DataManage : MonoBehaviour
         //Debug.Log("enemyList: " + enemyList.Count);
     }
 
-    public void LoadRefBuffData()
-    {
-        //datapath -> for stuff that goes inside the data folder
-        //persistentdatapath -> Once write, cannot be rewritten. Use for save data.
-        string filePath = Path.Combine(Application.dataPath, "Scripts/Data/export.json");
-        string dataString = exportFile.text;
-        //string dataString = File.ReadAllText(filePath);
-
-        Data buffData = JsonUtility.FromJson<Data>(dataString);
-
-        //process data
-        ProcessBuffData(buffData);
-    }
-
     //Function will process everything and store inside the data
     private void ProcessBuffData(Data buffData)
     {
@@ -157,24 +126,10 @@ public class DataManage : MonoBehaviour
 
         foreach (RefBuffData refBuff in buffData.Buffs)
         {
-            BuffClass buff = new BuffClass(refBuff.buffId,  refBuff.buffName,    refBuff.stat,     refBuff.value,   refBuff.buffDescription);
+            BuffClass buff = new BuffClass(refBuff.buffId, refBuff.buffName, refBuff.stat, refBuff.value, refBuff.buffDescription);
             buffList.Add(buff);
         }
         GameData.SetBuffList(buffList);
-    }
-
-    public void LoadRefWaveData()
-    {
-        //datapath -> for stuff that goes inside the data folder
-        //persistentdatapath -> Once write, cannot be rewritten. Use for save data.
-        string filePath = Path.Combine(Application.dataPath, "Scripts/Data/export.json");
-        string dataString = exportFile.text;
-        //string dataString = File.ReadAllText(filePath);
-
-        Data waveData = JsonUtility.FromJson<Data>(dataString);
-
-        //process data
-        ProcessWaveData(waveData);
     }
 
     //Function will process everything and store inside the data
@@ -184,16 +139,16 @@ public class DataManage : MonoBehaviour
 
         foreach (RefWaveData refWave in waveData.Waves)
         {
-            WaveClass wave = new WaveClass(refWave.waveId,   refWave.keyCardId,   refWave.waveNo,  refWave.nextWave,    refWave.enemyId);
+            WaveClass wave = new WaveClass(refWave.waveId, refWave.keyCardId, refWave.waveNo, refWave.nextWave, refWave.enemyId);
             waveList.Add(wave);
         }
         GameData.SetWaveList(waveList);
     }
 
-    //converting string to enum (in case need)
     /*
      * Lecture vid Week 8 - 11 mins in
      * 
         EnumType nameOfVal = (EnumType)System.Enum.Parse(EnumType, charData.labelOfVal);
     */
 }
+
