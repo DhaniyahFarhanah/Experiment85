@@ -15,8 +15,10 @@ public class EnemyController : MonoBehaviour
     private GameObject player;
     private Rigidbody2D enemyRB;
     private SpriteRenderer sprite;
+    private Animator anim;
 
     PlayerLab playerStats; 
+
 
     //this all can be used as private if using json but public for now cause uhhh actually I'mma make switch case to keep them private
     public string enemyId;
@@ -51,6 +53,7 @@ public class EnemyController : MonoBehaviour
         enemyRB = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
         playerStats = player.GetComponent<PlayerLab>();
+        anim = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
     }
 
@@ -58,6 +61,8 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+
+        anim.SetInteger("index", AnimSwitchCase());
         //TempSwitchCaseStuff();
     }
 
@@ -134,7 +139,6 @@ public class EnemyController : MonoBehaviour
         if(buffDropRate >= hasDrop)
         {
             SpawnBuff();
-            GameObject.FindGameObjectWithTag("WaveHandler").GetComponent<WaveHandler>().numOfBuffsDropped++;
 
         }
         GameObject waveHandler = GameObject.FindGameObjectWithTag("WaveHandler");
@@ -205,6 +209,8 @@ public class EnemyController : MonoBehaviour
 
     void SpawnBuff()
     {
+        GameObject.FindGameObjectWithTag("WaveHandler").GetComponent<WaveHandler>().numOfBuffsDropped++;
+
         int drop = Random.Range(0, 101);
         int prev = 0;
 
@@ -217,7 +223,6 @@ public class EnemyController : MonoBehaviour
                 if (prev <= drop)
                 {
                     buffDropId = buff.buffId;
-                    Debug.Log(buffDropId);
                     break;
                 }
 
@@ -247,7 +252,7 @@ public class EnemyController : MonoBehaviour
             case "buff1": GameObject.FindGameObjectWithTag("WaveHandler").GetComponent<WaveHandler>().numOfBuff1++; break;
             case "buff2": GameObject.FindGameObjectWithTag("WaveHandler").GetComponent<WaveHandler>().numOfBuff2++; break;
             case "buff3": GameObject.FindGameObjectWithTag("WaveHandler").GetComponent<WaveHandler>().numOfBuff3++; break;
-            case "buff4": GameObject.FindGameObjectWithTag("WaveHandler").GetComponent<WaveHandler>().numOfBuff1++; break;
+            case "buff4": GameObject.FindGameObjectWithTag("WaveHandler").GetComponent<WaveHandler>().numOfBuff4++; break;
         }
 
         //populate the prefab with buff id.
@@ -255,6 +260,19 @@ public class EnemyController : MonoBehaviour
     }
 
 
-    
+    int AnimSwitchCase()
+    {
+        int returned = 0;
+
+        switch (enemyId)
+        {
+            case "E01": returned = 0; break;
+            case "E02": returned = 1; break;
+            case "E03": returned = 2; break;
+            case "E04": returned = 3; break;
+        }
+
+        return returned; 
+    }
     
 }

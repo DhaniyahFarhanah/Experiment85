@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5627264883218767603}
   - component: {fileID: 5627264883218767602}
   - component: {fileID: 5627264883218767600}
+  - component: {fileID: 7977985588392825331}
   m_Layer: 0
   m_Name: Chaser
   m_TagString: Enemy
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 5627264883218767607}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.680981, y: 1.680981, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -76,8 +77,8 @@ SpriteRenderer:
   m_SortingLayerID: -1747873831
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.16981131, g: 0.15459237, b: 0.15459237, a: 1}
+  m_Sprite: {fileID: 1452032077, guid: 2740a9220ec8ff049907e3db2be2e5de, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -104,7 +105,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
@@ -121,7 +122,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.011376977, y: -0.084943414}
+  m_Offset: {x: -0.014621526, y: -0.022807956}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -132,7 +133,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.96285033, y: 0.6732228}
+  m_Size: {x: 0.44621915, y: 0.8216007}
   m_EdgeRadius: 0
 --- !u!114 &5627264883218767600
 MonoBehaviour:
@@ -148,4 +149,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyId: E02
   enemyHealth: 0
+  enemyDamage: 0
   buffPrefab: {fileID: 3569143461078152730, guid: 19464cbb538fa9e4b874bf8eeca5abde, type: 3}
+--- !u!95 &7977985588392825331
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5627264883218767607}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c4da468794ec36246b51767db8765ad3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

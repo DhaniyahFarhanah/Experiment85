@@ -122,7 +122,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.019752681, y: -0.081105575}
+  m_Offset: {x: -0.03584093, y: -0.006027356}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -133,7 +133,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4128734, y: 0.5779185}
+  m_Size: {x: 0.30204356, y: 0.80672884}
   m_EdgeRadius: 0
 --- !u!114 &8865918912775096994
 MonoBehaviour:
@@ -149,6 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyId: E01
   enemyHealth: 0
+  enemyDamage: 0
   buffPrefab: {fileID: 3569143461078152730, guid: 19464cbb538fa9e4b874bf8eeca5abde, type: 3}
 --- !u!95 &8865918912775096993
 Animator:

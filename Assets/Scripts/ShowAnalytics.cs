@@ -10,6 +10,7 @@ public class ShowAnalytics : MonoBehaviour
     [SerializeField] GameObject mostbuffGM;
 
     [SerializeField] Animator slimeAnimator;
+    [SerializeField] Animator enemyAnimator;
     [SerializeField] TMP_Text slimeName;
     [SerializeField] TMP_Text slimeType;
 
@@ -125,8 +126,8 @@ public class ShowAnalytics : MonoBehaviour
         slimeRate.text = "Slime Rate: " + AnalyticsHolder.Instance.slimeRate.ToString("F2");
 
         accuracy.text = AnalyticsHolder.Instance.accuracy.ToString("F2") + "% Accuracy";
-        shotHit.text = AnalyticsHolder.Instance.shotsHit.ToString() + "/" + AnalyticsHolder.Instance.totalShots.ToString();
-        shotMissed.text = AnalyticsHolder.Instance.shotsMissed.ToString() + " shots missed"; ;
+        shotHit.text = AnalyticsHolder.Instance.shotsHit.ToString() + "/" + AnalyticsHolder.Instance.totalShots.ToString() + " shots hit";
+        shotMissed.text = AnalyticsHolder.Instance.shotsMissed.ToString() + " shots missed"; 
 
         timeTaken.text = "Time Spent: " + AnalyticsHolder.Instance.timeTaken.ToString();
         waveEnded.text = "Ended on Wave " + AnalyticsHolder.Instance.waveEnd.ToString();
@@ -221,6 +222,14 @@ public class ShowAnalytics : MonoBehaviour
             case "S02": slimeAnimator.SetInteger("id", 1); break;
             case "S03": slimeAnimator.SetInteger("id", 2); break;
             case "S04": slimeAnimator.SetInteger("id", 3); break;
+        }
+
+        switch (AnalyticsHolder.Instance.mostHitId)
+        {
+            case "E01": enemyAnimator.SetInteger("index", 0); break;
+            case "E02": enemyAnimator.SetInteger("index", 1); break;
+            case "E03": enemyAnimator.SetInteger("index", 2); break;
+            case "E04": enemyAnimator.SetInteger("index", 3); break;
         }
 
         hpImage.color = Color.green;
