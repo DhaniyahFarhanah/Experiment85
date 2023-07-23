@@ -7,6 +7,8 @@ using UnityEngine.UI;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
+// Script done by: Gerald (Gerald Wei Jie SOH)
+
 public class Dialogue : MonoBehaviour
 {
     public Options optionsScript;

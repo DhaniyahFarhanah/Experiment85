@@ -4,6 +4,7 @@ using UnityEngine;
 
 [System.Serializable]
 
+// Script done by: Gerald (Gerald Wei Jie SOH)
 public class RefBuffData
 {
     public string buffId;

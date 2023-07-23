@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Script done by: Nana (Dhaniyah Farhanah Binte Yusoff)
+// eheh yea this just closes the ui is esc pressed :)
 public class CloseUi : MonoBehaviour
 {
 

@@ -4,6 +4,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Script done by: Nana (Dhaniyah Farhanah Binte Yusoff)
+// showcases all the data
+
 public class ShowAnalytics : MonoBehaviour
 { //I hate myself for this but its 2.30am and i am too lazy to think of a better way to do this. Sorry JY :( -nana
     [SerializeField] GameObject mostHitGM;
@@ -192,7 +195,7 @@ public class ShowAnalytics : MonoBehaviour
             default: numHitTimes.text = "Unidentified"; break;
         }
     }
-    void GetMostBuff()
+    void GetMostBuff() 
     {
         foreach (BuffClass b in buffJSONList)
         {

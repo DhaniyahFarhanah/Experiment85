@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Script done by: Nana (Dhaniyah Farhanah Binte Yusoff)
+// Script done by: Gerald (Gerald Wei Jie SOH)
 public class GameData 
 {
     private static List<CharacterClass> characterList;

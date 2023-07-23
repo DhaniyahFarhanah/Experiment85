@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Script done by: Nana (Dhaniyah Farhanah Binte Yusoff)
 public class CharacterClass
 {
     public string charId;

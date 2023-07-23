@@ -4,9 +4,13 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Script done by: Nana (Dhaniyah Farhanah Binte Yusoff)
+// Script for the slime switcher. it will look through all of the json and display it accordingly.
+
 public class SwitchSlime : MonoBehaviour
 {
     [SerializeField] TMP_Text nameTextBox;
+    [SerializeField] TMP_Text typeTextBox;
     [SerializeField] Animator slimeShowcaseAnim;
     [SerializeField] Animator RightArrow;
     [SerializeField] Animator LeftArrow;
@@ -28,6 +32,7 @@ public class SwitchSlime : MonoBehaviour
      int health;
      int damage;
      int speed;
+    string type;
 
 
     // Start is called before the first frame update
@@ -77,7 +82,7 @@ public class SwitchSlime : MonoBehaviour
 
     }
 
-    void moveRight()
+    void moveRight() //if more than character, return to 1st in the list
     {
         index++;
         if(index >= characterList.Count)
@@ -87,7 +92,7 @@ public class SwitchSlime : MonoBehaviour
 
         SetData();
     }
-    void moveLeft()
+    void moveLeft() //if move left on first character, goes to end of list
     {
         index--;
         if(index < 0)
@@ -110,6 +115,7 @@ public class SwitchSlime : MonoBehaviour
     {
         //populate into private variable
         charName = characterList[index].charName;
+        type = characterList[index].type;
         health = characterList[index].baseStatHealth;
         damage = (int)characterList[index].baseStatDmg;
         speed = (int)characterList[index].baseStatSpeed;
@@ -117,6 +123,7 @@ public class SwitchSlime : MonoBehaviour
 
         //populate into the canvas
         nameTextBox.text = charName;
+        typeTextBox.text = type;
         slimeShowcaseAnim.SetInteger("id", index);
 
         healthStat.toBeFilled = health;

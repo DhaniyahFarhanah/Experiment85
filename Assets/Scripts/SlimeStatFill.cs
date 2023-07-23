@@ -4,6 +4,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Script done by: Nana (Dhaniyah Farhanah Binte Yusoff)
+// this is to control the states of the boxes from the slime selector.
 public class SlimeStatFill : MonoBehaviour
 {
     [SerializeField] GameObject[] statFill;
@@ -25,7 +27,10 @@ public class SlimeStatFill : MonoBehaviour
         SetFill();
     }
 
-    public void SetFill()
+    //Set fill will look through the amount of gameobject boxes. 
+    //eg stattofill = 8, it will change the sprite to fill and the rest to empty.
+
+    public void SetFill() 
     {
         for (int i = 0; i < statFill.Length; i++)
         {

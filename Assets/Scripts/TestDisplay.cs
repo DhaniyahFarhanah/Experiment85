@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+// Script done by: Nana (Dhaniyah Farhanah Binte Yusoff)
+// Just holds the textboxes for the debug console
 public class TestDisplay : MonoBehaviour
 {
     public TMP_Text healthDisplay;

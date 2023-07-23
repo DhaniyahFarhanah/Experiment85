@@ -5,7 +5,8 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
-
+// Script done by: Nana (Dhaniyah Farhanah Binte Yusoff)
+// Controls the lab's wave situation.
 //I finally got hit with the existential crisis...
 public class WaveHandler : MonoBehaviour
 {
@@ -330,7 +331,7 @@ public class WaveHandler : MonoBehaviour
         }
     }
 
-    void SetWaveAnalytics()
+    void SetWaveAnalytics() //saves analysis
     {
         AnalyticsHolder.Instance.win = win;
         AnalyticsHolder.Instance.timeTaken = hour.ToString("00") + ":" + min.ToString("00") + ":" + sec.ToString("00");

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Script done by: Nana (Dhaniyah Farhanah Binte Yusoff)
+// changes projectile direction for 8 dimentional shooting.
 public class FireRotation : MonoBehaviour
 {
     private float angle;

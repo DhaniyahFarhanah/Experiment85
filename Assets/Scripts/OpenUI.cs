@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+// Script done by: Nana (Dhaniyah Farhanah Binte Yusoff)
+// Script done by: Gerald (Gerald Wei Jie SOH)
+// Opens designated UI when player interacts with item in saferoom
 public class OpenUI : MonoBehaviour
 {
     [SerializeField] GameObject Interact;

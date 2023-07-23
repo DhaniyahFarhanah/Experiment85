@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+// Script done by: Nana (Dhaniyah Farhanah Binte Yusoff)
+// Buff script is attached to Buff Prefab and populates the correct values and manipulates the correct values taken from JSON and scripts
+
 public class BuffScript : MonoBehaviour
 {
+
     //====Json list====
     private List<BuffClass> buffList;
 
@@ -14,6 +18,7 @@ public class BuffScript : MonoBehaviour
 
     private GameObject player;
 
+    //===stats from JSON====
     public string buffId = "buff1";
     private string buffName;
     private string stat;
@@ -46,13 +51,13 @@ public class BuffScript : MonoBehaviour
     void Update()
     {
         
-        if (canPickUp)
+        if (canPickUp) //allows pickup when in range
         {
-            if (Input.GetButtonDown("Interact"))
+            if (Input.GetButtonDown("Interact")) //on enter press
             {
                 GiveBuff();
 
-                switch (buffId)
+                switch (buffId) //analytics stuff
                 {
                     case "buff1": player.GetComponent<PlayerLab>().numOfBuff1Taken++; break;
                     case "buff2": player.GetComponent<PlayerLab>().numOfBuff2Taken++; break;
@@ -63,7 +68,8 @@ public class BuffScript : MonoBehaviour
         }
 
         delayTime -= Time.deltaTime;
-        if(delayTime < time / 2)
+
+        if(delayTime < time / 2) //plays blinking animation if about to disappear
         {
             if (!blinkPlaying)
             {
@@ -71,14 +77,14 @@ public class BuffScript : MonoBehaviour
             }
         }
 
-        if(delayTime < 0)
+        if(delayTime < 0) //destroy if times up
         {
             Destroy(gameObject);
         }
         
     }
 
-    void FindInJson()
+    void FindInJson() //populates values with the json 
     {
         foreach(BuffClass b in buffList)
         {
@@ -93,7 +99,7 @@ public class BuffScript : MonoBehaviour
         }
     }
 
-    void ChangeSprite()
+    void ChangeSprite() //changes the sprite color because no custom sprites :C
     {
         SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
 
@@ -112,7 +118,7 @@ public class BuffScript : MonoBehaviour
         }
     }
 
-    IEnumerator Blink()
+    IEnumerator Blink() //plays blink manually
     {
         blinkPlaying = true;
         SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
@@ -126,24 +132,25 @@ public class BuffScript : MonoBehaviour
         }
     }
 
-    void PopulateCanvas()
+    void PopulateCanvas() //populates the canvas with a description and name
     {
         nameTextBox.text = buffName;
         descriptionTextBox.text = buffDescription;
     }
 
-    void GiveBuff()
+    void GiveBuff() //gives the buff to player
     {
         PlayerLab playerStat = player.GetComponent<PlayerLab>();
-        playerStat.numOfBuffsTaken++;
+        playerStat.numOfBuffsTaken++; //Analytics
 
+        //wanted to have a warning like "stat at max value" and don't allow pick up but uhhhh lazy
         switch (stat)
         {
             case "baseStatHealth": 
 
                 if(playerStat.currentStatHealth < playerStat.MaxHealth)
                 {
-                    playerStat.currentStatHealth += (int) value;
+                    playerStat.currentStatHealth += (int) value; 
                 }
 
                 break;
@@ -176,23 +183,23 @@ public class BuffScript : MonoBehaviour
                 break;
         }
 
-        Destroy(gameObject);
+        Destroy(gameObject); //if picked up, destroy it
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Buff"))
         {
-            canPickUp = true;
-            Description.SetActive(true);
+            canPickUp = true; //allows pick up in UPDATE
+            Description.SetActive(true); //description shows
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Buff"))
         {
-            canPickUp = false;
-            Description.SetActive(false);
+            canPickUp = false; //don't allow pick up 
+            Description.SetActive(false); //dont show the description
         }
     }
 

@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-//Analytics holder uses a singleton pattern to make the data recording accessable throughout the whole runtime.
+// Script done by: Nana (Dhaniyah Farhanah Binte Yusoff)
+// Analytics holder uses a singleton pattern to make the data recording accessable throughout the whole runtime.
 public class AnalyticsHolder
 {
     //testing singleton method to do the data tracking
@@ -14,6 +15,7 @@ public class AnalyticsHolder
     //constructor
     public AnalyticsHolder() { }
 
+    //check instance. if already exists, don't create new
     public static AnalyticsHolder Instance
     {
         get

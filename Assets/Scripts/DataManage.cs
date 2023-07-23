@@ -5,6 +5,10 @@ using UnityEngine;
 using System.IO;
 using Newtonsoft.Json.Linq;
 
+// Script done by: Nana (Dhaniyah Farhanah Binte Yusoff)
+// Script done by: Gerald (Gerald Wei Jie SOH)
+
+//Data manager for all the data created. JSON stuff. Followed JY stuff
 public class DataManage : MonoBehaviour
 {
     //This is to populate the data from json into the respective data holders (RefCharacterData & CharacterClass)
@@ -36,7 +40,7 @@ public class DataManage : MonoBehaviour
         return data;
     }
 
-    public void SaveAnalytics()
+    public void SaveAnalytics() //saves the analytics into an external file
     {
         if (!callOnce && !string.IsNullOrEmpty(AnalyticsHolder.Instance.slimeChosen))
         {

@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+// Script done by: Gerald (Gerald Wei Jie SOH)
 public class BuffClass
 {
     public string  buffId;

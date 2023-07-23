@@ -5,12 +5,13 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.VFX;
 
+// Script done by: Nana (Dhaniyah Farhanah Binte Yusoff)
+// script that controls enemy behaviour and drops.
 public class EnemyController : MonoBehaviour
 {
 
     //=====Json List=====
     private List<EnemyClass> enemyJsonList;
-    private List<BuffClass> enemyBuffList;
 
     private GameObject player;
     private Rigidbody2D enemyRB;
@@ -20,7 +21,7 @@ public class EnemyController : MonoBehaviour
     PlayerLab playerStats; 
 
 
-    //this all can be used as private if using json but public for now cause uhhh actually I'mma make switch case to keep them private
+    //values to be populated by JSON
     public string enemyId;
     private string enemyName;
     public float enemyHealth;
@@ -36,7 +37,7 @@ public class EnemyController : MonoBehaviour
     private string buffDrop;
     Vector3 spawnBuffLocation;
     
-
+    // new class to stop individual info for split
     class Buff
     {
         public string buffId;
@@ -48,7 +49,6 @@ public class EnemyController : MonoBehaviour
     private void Awake()
     {
         enemyJsonList = GameData.GetEnemyList();
-        enemyBuffList = GameData.GetBuffList();
         GetJsonReading();
         enemyRB = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
@@ -62,16 +62,17 @@ public class EnemyController : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
 
+        //sets animator cause last minute add ahahahahah
         anim.SetInteger("index", AnimSwitchCase());
-        //TempSwitchCaseStuff();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-      if(enemyHealth <= 0)
+      if(enemyHealth <= 0) //if health less than or = to 0
         {
-            spawnBuffLocation = gameObject.transform.position;
+            spawnBuffLocation = gameObject.transform.position; //gets where enemy dies at
             Die();
         }
 
@@ -87,9 +88,9 @@ public class EnemyController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject == player && !playerStats.isInvisable)
+        if (collision.gameObject == player && !playerStats.isInvisable) //if the player is contacted on and the slime is allowed to get hurt then do damage
         {
-            DoDamage();
+            DoDamage(); 
         }
     }
 
@@ -131,12 +132,15 @@ public class EnemyController : MonoBehaviour
         playerStats.SetToDislay();
         Debug.Log("Attack! Damage dealt: " + enemyDamage);
     }
-
+    
+    //d i e
     void Die()
     {
-        int hasDrop = Random.Range(0, 101);
+        int hasDrop = Random.Range(1, 101);
 
-        if(buffDropRate >= hasDrop)
+        //if the random is less than drop rate, drop the buff
+        //eg. enemy1 has 80% drop rate. Random = 67. since 67 < drop rate. drops a buff
+        if(hasDrop <= buffDropRate)
         {
             SpawnBuff();
 
@@ -145,9 +149,11 @@ public class EnemyController : MonoBehaviour
 
         if(waveHandler != null)
         {
+            //analytics
             GameObject.FindGameObjectWithTag("WaveHandler").GetComponent<WaveHandler>().enemyNeeded--;
             playerStats.enemiesDefeated++;
 
+            //analytics
             switch (enemyId)
             {
                 case "E01": playerStats.numOfEnemy1Killed++; break;
@@ -160,7 +166,7 @@ public class EnemyController : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void GetJsonReading()
+    void GetJsonReading() //get json readings and populate into variables
     {
         foreach(EnemyClass e in enemyJsonList)
         {
@@ -176,7 +182,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    void SplitDropStuff(string buffDrop)
+    void SplitDropStuff(string buffDrop) //splits the string of "buff1#25@buff2#50" blah blah from json
     {
         buffSpawnList.Clear();
 
@@ -207,17 +213,49 @@ public class EnemyController : MonoBehaviour
 
     }
 
+    //this SpawnBuff() function...made me so mad :'c
+
+    /*so the reading for the JSON is like this
+      eg.
+      buff1 20
+      buff2 60
+      buff3 100
+
+      the number is the max range. it would convert like this:
+
+      20 < buff2 < 60
+
+      making buff 1 have a 20% drop rate
+      buff 2 have a 40% drop rate.
+      buff 3 have a 40% drop rate
+      making it a total of 100%. Since the percentage that it drops ANYTHING is in another reading back in update. 
+
+      the math took FOREVER OMG MY BRAIN WAS SMOKING MY MIND NO WORK. Had to change how we stored the json reading to come up
+      with an effective way to do this calculation.
+
+     cause previously it was like
+      eg.
+      buff1 20
+      buff2 40
+      buff3 40
+
+      but I was like HOW TO DO IN CODE AAAHHHHH.
+
+      sorry.
+      thought it was interesting :D
+     */
+
     void SpawnBuff()
     {
         GameObject.FindGameObjectWithTag("WaveHandler").GetComponent<WaveHandler>().numOfBuffsDropped++;
 
-        int drop = Random.Range(0, 101);
-        int prev = 0;
+        int drop = Random.Range(1, 101);
+        int prev = 0; 
 
         //I can't think... math is hard
-        //TODO MATH (its not working obviously
         foreach(Buff buff in buffSpawnList)
         {
+            //if not 100
             if(drop <= buff.buffDropPercentage)
             {
                 if (prev <= drop)
@@ -228,7 +266,7 @@ public class EnemyController : MonoBehaviour
 
                 else
                 {
-                    prev = buff.buffDropPercentage;
+                    prev = buff.buffDropPercentage; //repopulate with the previous reading
                 }
 
             }
@@ -245,8 +283,10 @@ public class EnemyController : MonoBehaviour
 
         //Instantiate Buff
         GameObject buffSpawned = Instantiate(buffPrefab, spawnBuffLocation, Quaternion.identity);
+        //returns buffId so it populates with buffJSOn
         buffSpawned.GetComponent<BuffScript>().buffId = buffDropId;
 
+        //analytics
         switch (buffDropId)
         {
             case "buff1": GameObject.FindGameObjectWithTag("WaveHandler").GetComponent<WaveHandler>().numOfBuff1++; break;
@@ -259,7 +299,7 @@ public class EnemyController : MonoBehaviour
         //buffscript will do the rest.
     }
 
-
+    //switches animator controller index
     int AnimSwitchCase()
     {
         int returned = 0;

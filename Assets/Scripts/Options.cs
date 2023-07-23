@@ -5,6 +5,8 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
+// Script done by: Gerald (Gerald Wei Jie SOH)
+
 public class Options : MonoBehaviour
 {
     public Dialogue dialogue;

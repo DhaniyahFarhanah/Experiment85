@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Script done by: Nana (Dhaniyah Farhanah Binte Yusoff)
+//on invisibility, the player is able to phase through the enemies. But it shouldn't phase through walls
 public class PhasePreventer : MonoBehaviour
 {
     //This is for preventing the slime from phasing through walls. nothing too important

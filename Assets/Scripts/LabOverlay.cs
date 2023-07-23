@@ -4,6 +4,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Script done by: Nana (Dhaniyah Farhanah Binte Yusoff)
+// This just holds all the items to be used for vaue populating. Attached to canvas.
 public class LabOverlay : MonoBehaviour
 {
     public TMP_Text waveTextBox;

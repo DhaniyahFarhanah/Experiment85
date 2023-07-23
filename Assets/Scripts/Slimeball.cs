@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Script done by: Nana (Dhaniyah Farhanah Binte Yusoff)
+//slimeball controller, attached to slimeball prefab. It has different conditions due to the type of the player.
 public class Slimeball : MonoBehaviour
 {
     public float speed;
@@ -49,15 +51,17 @@ public class Slimeball : MonoBehaviour
     {
         rb.velocity = transform.up * speed * 2f;
 
-        //scales the size
+        //scales the size to big
         if(type == "Powerful")
         {
             gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
         }
+        //scales size to smol
         else if(type == "Piercing")
         {
             gameObject.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
         }
+        //scales size to normal
         else
         {
             gameObject.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
@@ -77,7 +81,7 @@ public class Slimeball : MonoBehaviour
         {
             collision.gameObject.GetComponent<EnemyController>().enemyHealth -= dmg;
 
-            if (start)
+            if (start) //since this one phases through enemies. it will count a hit only on the first enemy it hits.
             {
                 GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerLab>().shotsHit++;
                 GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerLab>().amtOfDamageDealt += GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerLab>().currentStatDmg;

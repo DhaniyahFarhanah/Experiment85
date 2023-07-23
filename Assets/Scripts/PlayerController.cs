@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Script done by: Nana (Dhaniyah Farhanah Binte Yusoff)
+// The main script to get player stats from json and control sprite and animator
 public class PlayerController : MonoBehaviour
 {
     public string charId = "S01";

@@ -5,8 +5,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Script done by: Nana (Dhaniyah Farhanah Binte Yusoff)
+
 //=========PLAYER LAB=============
 //This information is seperated due to the temporary upgrades during a run.
+//this is where all the dynamic values are kept. 
 
 
 public class PlayerLab : MonoBehaviour
@@ -333,7 +336,7 @@ public class PlayerLab : MonoBehaviour
 
     }   
 
-    public void SetPlayerLabAnalytics()
+    public void SetPlayerLabAnalytics() //analytic setter
     {
         AnalyticsHolder.Instance.slimeChosen = Id;
         AnalyticsHolder.Instance.numOfFailedAttempts = numOfFailedAttempts;
@@ -376,6 +379,7 @@ public class PlayerLab : MonoBehaviour
     }
 
     //yea im sorry im not manually using the lists my brain is fried
+    //finds the enemy id that hurt the player the most
     string FindMaxEnemy()
     {
         int max = 0;

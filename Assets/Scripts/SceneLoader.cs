@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Script done by: Nana (Dhaniyah Farhanah Binte Yusoff)
+
 //===============SCENE LOADER===============
 // This script allows the scene to move onto the next scene in the build setting with a transition. Now allows immediate transitions or without the transition.
 public class SceneLoader : MonoBehaviour

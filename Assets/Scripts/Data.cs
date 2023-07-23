@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
+
+// Script done by: Nana (Dhaniyah Farhanah Binte Yusoff)
+// Script done by: Gerald (Gerald Wei Jie SOH)
+
 public class Data 
 {
-    //The fucking name has to match the fucking table name >:C
     public List<RefCharacterData> Character;
     public List<RefDialogueData> Dialogue;
     public List<RefNPCData> NPC;

@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
+// Script done by: Nana (Dhaniyah Farhanah Binte Yusoff)
+// Script for pause menu
+
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] GameObject pauseMenu;
@@ -11,13 +14,13 @@ public class PauseMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        DontDestroyOnLoad(this); //always have pause menu
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        //open pause always
         if (Input.GetButtonDown("Cancel"))
         {
             pauseMenu.SetActive(true);
@@ -37,6 +40,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         int index = SceneManager.GetActiveScene().buildIndex;
 
+        //on restart, if in lab(wave) then load to scene manager. else in main menu, restart the main menu
         if(index == 0)
         {
             //if main menu, restart main menu

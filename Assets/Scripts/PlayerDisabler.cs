@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Script done by: Nana (Dhaniyah Farhanah Binte Yusoff)
+// disables player movement and shooting when UI are active
 public class PlayerDisabler : MonoBehaviour
 {
     private GameObject player;
 
-    [SerializeField] GameObject[] UI;
+    [SerializeField] GameObject[] UI; //array for more customization
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +25,7 @@ public class PlayerDisabler : MonoBehaviour
         
     }
 
-    bool checkDisable()
+    bool checkDisable() //foreaches the array and if any are open, disable player
     {
         bool toReturn = false;
 

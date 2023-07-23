@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Script done by: Nana (Dhaniyah Farhanah Binte Yusoff)
+// This script just returns game saferoom if lose and main menu if win.
 public class MoveBack : MonoBehaviour
 {
     [SerializeField] int safeRoomIndex;
@@ -27,12 +29,15 @@ public class MoveBack : MonoBehaviour
                 if (!win)
                 {
                     GameObject.FindGameObjectWithTag("SceneLoader").GetComponent<SceneLoader>().LoadChosenLevel(safeRoomIndex);
+                    
 
                 }
                 //supposed to end game if win so go to main menu
                 else
                 {
-                    GameClass.SetCurrentSlimeId("S01"); //simulate new game
+                    //set to defaults in gameclass. Simulates a "new game"
+                    GameClass.SetCurrentSlimeId("S01");
+                    GameClass.hasFirstTalk = false;
                     GameObject.FindGameObjectWithTag("SceneLoader").GetComponent<SceneLoader>().LoadChosenLevel(mainMenuIndex);
 
                 }

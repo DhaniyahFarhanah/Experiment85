@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Script done by: Nana (Dhaniyah Farhanah Binte Yusoff)
+// Script done by: Gerald (Gerald Wei Jie SOH)
+// Game Controller just makes it a don't destroy on load.
+
 public class GameController : MonoBehaviour
 {
     private bool gameInProgress;
@@ -19,10 +23,10 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     { 
-        //records time 
+        //records time that the game ran for since main menu.
         if (gameInProgress)
         {
-            //record time elapsed
+            //record time elapsed. Analytics
             hour = (int) Time.unscaledTime / 3600;
             minute = (int) (Time.unscaledTime % 3600) / 60;
             second = (int) Time.unscaledTime % 60;

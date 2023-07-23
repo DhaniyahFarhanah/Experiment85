@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
+
+// Script done by: Nana (Dhaniyah Farhanah Binte Yusoff)
 public class RefCharacterData
 {
     public string charId;

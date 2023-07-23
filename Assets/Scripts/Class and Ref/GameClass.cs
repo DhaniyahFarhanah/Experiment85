@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Script done by: Nana (Dhaniyah Farhanah Binte Yusoff)
+// sets static game variables to persist between scenes
 public class GameClass
 {
     //Here is holds all the data to be held between scenes. Default is S01

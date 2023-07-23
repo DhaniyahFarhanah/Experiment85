@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+// Script done by: Gerald (Gerald Wei Jie SOH)
 public class EnemyClass
 {
     public string enemyId;
