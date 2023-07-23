@@ -41,6 +41,8 @@ public class WaveHandler : MonoBehaviour
     public int enemyNeeded;
     [SerializeField] GameObject endGameDoor;
     [SerializeField] GameObject analytics;
+    private string lastWave;
+    private bool endedLoop;
 
 
     //====Display Stuff=====
@@ -75,6 +77,7 @@ public class WaveHandler : MonoBehaviour
 
     private void Awake()
     {
+        endedLoop = false;
         dataManagerScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<DataManage>();
         waveJsonList = GameData.GetWaveList();
         overlay = waveOverlay.GetComponent<LabOverlay>();
@@ -186,15 +189,19 @@ public class WaveHandler : MonoBehaviour
                     SpawnWave();
                     Debug.Log("Stop Wave");
                 }
-                else if(nextWave == -2)
+                else if(nextWave == -2) //if -2 aka end of the json, keep adding last wave enemyid into the new one. so it will keep getting harder and harder if they want to keep going endless
                 {
+                    endedLoop = true;
+                    lastWave = enemyId;
                     waveId = initialWaveID;
+
                     GetFromJson();
                     SpawnWave();
                 }
 
                 else //continue wave
                 {
+                    
                     waveId = nextWave;
                    
                     GetFromJson(); //populate with new reading
@@ -321,13 +328,18 @@ public class WaveHandler : MonoBehaviour
 
         foreach (WaveClass wave in waveJsonList)
         {
-            if(waveId == wave.waveId)
+            if (waveId == wave.waveId)
             {
                 waveId = wave.waveId;
                 nextWave = wave.nextWave;
                 enemyId = wave.enemyId;
                 currentLevel = wave.keyCardId;
             }
+
+        }
+        if (endedLoop)
+        {
+            enemyId = enemyId + "@" + lastWave; //adds wave 13 to new waves
         }
     }
 
