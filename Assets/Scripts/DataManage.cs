@@ -41,15 +41,24 @@ public class DataManage : MonoBehaviour
         if (!callOnce && !string.IsNullOrEmpty(AnalyticsHolder.Instance.slimeChosen))
         {
             AnalyticsHolder analytics = new AnalyticsHolder();
-            string filePath = Path.Combine(Application.persistentDataPath + "/test.csv");
+            string filePath = Path.Combine(Application.persistentDataPath + "/export.csv");
             string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            string header = "timestamp,charId,winLose,waveId,timeTaken,enemiesDefeated,buffPicked,favouriteBuff,hitsTaken,accuracy";
+            string header = "timestamp,charId,slimeStats,shotStats,winLose,waveId,timeTaken,enemiesDefeated,buffPicked,favouriteBuff,damageReceived,hitsTaken,damageDealt,precision,overallAccuracy";
             string data = timestamp + "," +
-                        AnalyticsHolder.Instance.slimeChosen + "," + AnalyticsHolder.Instance.win + "," + AnalyticsHolder.Instance.waveEnd + "," +
+                        AnalyticsHolder.Instance.slimeChosen + "," + 
+                        "Health:" + AnalyticsHolder.Instance.health + "|Damage:" + 
+                        AnalyticsHolder.Instance.damage + "|Speed:" + AnalyticsHolder.Instance.speed + "," +
+                        "shotSpeed:" + AnalyticsHolder.Instance.shotSpeed + "|Range:" + 
+                        AnalyticsHolder.Instance.range + "|slimeRate:" + AnalyticsHolder.Instance.slimeRate + "," +
+                        AnalyticsHolder.Instance.win + "," + AnalyticsHolder.Instance.waveEnd + "," +
                         AnalyticsHolder.Instance.timeTaken + "," + AnalyticsHolder.Instance.enemiesDefeated + "," +
-                        AnalyticsHolder.Instance.buffsPicked + "," + AnalyticsHolder.Instance.mostTakenBuff + "," +
-                        "E01#" + AnalyticsHolder.Instance.hitByEnemy1 + "@" + "E02#" + AnalyticsHolder.Instance.hitByEnemy2 + "@" +
-                        "E03#" + AnalyticsHolder.Instance.hitByEnemy3 + "@" + "E04#" + AnalyticsHolder.Instance.hitByEnemy4 + "," +
+                        "buffsPicked:" + AnalyticsHolder.Instance.buffsPicked + "/" + AnalyticsHolder.Instance.buffsDropped + "," +
+                        AnalyticsHolder.Instance.mostTakenBuff + "," +
+                        AnalyticsHolder.Instance.damageReceived + "," +
+                        "E01#" + AnalyticsHolder.Instance.hitByEnemy1 + "@E02#" + AnalyticsHolder.Instance.hitByEnemy2 + "@E03#" + 
+                        AnalyticsHolder.Instance.hitByEnemy3 + "@E04#" + AnalyticsHolder.Instance.hitByEnemy4 + "," +
+                        AnalyticsHolder.Instance.damageDealt + "," +
+                        "shotsHit:" + AnalyticsHolder.Instance.shotsHit + "/" + AnalyticsHolder.Instance.totalShots + "," +
                         AnalyticsHolder.Instance.accuracy;
            
                 if (!File.Exists(filePath))
