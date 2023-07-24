@@ -44,8 +44,9 @@ public class AnalyticsHolder
     public int waveEndId { get; set; } //wave the game ended on but id based on data .
     public int buffsPicked { get; set; } //num of buffs picked .
     public int buffsDropped { get; set; } //num of buffs dropped .
+    public string killedBy { get; set; } //id of enemy that killed player
 
-   
+
     //====player stat end on=====
     public int health { get; set; } //health player ends on 
     public float damage { get; set; } //damage player ends on 

@@ -64,6 +64,10 @@ public class PlayerController : MonoBehaviour
         {
             Movement();
         }
+        else
+        {
+            rb.velocity = Vector2.zero;
+        }
     }
 
     void ProcessInputs()

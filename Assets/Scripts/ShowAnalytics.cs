@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Bson;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -28,6 +29,9 @@ public class ShowAnalytics : MonoBehaviour
     [SerializeField] TMP_Text accuracy;
     [SerializeField] TMP_Text shotHit;
     [SerializeField] TMP_Text shotMissed;
+
+    [SerializeField] TMP_Text lastHitEnemy;
+    [SerializeField] Animator lastHitAnimator;
 
     [SerializeField] TMP_Text timeTaken;
     [SerializeField] TMP_Text waveEnded;
@@ -80,6 +84,11 @@ public class ShowAnalytics : MonoBehaviour
         characterJSONList = GameData.GetCharacterList();
         enemyJSONlist = GameData.GetEnemyList();
         buffJSONList = GameData.GetBuffList();
+
+        waveEnded.color = Color.white;
+        damageDealt.color = Color.white;
+        enemiesDefeated.color = Color.white;
+
     }
 
     // Update is called once per frame
@@ -138,6 +147,8 @@ public class ShowAnalytics : MonoBehaviour
         damageReceived.text = "Total Damage Received: " + AnalyticsHolder.Instance.damageReceived.ToString();
         damageDealt.text = "Total Damage Dealt: " + AnalyticsHolder.Instance.damageDealt.ToString();
 
+        GetKilledBy();
+
         hitTimes.text = "Hit " + AnalyticsHolder.Instance.hitsTaken.ToString() + " times";
         hazmatHit.text = AnalyticsHolder.Instance.hitByEnemy1.ToString() + " time(s) by HAZMAT"; 
         chaserHit.text = AnalyticsHolder.Instance.hitByEnemy2.ToString() + " time(s) by CHASER";
@@ -161,6 +172,7 @@ public class ShowAnalytics : MonoBehaviour
 
         SetSprites();
 
+        CheckHighscores();
     }
 
     void GetSlimeName()
@@ -195,6 +207,18 @@ public class ShowAnalytics : MonoBehaviour
             default: numHitTimes.text = "Unidentified"; break;
         }
     }
+    void GetKilledBy()
+    {
+        foreach (EnemyClass e in enemyJSONlist)
+        {
+            if (e.enemyId == AnalyticsHolder.Instance.mostHitId)
+            {
+                lastHitEnemy.text = e.enemyName;
+
+            }
+        }
+    }
+
     void GetMostBuff() 
     {
         foreach (BuffClass b in buffJSONList)
@@ -235,12 +259,52 @@ public class ShowAnalytics : MonoBehaviour
             case "E04": enemyAnimator.SetInteger("index", 3); break;
         }
 
+        switch (AnalyticsHolder.Instance.killedBy)
+        {
+            case "E01": enemyAnimator.SetInteger("index", 0); break;
+            case "E02": enemyAnimator.SetInteger("index", 1); break;
+            case "E03": enemyAnimator.SetInteger("index", 2); break;
+            case "E04": enemyAnimator.SetInteger("index", 3); break;
+        }
+
+        switch (AnalyticsHolder.Instance.killedBy)
+        {
+            case "E01": lastHitAnimator.SetInteger("index", 0); break;
+            case "E02": lastHitAnimator.SetInteger("index", 1); break;
+            case "E03": lastHitAnimator.SetInteger("index", 2); break;
+            case "E04": lastHitAnimator.SetInteger("index", 3); break;
+        }
+
         hpImage.color = Color.green;
         slimerateImage.color = Color.blue;
         damageImage.color = Color.red;
         shotSpeedImage.color = Color.yellow;
 
 
+    }
+
+    void CheckHighscores()
+    {
+        if(AnalyticsHolder.Instance.waveEnd > GameClass.GetWaveHighscore())
+        {
+            GameClass.SetWaveHighscore(AnalyticsHolder.Instance.waveEnd);
+            waveEnded.text = "(NEW!) " + waveEnded.text;
+            waveEnded.color = Color.yellow;
+        }
+
+        if(AnalyticsHolder.Instance.enemiesDefeated > GameClass.GetEnemiesDefeatedHighscore())
+        {
+            GameClass.SetEnemiesHighscore(AnalyticsHolder.Instance.enemiesDefeated);
+            enemiesDefeated.text = "(NEW!) " + enemiesDefeated.text;
+            enemiesDefeated.color = Color.yellow;
+        }
+
+        if(AnalyticsHolder.Instance.damageDealt > GameClass.GetDamageHighscore())
+        {
+            GameClass.SetDamageHighscore(AnalyticsHolder.Instance.damageDealt);
+            damageDealt.text = "(NEW!) " + damageDealt.text;
+            damageDealt.color = Color.yellow;
+        }
     }
 
 }

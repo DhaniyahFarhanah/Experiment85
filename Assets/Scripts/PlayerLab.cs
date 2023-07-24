@@ -79,6 +79,8 @@ public class PlayerLab : MonoBehaviour
     private int hitByEnemy3;
     private int hitByEnemy4;
 
+    private string lastHit;
+
 
 
     private void Awake()
@@ -216,6 +218,7 @@ public class PlayerLab : MonoBehaviour
         StartCoroutine(InvisibilityFrames());
         attackedTimes++; //for debug
 
+        lastHit = collided.GetComponent<EnemyController>().enemyId;
         amtOfDamageDealt += collided.GetComponent<EnemyController>().enemyDamage;
 
         string hitById = collided.GetComponent<EnemyController>().enemyId;
@@ -229,6 +232,7 @@ public class PlayerLab : MonoBehaviour
         }
 
         display.debug.text = "Hit " + attackedTimes.ToString() + " time(s)" + "\n" + "Hit by: " + collided.name + "\n"; //for debug
+        
 
     }
 
@@ -262,7 +266,7 @@ public class PlayerLab : MonoBehaviour
 
     }
 
-    void Die()
+    void Die() //disable movement and stop character
     {
         GameObject.FindGameObjectWithTag("WaveHandler").GetComponent<WaveHandler>().end = true;
         GameObject.FindGameObjectWithTag("WaveHandler").GetComponent<WaveHandler>().win = false;
@@ -375,6 +379,7 @@ public class PlayerLab : MonoBehaviour
         AnalyticsHolder.Instance.hitByEnemy3 = hitByEnemy3;
         AnalyticsHolder.Instance.hitByEnemy4 = hitByEnemy4;
         AnalyticsHolder.Instance.mostHitId = FindMaxEnemy();
+        AnalyticsHolder.Instance.killedBy = lastHit;
 
     }
 
@@ -409,11 +414,11 @@ public class PlayerLab : MonoBehaviour
     public void SetToDislay() //to show in the canvas for debugging (for now)
     {
         display.healthDisplay.text = currentStatHealth.ToString();
-        display.damageDisplay.text = currentStatDmg.ToString();
-        display.speedDisplay.text = currentStatSpeed.ToString();
-        display.shotSpeedDisplay.text = currentStatShotSpeed.ToString();
-        display.rangeDisplay.text = currentStatRange.ToString();
-        display.slimeRateDisplay.text = currentStatSlimeRate.ToString();
+        display.damageDisplay.text = currentStatDmg.ToString("F2");
+        display.speedDisplay.text = currentStatSpeed.ToString("F2");
+        display.shotSpeedDisplay.text = currentStatShotSpeed.ToString("F2");
+        display.rangeDisplay.text = currentStatRange.ToString("F2");
+        display.slimeRateDisplay.text = currentStatSlimeRate.ToString("F2");
 
     }
 }
