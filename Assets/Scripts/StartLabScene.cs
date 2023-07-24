@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Script done by: Nana (Dhaniyah Farhanah Binte Yusoff)
+// allows player to move to the wave scene and play a round.
+
 public class StartLabScene : MonoBehaviour
 {
     [SerializeField] GameObject InteractSprite;

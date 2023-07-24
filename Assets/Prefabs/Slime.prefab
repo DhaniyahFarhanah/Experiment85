@@ -144,7 +144,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2136096971
   m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 3a77c80c3e6a465489d36768e6e17621, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -311,6 +311,7 @@ MonoBehaviour:
   redSlime: {fileID: 22100000, guid: c00412ba87941044baf34c3daa3e4a9f, type: 2}
   greenSlime: {fileID: 22100000, guid: 8b08c3ed737421c4cb9637beb0c98a6d, type: 2}
   blueSlime: {fileID: 22100000, guid: 953fe6d6fd2f45c479ab38bbbb7392ec, type: 2}
+  disabled: 0
 --- !u!114 &6486326859359001859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -339,8 +340,22 @@ MonoBehaviour:
   MaxRange: 10
   MaxSlimeRate: 0.1
   isInvisable: 0
+  disabled: 0
   slimeballPrefab: {fileID: 8809500095983043618, guid: bf7ce63287eeefb43b9ca27292c22857, type: 3}
   firepoint: {fileID: 6210851091323907781}
+  shotsHit: 0
+  enemiesDefeated: 0
+  numOfBuffsTaken: 0
+  amtOfDamageReceived: 0
+  amtOfDamageDealt: 0
+  numOfBuff1Taken: 0
+  numOfBuff2Taken: 0
+  numOfBuff3Taken: 0
+  numOfBuff4Taken: 0
+  numOfEnemy1Killed: 0
+  numOfEnemy2Killed: 0
+  numOfEnemy3Killed: 0
+  numOfEnemy4Killed: 0
 --- !u!95 &2624216785622779818
 Animator:
   serializedVersion: 4

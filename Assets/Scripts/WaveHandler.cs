@@ -7,7 +7,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 // Script done by: Nana (Dhaniyah Farhanah Binte Yusoff)
 // Controls the lab's wave situation.
-//I finally got hit with the existential crisis...
+
 public class WaveHandler : MonoBehaviour
 {
     //=====Json Lists=====
