@@ -261,14 +261,6 @@ public class ShowAnalytics : MonoBehaviour
 
         switch (AnalyticsHolder.Instance.killedBy)
         {
-            case "E01": enemyAnimator.SetInteger("index", 0); break;
-            case "E02": enemyAnimator.SetInteger("index", 1); break;
-            case "E03": enemyAnimator.SetInteger("index", 2); break;
-            case "E04": enemyAnimator.SetInteger("index", 3); break;
-        }
-
-        switch (AnalyticsHolder.Instance.killedBy)
-        {
             case "E01": lastHitAnimator.SetInteger("index", 0); break;
             case "E02": lastHitAnimator.SetInteger("index", 1); break;
             case "E03": lastHitAnimator.SetInteger("index", 2); break;
