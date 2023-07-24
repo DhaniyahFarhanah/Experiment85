@@ -420,5 +420,22 @@ public class PlayerLab : MonoBehaviour
         display.rangeDisplay.text = currentStatRange.ToString("F2");
         display.slimeRateDisplay.text = currentStatSlimeRate.ToString("F2");
 
+        if(currentStatHealth == MaxHealth)
+        {
+            display.healthDisplay.text = currentStatHealth.ToString() + " (MAX)";
+        }
+        if(currentStatDmg == MaxDmg)
+        {
+            display.damageDisplay.text = currentStatDmg.ToString("F2") + " (MAX)"; 
+        }
+        if(currentStatSpeed == MaxSpeed)
+        {
+            display.shotSpeedDisplay.text = currentStatShotSpeed.ToString("F2") + " (MAX)";
+        }
+        if(currentStatSlimeRate == MaxSlimeRate)
+        {
+            display.slimeRateDisplay.text = currentStatSlimeRate.ToString("F2") + " (MAX)";
+        }
+
     }
 }
