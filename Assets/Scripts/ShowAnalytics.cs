@@ -11,9 +11,11 @@ public class ShowAnalytics : MonoBehaviour
 { //I hate myself for this but its 2.30am and i am too lazy to think of a better way to do this. Sorry JY :( -nana
     [SerializeField] GameObject mostHitGM;
     [SerializeField] GameObject mostbuffGM;
+    [SerializeField] GameObject lastHit;
 
     [SerializeField] Animator slimeAnimator;
     [SerializeField] Animator enemyAnimator;
+    [SerializeField] Animator lastHitAnimator;
     [SerializeField] TMP_Text slimeName;
     [SerializeField] TMP_Text slimeType;
 
@@ -34,6 +36,7 @@ public class ShowAnalytics : MonoBehaviour
     [SerializeField] TMP_Text enemiesDefeated;
     [SerializeField] TMP_Text damageDealt;
     [SerializeField] TMP_Text damageReceived;
+    [SerializeField] TMP_Text lastHitName;
 
     [SerializeField] TMP_Text hitTimes;
     [SerializeField] TMP_Text hazmatHit;
@@ -188,7 +191,15 @@ public class ShowAnalytics : MonoBehaviour
             }
         }
 
-        switch(AnalyticsHolder.Instance.mostHitId)
+        foreach (EnemyClass c in enemyJSONlist)
+        {
+            if (c.enemyId == AnalyticsHolder.Instance.killedBy)
+            {
+                lastHitName.text = c.enemyName;
+            }
+        }
+
+        switch (AnalyticsHolder.Instance.mostHitId)
         {
             case "E01": numHitTimes.text = "Hit " + AnalyticsHolder.Instance.hitByEnemy1.ToString() + " Times"; break;
             case "E02": numHitTimes.text = "Hit " + AnalyticsHolder.Instance.hitByEnemy2.ToString() + " Times"; break;
@@ -235,6 +246,14 @@ public class ShowAnalytics : MonoBehaviour
             case "E02": enemyAnimator.SetInteger("index", 1); break;
             case "E03": enemyAnimator.SetInteger("index", 2); break;
             case "E04": enemyAnimator.SetInteger("index", 3); break;
+        }
+
+        switch (AnalyticsHolder.Instance.killedBy)
+        {
+            case "E01": lastHitAnimator.SetInteger("index", 0); break;
+            case "E02": lastHitAnimator.SetInteger("index", 1); break;
+            case "E03": lastHitAnimator.SetInteger("index", 2); break;
+            case "E04": lastHitAnimator.SetInteger("index", 3); break;
         }
 
         hpImage.color = Color.green;

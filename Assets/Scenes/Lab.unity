@@ -10525,9 +10525,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mostHitGM: {fileID: 2133276572}
   mostbuffGM: {fileID: 1660767383}
-  killedbyGM: {fileID: 1039001447}
+  lastHit: {fileID: 1039001447}
   slimeAnimator: {fileID: 1724481744}
   enemyAnimator: {fileID: 321195159}
+  lastHitAnimator: {fileID: 2139777797}
   slimeName: {fileID: 547015762}
   slimeType: {fileID: 1287912474}
   win: {fileID: 3433904}
@@ -10540,13 +10541,12 @@ MonoBehaviour:
   accuracy: {fileID: 770678399}
   shotHit: {fileID: 1108594508}
   shotMissed: {fileID: 2045316475}
-  lastHitEnemy: {fileID: 1987609603}
-  lastHitAnimator: {fileID: 2139777797}
   timeTaken: {fileID: 2092399337}
   waveEnded: {fileID: 705331684}
   enemiesDefeated: {fileID: 1467554331}
   damageDealt: {fileID: 112484550}
   damageReceived: {fileID: 1510055251}
+  lastHitName: {fileID: 1987609603}
   hitTimes: {fileID: 694126130}
   hazmatHit: {fileID: 530161721}
   chaserHit: {fileID: 1425571055}
