@@ -33,7 +33,7 @@ public class Options : MonoBehaviour
         // GameObject.Find("Options").SetActive(true);
     }
 
-    public void furtherSplit()
+    public void furtherSplit() //split by "#"
     {
         ChoicePopUp.SetActive(true);
         container = dialogue.option1.Split(delimiter2);
@@ -42,9 +42,8 @@ public class Options : MonoBehaviour
         text1.text = dialogue1;
         Array.Clear(container, 0, container.Length);
         container = dialogue.option2.Split(delimiter2);
-        dialogue2 = "*slime noises*";
-        text2.text = dialogue2;
         dialogue2 = container[0];
+        text2.text = dialogue2;
         nextId2 = int.Parse(container[1]);
         //Debug.Log("dialogue1: " + dialogue1);
         //Debug.Log("nextId1: " + nextId1);

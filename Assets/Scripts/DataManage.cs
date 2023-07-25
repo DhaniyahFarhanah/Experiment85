@@ -19,7 +19,6 @@ public class DataManage : MonoBehaviour
     private void Awake()
     {
         LoadRefData();
-        SaveAnalytics();
     }
 
     public void LoadRefData()
@@ -40,29 +39,26 @@ public class DataManage : MonoBehaviour
         return data;
     }
 
-    public void SaveAnalytics() //saves the analytics into an external file
+    public void SaveAnalytics() //saves the analytics into export.csv
     {
-        if (!callOnce && !string.IsNullOrEmpty(AnalyticsHolder.Instance.slimeChosen))
+        if (!string.IsNullOrEmpty(AnalyticsHolder.Instance.slimeChosen))
         {
             AnalyticsHolder analytics = new AnalyticsHolder();
             string filePath = Path.Combine(Application.persistentDataPath + "/export.csv");
             string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            string header = "timestamp,charId,slimeStats,shotStats,winLose,waveId,timeTaken,enemiesDefeated,buffPicked,favouriteBuff,damageReceived,hitsTaken,damageDealt,precision,overallAccuracy";
+            string header = "timestamp,charId,health,damage,speed,shotSpeed,shotRange,slimeRate,winLose,waveId,timeTaken,enemiesDefeated,buffDropped,buffPicked,favouriteBuff,damageReceived,hitsTaken,damageDealt,shotsFired,shotsHit,overallAccuracy";
             string data = timestamp + "," +
                         AnalyticsHolder.Instance.slimeChosen + "," + 
-                        "Health:" + AnalyticsHolder.Instance.health + "|Damage:" + 
-                        AnalyticsHolder.Instance.damage + "|Speed:" + AnalyticsHolder.Instance.speed + "," +
-                        "shotSpeed:" + AnalyticsHolder.Instance.shotSpeed + "|Range:" + 
-                        AnalyticsHolder.Instance.range + "|slimeRate:" + AnalyticsHolder.Instance.slimeRate + "," +
+                        AnalyticsHolder.Instance.health + "," + AnalyticsHolder.Instance.damage + "," + AnalyticsHolder.Instance.speed + "," +
+                        AnalyticsHolder.Instance.shotSpeed + "," + AnalyticsHolder.Instance.range + "," + AnalyticsHolder.Instance.slimeRate + "," +
                         AnalyticsHolder.Instance.win + "," + AnalyticsHolder.Instance.waveEnd + "," +
                         AnalyticsHolder.Instance.timeTaken + "," + AnalyticsHolder.Instance.enemiesDefeated + "," +
-                        "buffsPicked:" + AnalyticsHolder.Instance.buffsPicked + "/" + AnalyticsHolder.Instance.buffsDropped + "," +
-                        AnalyticsHolder.Instance.mostTakenBuff + "," +
+                        AnalyticsHolder.Instance.buffsDropped + "," + AnalyticsHolder.Instance.buffsPicked + "," + AnalyticsHolder.Instance.mostTakenBuff + "," +
                         AnalyticsHolder.Instance.damageReceived + "," +
                         "E01#" + AnalyticsHolder.Instance.hitByEnemy1 + "@E02#" + AnalyticsHolder.Instance.hitByEnemy2 + "@E03#" + 
                         AnalyticsHolder.Instance.hitByEnemy3 + "@E04#" + AnalyticsHolder.Instance.hitByEnemy4 + "," +
                         AnalyticsHolder.Instance.damageDealt + "," +
-                        "shotsHit:" + AnalyticsHolder.Instance.shotsHit + "/" + AnalyticsHolder.Instance.totalShots + "," +
+                        AnalyticsHolder.Instance.totalShots + "," + AnalyticsHolder.Instance.shotsHit + "," +
                         AnalyticsHolder.Instance.accuracy;
            
                 if (!File.Exists(filePath))
@@ -72,8 +68,6 @@ public class DataManage : MonoBehaviour
                 }
                 //SW.WriteLine(data);
                 File.AppendAllText(filePath, data + Environment.NewLine);
-                callOnce = true;
-            
         }
     }
 
