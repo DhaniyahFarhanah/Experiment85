@@ -12,6 +12,7 @@ public class ShowAnalytics : MonoBehaviour
 { //I hate myself for this but its 2.30am and i am too lazy to think of a better way to do this. Sorry JY :( -nana
     [SerializeField] GameObject mostHitGM;
     [SerializeField] GameObject mostbuffGM;
+    [SerializeField] GameObject killedbyGM;
 
     [SerializeField] Animator slimeAnimator;
     [SerializeField] Animator enemyAnimator;
@@ -173,6 +174,15 @@ public class ShowAnalytics : MonoBehaviour
         SetSprites();
 
         CheckHighscores();
+
+        if (AnalyticsHolder.Instance.win)
+        {
+            killedbyGM.SetActive(false);
+        }
+        else
+        {
+            killedbyGM.SetActive(true);
+        }
     }
 
     void GetSlimeName()

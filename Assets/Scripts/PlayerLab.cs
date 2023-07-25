@@ -144,6 +144,8 @@ public class PlayerLab : MonoBehaviour
         }
 
         //keep analytics through game
+
+       
         
     }
 
@@ -335,6 +337,15 @@ public class PlayerLab : MonoBehaviour
         type = playerController.type;
 
         MaxHealth = playerController.baseStatHealth;
+
+        if (Id == "S03")
+        {
+            MaxSlimeRate = 0.05f;
+        }
+        else
+        {
+            MaxSlimeRate = 0.1f;
+        }
 
         SetToDislay();
 

@@ -10525,6 +10525,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mostHitGM: {fileID: 2133276572}
   mostbuffGM: {fileID: 1660767383}
+  killedbyGM: {fileID: 1039001447}
   slimeAnimator: {fileID: 1724481744}
   enemyAnimator: {fileID: 321195159}
   slimeName: {fileID: 547015762}
