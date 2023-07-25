@@ -95,7 +95,7 @@
       "nextCutsceneRefId": "-1",
       "currentSpeaker": "Right",
       "npcId": "1",
-      "dialogue": "I don't know#102001@(slime noises)#102002"
+      "dialogue": "I don't know#102001@*slime noises*#102002"
     },
     {
       "dialogueId": "102001",
@@ -137,7 +137,7 @@
       "nextCutsceneRefId": "-1",
       "currentSpeaker": "Right",
       "npcId": "2",
-      "dialogue": "Thank you#104001@(slime noises)#104002"
+      "dialogue": "Thank you#104001@*slime noises*#104002"
     },
     {
       "dialogueId": "104001",
@@ -186,7 +186,7 @@
       "nextCutsceneRefId": "-1",
       "currentSpeaker": "Right",
       "npcId": "3",
-      "dialogue": "Hi there.#106001@(slime noises)#106002"
+      "dialogue": "Hi there.#106001@*slime noises*#106002"
     },
     {
       "dialogueId": "106001",

@@ -42,8 +42,8 @@ public class Dialogue : MonoBehaviour
     {
         npcList = GameData.GetNPCList();
         dialogueList = GameData.GetDialogueList();
-        textComponent.text = string.Empty;
-        initDialogueID = 101001; // start the first dialogue
+        textComponent.text = string.Empty; //Empty the string
+        initDialogueID = 101001; // store the first dialogue IDs
         nextID = 101002;
         StartFirstDialogue();
         StoreFirstDialogues();
@@ -135,7 +135,7 @@ public class Dialogue : MonoBehaviour
         //Debug.Log("nextCutsceneRefId: " + nextID);
         foreach (DialogueClass d in dialogueList) // search the whole list for ID
         {
-            if (d.dialogueId == initDialogueID && d.nextCutsceneRefId == nextID) //regular conversation
+            if (d.dialogueId == initDialogueID && d.nextCutsceneRefId == nextID) //regular dialogue
             {
                 currentSpeaker = d.currentSpeaker;
                 imageId = d.npcId;
@@ -144,7 +144,8 @@ public class Dialogue : MonoBehaviour
                 //Debug.Log("NextLine" + d.dialogue);
 
             }
-            if (nextID - initDialogueID == 2) //normalize
+            //normalize the numerical difference between iniDialogueID and nextID after options
+            if (nextID - initDialogueID > 1) 
             {
                 currentSpeaker = d.currentSpeaker;
                 imageId = d.npcId;
@@ -153,7 +154,7 @@ public class Dialogue : MonoBehaviour
                 //Debug.Log("Conversation 1");
                 continue;
             }
-            if (d.dialogueId == initDialogueID && d.nextCutsceneRefId == -1) //options
+            if (d.dialogueId == initDialogueID && d.nextCutsceneRefId == -1) // check available options
             {
                 currentSpeaker = d.currentSpeaker;
                 imageId = d.npcId;
@@ -176,8 +177,6 @@ public class Dialogue : MonoBehaviour
                 //Debug.Log("ID(4): " + nextID);
                 Invoke("Close", 2.0f);
             }
- 
-
         }
     }
 

@@ -71,6 +71,7 @@ public class ShowAnalytics : MonoBehaviour
     private List<EnemyClass> enemyJSONlist;
     private List<BuffClass> buffJSONList;
     private bool fillOnce;
+    DataManage dataManagerScript; // This one was done by Gerald :-U
 
 
     // Start is called before the first frame update
@@ -80,6 +81,7 @@ public class ShowAnalytics : MonoBehaviour
         characterJSONList = GameData.GetCharacterList();
         enemyJSONlist = GameData.GetEnemyList();
         buffJSONList = GameData.GetBuffList();
+        dataManagerScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<DataManage>();
     }
 
     // Update is called once per frame
@@ -90,8 +92,8 @@ public class ShowAnalytics : MonoBehaviour
         {
             SetValues();
             fillOnce = false;
-
-            if(AnalyticsHolder.Instance.mostHitId == "")
+            dataManagerScript.SaveAnalytics();
+            if (AnalyticsHolder.Instance.mostHitId == "")
             {
                 mostHitGM.SetActive(false);
             }
