@@ -87,6 +87,9 @@ MonoBehaviour:
     - Balee
     - Riya
     - Grae
+    - Balee.jpg
+    - Riya.jpg
+    - Grae.jpg
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 658031a54f7e8754c95cce9baa95c808, type: 2}

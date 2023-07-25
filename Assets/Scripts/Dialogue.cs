@@ -187,7 +187,7 @@ public class Dialogue : MonoBehaviour
             if (n.npcId == imageId)
             {
                 nameText.text = n.npcName;
-                AsyncOperationHandle<Sprite> handle = Addressables.LoadAssetAsync<Sprite>(n.npcName);
+                AsyncOperationHandle<Sprite> handle = Addressables.LoadAssetAsync<Sprite>(n.image);
                 npcImage.GetComponent<Image>().sprite = handle.Result;
             }
         }

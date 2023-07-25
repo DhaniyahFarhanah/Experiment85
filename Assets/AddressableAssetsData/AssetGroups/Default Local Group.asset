@@ -22,16 +22,19 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Balee
+    - Balee.jpg
   - m_GUID: 559ce3aac2c9cbd4ca7e3dcf7b2e627f
     m_Address: Sprites/Riya
     m_ReadOnly: 0
     m_SerializedLabels:
     - Riya
+    - Riya.jpg
   - m_GUID: dc25a1fe222406045898e3ae8a6d1486
     m_Address: Sprites/Grae
     m_ReadOnly: 0
     m_SerializedLabels:
     - Grae
+    - Grae.jpg
   - m_GUID: c3976537b07041b44a83394c8f1cbbd6
     m_Address: Assets/Scripts/Data/export.json
     m_ReadOnly: 0
