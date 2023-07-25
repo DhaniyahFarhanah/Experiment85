@@ -230,9 +230,10 @@ public class WaveHandler : MonoBehaviour
     //this makes it so the spawner goes in intervals instead of everything spawning at once.
     IEnumerator waitSpawn(EnemyWaveList e)
     {
-        float timeToSpawn = waveTime / enemyList.Count;
+        // Just to make sure everything spawns before timer is over
+        float timeToSpawn = (waveTime - 0.5f) / enemyList.Count;
 
-        for (int i = 1; i < e.qnty; i++)
+        for (int i = 1; i <= e.qnty; i++)
         {
             yield return new WaitForSeconds(timeToSpawn/(e.qnty));
             //spawn enemy
