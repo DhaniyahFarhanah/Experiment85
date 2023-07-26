@@ -175,7 +175,7 @@ public class EnemyController : MonoBehaviour
                 enemyName = e.enemyName;
                 enemyHealth = e.health;
                 enemyDamage = e.damage;
-                enemySpeed = e.speed / 1.5f;
+                enemySpeed = e.speed / 1.7f;
                 buffDrop = e.buffDrop;
                 buffDropRate = e.buffDropRate;
             }
