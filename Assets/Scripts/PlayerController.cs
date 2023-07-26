@@ -112,7 +112,7 @@ public class PlayerController : MonoBehaviour
                 baseStatDmg = c.baseStatDmg;
                 // >:C
                 type = c.type;
-                baseStatSpeed = c.baseStatSpeed * 1.5f;
+                baseStatSpeed = c.baseStatSpeed * 1.7f;
                 baseStatShotSpeed = c.baseStatShotSpeed;
                 baseStatRange = c.baseStatRange;
                 baseStateSlimeRate = c.baseStateSlimeRate;

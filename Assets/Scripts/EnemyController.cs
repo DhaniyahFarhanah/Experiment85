@@ -250,7 +250,7 @@ public class EnemyController : MonoBehaviour
         GameObject.FindGameObjectWithTag("WaveHandler").GetComponent<WaveHandler>().numOfBuffsDropped++;
 
         int drop = Random.Range(1, 101);
-        int prev = 0; 
+        int prev = 1; 
 
         //I can't think... math is hard
         foreach(Buff buff in buffSpawnList)

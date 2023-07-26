@@ -59,9 +59,9 @@
       "baseStatDmg": "2",
       "baseStatSpeed": "5",
       "type": "Rapid",
-      "baseStatShotSpeed": "5",
+      "baseStatShotSpeed": "4.5",
       "baseStatRange": "5",
-      "baseStateSlimeRate": "0.2"
+      "baseStateSlimeRate": "0.3"
     },
     {
       "charId": "S04",
@@ -257,7 +257,7 @@
       "itemDropRate": "100",
       "itemDrop": "item1#5@item3#1",
       "buffDropRate": "60",
-      "buffDrop": "buff1#50@buff2#100",
+      "buffDrop": "buff1#40@buff2#100",
       "health": "4",
       "damage": "2",
       "speed": "7",

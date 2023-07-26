@@ -10064,9 +10064,9 @@ MonoBehaviour:
   minX: -4.48
   maxY: 27.24
   minY: -3.73
-  scale: 0
-  scaleSize: 0
-  followSpeed: 6
+  scale: 1
+  scaleSize: 6
+  followSpeed: 10
 --- !u!1 &1847507662
 GameObject:
   m_ObjectHideFlags: 0

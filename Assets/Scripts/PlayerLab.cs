@@ -340,7 +340,7 @@ public class PlayerLab : MonoBehaviour
 
         if (Id == "S03")
         {
-            MaxSlimeRate = 0.1f;
+            MaxSlimeRate = 0.02f;
         }
         else
         {

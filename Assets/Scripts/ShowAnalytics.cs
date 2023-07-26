@@ -85,6 +85,10 @@ public class ShowAnalytics : MonoBehaviour
         enemyJSONlist = GameData.GetEnemyList();
         buffJSONList = GameData.GetBuffList();
         dataManagerScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<DataManage>();
+
+        waveEnded.color = Color.white;
+        enemiesDefeated.color = Color.white;
+        damageDealt.color = Color.white;
     }
 
     // Update is called once per frame
@@ -109,6 +113,12 @@ public class ShowAnalytics : MonoBehaviour
                 mostHitGM.SetActive(true);
                 mostbuffGM.SetActive(true);
             }
+
+            if (AnalyticsHolder.Instance.win)
+            {
+                GameClass.SetCurrentSlimeId("S01");
+            }
+
         }
     }
 
@@ -165,6 +175,17 @@ public class ShowAnalytics : MonoBehaviour
         GetMostBuff();
 
         SetSprites();
+
+        CheckHighscore();
+
+        if (AnalyticsHolder.Instance.win)
+        {
+            lastHit.SetActive(false);
+        }
+        else
+        {
+            lastHit.SetActive(true);
+        }
 
     }
 
@@ -262,6 +283,32 @@ public class ShowAnalytics : MonoBehaviour
         shotSpeedImage.color = Color.yellow;
 
 
+    }
+
+    void CheckHighscore()
+    {
+        if(GameClass.GetWaveHighscore() < AnalyticsHolder.Instance.waveEnd)
+        {
+            //set highscore
+            GameClass.SetWaveHighscore(AnalyticsHolder.Instance.waveEnd);
+            waveEnded.color = Color.yellow;
+            waveEnded.text = "(NEW) " + waveEnded.text;
+        }
+
+        if (GameClass.GetEnemiesDefeatedHighscore() < AnalyticsHolder.Instance.enemiesDefeated)
+        {
+            //set highscore
+            GameClass.SetEnemiesHighscore(AnalyticsHolder.Instance.enemiesDefeated);
+            enemiesDefeated.color = Color.yellow;
+            enemiesDefeated.text = "(NEW) " + enemiesDefeated.text;
+        }
+        if (GameClass.GetDamageHighscore() < AnalyticsHolder.Instance.damageDealt)
+        {
+            //set highscore
+            GameClass.SetDamageHighscore(AnalyticsHolder.Instance.damageDealt);
+            damageDealt.color = Color.yellow;
+            damageDealt.text = "(NEW) " + damageDealt.text;
+        }
     }
 
 }
