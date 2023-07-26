@@ -37,7 +37,7 @@ public class PlayerLab : MonoBehaviour
     public float MaxSpeed = 10f;
     public float MaxShotSpeed = 25f;
     public float MaxRange = 10f;
-    public float MaxSlimeRate = 0.1f;
+    public float MaxSlimeRate = 0.15f;
 
     // ====CONDITIONAl STUFF====
     float invisibileTime = 2f; //time for invisibility
@@ -340,11 +340,11 @@ public class PlayerLab : MonoBehaviour
 
         if (Id == "S03")
         {
-            MaxSlimeRate = 0.05f;
+            MaxSlimeRate = 0.1f;
         }
         else
         {
-            MaxSlimeRate = 0.1f;
+            MaxSlimeRate = 0.15f;
         }
 
         SetToDislay();

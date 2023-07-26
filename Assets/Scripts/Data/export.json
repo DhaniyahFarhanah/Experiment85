@@ -4,28 +4,28 @@
       "buffId": "buff1",
       "buffName": "Health Up!",
       "stat": "baseStatHealth",
-      "value": "2",
-      "buffDescription": "Restore 2 hitpoints"
+      "value": "1",
+      "buffDescription": "Restore 1 hitpoint"
     },
     {
       "buffId": "buff2",
       "buffName": "Rapid Fire!",
       "stat": "baseStateSlimeRate",
-      "value": "0.05",
+      "value": "0.02",
       "buffDescription": "Increase Fire Rate"
     },
     {
       "buffId": "buff3",
       "buffName": "Damage Up!",
       "stat": "baseStatDmg",
-      "value": "0.05",
+      "value": "0.1",
       "buffDescription": "Increase Damage"
     },
     {
       "buffId": "buff4",
       "buffName": "Speed Up!",
       "stat": "baseStatShotSpeed",
-      "value": "0.05",
+      "value": "0.1",
       "buffDescription": "Increase Projectile Speed"
     }
   ],
@@ -33,13 +33,13 @@
     {
       "charId": "S01",
       "charName": "85",
-      "baseStatHealth": "4",
-      "baseStatDmg": "4",
+      "baseStatHealth": "5",
+      "baseStatDmg": "3",
       "baseStatSpeed": "4",
       "type": "Regular",
-      "baseStatShotSpeed": "5",
+      "baseStatShotSpeed": "4",
       "baseStatRange": "5",
-      "baseStateSlimeRate": "0.42"
+      "baseStateSlimeRate": "0.5"
     },
     {
       "charId": "S02",
@@ -48,31 +48,31 @@
       "baseStatDmg": "8",
       "baseStatSpeed": "4",
       "type": "Piercing",
-      "baseStatShotSpeed": "7",
-      "baseStatRange": "7",
-      "baseStateSlimeRate": "1.31"
+      "baseStatShotSpeed": "5",
+      "baseStatRange": "10",
+      "baseStateSlimeRate": "1.6"
     },
     {
       "charId": "S03",
       "charName": "Water Slime",
-      "baseStatHealth": "3",
+      "baseStatHealth": "4",
       "baseStatDmg": "2",
       "baseStatSpeed": "5",
       "type": "Rapid",
       "baseStatShotSpeed": "5",
       "baseStatRange": "5",
-      "baseStateSlimeRate": "0.26"
+      "baseStateSlimeRate": "0.2"
     },
     {
       "charId": "S04",
       "charName": "Forest Slime",
       "baseStatHealth": "9",
-      "baseStatDmg": "5",
+      "baseStatDmg": "6",
       "baseStatSpeed": "3",
       "type": "Powerful",
-      "baseStatShotSpeed": "4",
+      "baseStatShotSpeed": "2",
       "baseStatRange": "7",
-      "baseStateSlimeRate": "0.72"
+      "baseStateSlimeRate": "0.5"
     }
   ],
   "Dialogue": [
@@ -244,19 +244,19 @@
       "enemyName": "Hazmat",
       "itemDropRate": "100",
       "itemDrop": "item1#1@item2#1",
-      "buffDropRate": "80",
+      "buffDropRate": "50",
       "buffDrop": "buff1#100",
       "health": "8",
       "damage": "1",
       "speed": "5",
-      "enemyDesc": "Basic Enemy with Low Health, Damage and Speed"
+      "enemyDesc": "Basic Enemy with Moderate Health, Low Damage and Moderate Speed"
     },
     {
       "enemyId": "E02",
       "enemyName": "Chaser",
       "itemDropRate": "100",
       "itemDrop": "item1#5@item3#1",
-      "buffDropRate": "70",
+      "buffDropRate": "60",
       "buffDrop": "buff1#50@buff2#100",
       "health": "4",
       "damage": "2",
@@ -268,20 +268,20 @@
       "enemyName": "Juggernaut",
       "itemDropRate": "100",
       "itemDrop": "item1#10@item4#1",
-      "buffDropRate": "60",
-      "buffDrop": "buff1#30@buff3#100",
+      "buffDropRate": "90",
+      "buffDrop": "buff1#10@buff4#100",
       "health": "16",
       "damage": "3",
       "speed": "2",
-      "enemyDesc": "Juggernaut Enemy with High Health, High Damage and Low Speed"
+      "enemyDesc": "Juggernaut Enemy with High Health, Moderate Damage and Low Speed"
     },
     {
       "enemyId": "E04",
       "enemyName": "Reaper",
       "itemDropRate": "100",
       "itemDrop": "item1#15@item5#1",
-      "buffDropRate": "50",
-      "buffDrop": "buff1#30@buff4#100",
+      "buffDropRate": "100",
+      "buffDrop": "buff1#10@buff3#100",
       "health": "14",
       "damage": "4",
       "speed": "5",
